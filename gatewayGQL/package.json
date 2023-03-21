@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@graphql-tools/schema": "^9.0.17",
+    "graphql": "^16.6.0",
+    "grpc-tools": "^1.12.4",
+    "grpc_tools_node_protoc_ts": "^5.3.3"
+  }
+}

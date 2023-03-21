@@ -1,0 +1,32 @@
+type HelloRequest {
+  name: String!
+}
+
+type HelloResponse {
+  message: String!
+}
+
+type ImageRequest {
+  image: Upload!
+}
+
+type ImageResponse {
+  message: String!
+}
+
+type VideoRequest {
+  video: Upload!
+}
+
+type VideoResponse {
+  message: String!
+}
+
+type Query {
+  sayHello(request: HelloRequest!): HelloResponse!
+}
+
+type Mutation {
+  sendImage(request: ImageRequest!): ImageResponse!
+  sendVideo(request: VideoRequest!): VideoResponse!
+}
