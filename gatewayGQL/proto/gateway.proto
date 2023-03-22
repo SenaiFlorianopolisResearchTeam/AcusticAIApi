@@ -1,15 +1,11 @@
 syntax = "proto3";
 
-package helloworld;
+package gateway;
 
-service Greeter {
-
+service Gateway {
   rpc SayHello (HelloRequest) returns (HelloReply) {}
-
   rpc SendImage (ImageRequest) returns (ImageReply) {}
-
   rpc SendVideo (VideoRequest) returns (VideoReply) {}
-
 }
 
 message HelloRequest {

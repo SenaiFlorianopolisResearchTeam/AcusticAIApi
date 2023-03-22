@@ -1,0 +1,9 @@
+services:
+  gateway:
+    image: ./gatewayGQL
+  auth:
+    image: ./auth
+  noiseAI:
+    image: ./noiseAI
+  trafficAI:
+    image: ./trafficAI
