@@ -1,0 +1,1 @@
+{"name":"gatewayGQL","dependencies":{"@grpc/grpc-js":{"version":"1.8.12"},"@grpc/proto-loader":{"version":"0.7.5"},"grpc_tools_node_protoc_ts":{"version":"5.3.3"},"grpc-tools":{"version":"1.12.4"},"grpc":{"version":"1.24.11"}}}

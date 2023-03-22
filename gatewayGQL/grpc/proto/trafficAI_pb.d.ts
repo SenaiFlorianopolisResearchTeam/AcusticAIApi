@@ -1,5 +1,5 @@
 // package: gateway
-// file: proto/gateway.proto
+// file: proto/trafficAI.proto
 
 /* tslint:disable */
 /* eslint-disable */
