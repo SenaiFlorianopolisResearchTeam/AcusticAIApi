@@ -1,9 +1,17 @@
 services:
-  gateway:
-    image: ./gatewayGQL
-  auth:
-    image: ./auth
-  noiseAI:
-    image: ./noiseAI
   trafficAI:
     image: ./trafficAI
+    ports:
+      - 50051:50051
+  noiseAI:
+    image: ./noiseAI
+    ports:
+      - 50052:50052
+  auth:
+    image: ./auth
+    ports:
+      - 50053:50053
+  gateway:
+    image: ./gateway
+    ports:
+      - 50050:50050
