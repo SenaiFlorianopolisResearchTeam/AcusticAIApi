@@ -6,13 +6,13 @@ RUN apk add --no-cache libc6-compat
 
 WORKDIR /gateway
 
-COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+#COPY package.json yarn.lock ./
+#RUN yarn install --frozen-lockfile
 
-RUN yarn build
+#RUN yarn build
 
 COPY . .
 
 ENV PORT=3004
 
-CMD [ "yarn", "start" ]
+#CMD [ "yarn", "start" ]
