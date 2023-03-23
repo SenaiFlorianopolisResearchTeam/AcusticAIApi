@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package gateway;
+
+// Serviço NoiseAI
+service NoiseAIService {
+  rpc Predict (NoiseRequest) returns (NoiseReply) {}
+}
+
+// Serviço Traffic
+service TrafficService {
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+  rpc SendImage (ImageRequest) returns (ImageReply) {}
+  rpc SendVideo (VideoRequest) returns (VideoReply) {}
+}
+
+message NoiseRequest {
+  string noise = 1;
+}
+
+message NoiseReply {
+  string message = 1;
+}
+
+message HelloRequest {
+  string name = 1;
+}
+
+message HelloReply {
+  string message = 1;
+}
+
+message ImageRequest {
+  bytes image = 1;
+}
+
+message ImageReply {
+  string message = 1;
+}
+
+message VideoRequest {
+  bytes video = 1;
+}
+
+message VideoReply {
+  string message = 1;
+}

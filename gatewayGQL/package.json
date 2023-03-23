@@ -1,0 +1,20 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.8.13",
+    "google-protobuf": "^3.21.2"
+  },
+  "devDependencies": {
+    "@types/google-protobuf": "^3.15.6",
+    "grpc-tools": "^1.12.4",
+    "grpc_tools_node_protoc_ts": "^5.3.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.2"
+  },
+  "scripts": {
+    "build": "bash bash/build.sh"
+  }
+}
