@@ -4,6 +4,10 @@
   "description": "",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "build": "bash bash/build.sh",
+    "dev": "ts-node src/gateway.ts"
+  },
   "dependencies": {
     "@apollo/gateway": "^2.4.0",
     "@grpc/grpc-js": "^1.8.13",
@@ -17,10 +21,7 @@
     "@types/node": "^18.15.6",
     "grpc-tools": "^1.12.4",
     "grpc_tools_node_protoc_ts": "^5.3.3",
-    "ts-node": "^10.9.1",
+    "ts-node": "8.0.1",
     "typescript": "^5.0.2"
-  },
-  "scripts": {
-    "build": "bash bash/build.sh"
   }
 }

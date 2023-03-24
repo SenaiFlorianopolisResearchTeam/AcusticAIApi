@@ -1,6 +1,8 @@
 import { NoiseAIServiceClient, TrafficServiceClient } from './grpc/gateway_grpc_pb';
 import { ApolloServer } from 'apollo-server';
 import { ApolloGateway } from '@apollo/gateway';
+import resolvers from './resolvers/resolver';
+import * as grpc from "@grpc/grpc-js"
 
 const gateway = new ApolloGateway({
     serviceList: [
@@ -11,11 +13,9 @@ const gateway = new ApolloGateway({
 
 const server = new ApolloServer({
     gateway,
-    subscriptions: false,
-    context: ({ req:any }) => {
-      // Adiciona o objeto gRPC aos cabeçalhos do contexto
-      const noiseAIClient = new NoiseAIServiceClient('localhost:50051', grpc.credentials.createInsecure());
-      const trafficClient = new TrafficServiceClient('localhost:50052', grpc.credentials.createInsecure());
+    context: ({ req }) => {
+      const noiseAIClient = new NoiseAIServiceClient('localhost:50052', grpc.credentials.createInsecure());
+      const trafficClient = new TrafficServiceClient('localhost:50051', grpc.credentials.createInsecure());
   
       return {
         headers: {
@@ -29,5 +29,4 @@ const server = new ApolloServer({
 
 server.listen(4000,()=> {
     console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
-    
 })
