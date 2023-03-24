@@ -41,7 +41,7 @@ app.post('/image', (req:any, res:any) => {
       console.error(err);
       return res.status(500).json({ error: err.message });
     }
-    res.json({ message: response.getMessage() });
+    return res.json({ message: response.getMessage() });
   });
 });
 

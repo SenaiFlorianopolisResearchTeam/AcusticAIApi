@@ -1,8 +1,8 @@
 import sys
 sys.path.append("..")
 
-import api_pb2_grpc
-import api_pb2
+import trafficAI.api_pb2_grpc as api_pb2_grpc
+import trafficAI.api_pb2 as api_pb2
 import time
 import grpc
 
