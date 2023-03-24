@@ -2,21 +2,20 @@
   "name": "gatewa",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/gateway.js",
   "license": "MIT",
   "scripts": {
     "build": "bash bash/build.sh",
     "dev": "ts-node src/gateway.ts"
   },
   "dependencies": {
-    "@apollo/gateway": "^2.4.0",
     "@grpc/grpc-js": "^1.8.13",
     "@grpc/proto-loader": "^0.7.6",
-    "apollo-server": "^3.12.0",
-    "google-protobuf": "^3.21.2",
-    "graphql": "^16.6.0"
+    "express": "^4.18.2",
+    "google-protobuf": "^3.21.2"
   },
   "devDependencies": {
+    "@types/express": "^4.17.17",
     "@types/google-protobuf": "^3.15.6",
     "@types/node": "^18.15.6",
     "grpc-tools": "^1.12.4",

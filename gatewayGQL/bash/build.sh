@@ -7,8 +7,8 @@ mkdir -p ./src/grpc
     --grpc_out=grpc_js:./src/grpc \
     --plugin=protoc-gen-grpc-ts=./node_modules/.bin/protoc-gen-grpc-ts \
     --ts_out=:./src/grpc \
-    -I ./proto \
-    proto/*.proto
+    -I ./src/proto \
+    src/proto/*.proto
 
 mkdir -p dist/grpc/
 cp -r ./src/grpc/gateway_grpc_pb.js dist/grpc/
