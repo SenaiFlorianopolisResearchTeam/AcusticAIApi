@@ -1,0 +1,4 @@
+grpcio_tools
+numpy
+opencv-python
+ultralytics
