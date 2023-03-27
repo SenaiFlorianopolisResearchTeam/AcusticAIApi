@@ -4,7 +4,7 @@ ENV NODE_ENV=production
 
 RUN apk add --no-cache libc6-compat
 
-WORKDIR /gateway
+WORKDIR /auth
 
 #COPY package.json yarn.lock ./
 #RUN yarn install --frozen-lockfile
