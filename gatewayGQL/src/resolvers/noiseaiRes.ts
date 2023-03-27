@@ -21,3 +21,5 @@ export const resolverNoiseAI = {
     },
   },
 };
+
+export default resolverNoiseAI

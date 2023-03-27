@@ -1,8 +1,9 @@
+import typeDefTrafficAI from "./trafiicAITypes";
+import typeDefnoiseAI from "./noiseAITypes"
 
-
-const typeDefs = {
-    ...typeDefTrafficAI,
-    ...typeDefNoiseAI,
-};
+const typeDefs = `
+    ${typeDefTrafficAI}
+    ${typeDefnoiseAI},
+`
 
 export default typeDefs;

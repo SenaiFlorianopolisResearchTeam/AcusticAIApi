@@ -4,9 +4,9 @@ import * as grpc from "@grpc/grpc-js"
 
 const client = new GreeterClient('http://localhost:50051', grpc.credentials.createInsecure())
 
-export const resolverTrafficAI = {
+const resolverTrafficAI = {
   Query: {
-    hello: async (parent:any, args:any) => {
+    hello2: async (parent:any, args:any) => {
       const request = new HelloRequest();
       request.setName(args.name);
       return new Promise((resolve, reject) => {
@@ -21,3 +21,5 @@ export const resolverTrafficAI = {
     },
   },
 };
+
+export default resolverTrafficAI

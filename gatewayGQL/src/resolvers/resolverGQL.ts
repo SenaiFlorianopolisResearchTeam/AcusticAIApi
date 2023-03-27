@@ -1,5 +1,5 @@
-import { resolverNoiseAI } from "./noiseaiRes";
-import { resolverTrafficAI } from "./trafficaiRes";
+import resolverNoiseAI from "./noiseaiRes";
+import resolverTrafficAI from "./trafficaiRes";
 
 const resolvers = {
     ...resolverTrafficAI,

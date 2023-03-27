@@ -1,3 +1,10 @@
 node_modules
-grpc
 dist
+noiseAI_grpc_pb.d.ts
+noiseAI_pb.d.ts
+trafficAI_grpc_pb.d.ts
+trafficAI_pb.d.ts
+noiseAI_grpc_pb.js
+noiseAI_pb.js
+trafficAI_grpc_pb.js
+trafficAI_pb.js
