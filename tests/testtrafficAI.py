@@ -1,5 +1,5 @@
 import sys
-sys.path.append("../trafficai")
+sys.path.append("../trafficAI")
 
 import api_pb2_grpc as api_pb2_grpc
 import api_pb2 as api_pb2
@@ -38,4 +38,5 @@ def run():
             print("Response {}".format(reply))
             
 if __name__ == "__main__":
+    print(sys.argv)
     run()
