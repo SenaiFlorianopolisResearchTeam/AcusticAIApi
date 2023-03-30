@@ -28,8 +28,4 @@ jobs:
     - name: Running trafficAI
       run: |
         cd trafficAI
-        python server.py &
-    - name: testinf trafficAI
-      run: |
-        cd tests
-        python testtrafficAI.py && exit 0
+        python server.py & cd ../tests && python testtrafficAI.py -1

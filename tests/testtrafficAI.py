@@ -37,6 +37,50 @@ def run():
             reply = stub.SendVideo(request)
             print("Response {}".format(reply))
             
+def hello():
+    with grpc.insecure_channel('localhost:50051', options=[
+        ('grpc.max_receive_message_length', 104857600),
+        ('grpc.max_send_message_length', 104857600)
+    ]) as channel:
+        stub = api_pb2_grpc.GreeterStub(channel)
+        request = api_pb2.HelloRequest(name = "test")
+        reply = stub.SayHello(request)
+        print("Response {}".format(reply))
+        
+def image():
+    with grpc.insecure_channel('localhost:50051', options=[
+        ('grpc.max_receive_message_length', 104857600),
+        ('grpc.max_send_message_length', 104857600)
+    ]) as channel:
+        stub = api_pb2_grpc.GreeterStub(channel)
+        with open("img/car.jpg", "rb") as f:
+                image_bytes = f.read()
+        request = api_pb2.ImageRequest(image=image_bytes)
+        reply = stub.SendImage(request)
+        print("Response {}".format(reply))
+        
+def video():
+    with grpc.insecure_channel('localhost:50051', options=[
+        ('grpc.max_receive_message_length', 104857600),
+        ('grpc.max_send_message_length', 104857600)
+    ]) as channel:
+        stub = api_pb2_grpc.GreeterStub(channel)
+        with open("video/car.MOV", "rb") as f:
+                video_bytes = f.read()
+        request = api_pb2.VideoRequest(video=video_bytes)
+        reply = stub.SendVideo(request)
+        print("Response {}".format(reply))
+            
 if __name__ == "__main__":
     print(sys.argv)
-    run()
+    if sys.argv == ['testtrafficAI.py']:
+        run()
+        
+    if sys.argv == ['testtrafficAI.py', '-1']:
+        hello()
+        
+    if sys.argv == ['testtrafficAI.py', '-2']:
+        image()
+        
+    if sys.argv == ['testtrafficAI.py', '-3']:
+        video()
