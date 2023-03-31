@@ -4,14 +4,16 @@ package auth;
 
 service Greeter {
 
-  rpc Predict (NoiseRequest) returns (NoiseReply) {}
+  rpc CreateUser (CreateUserRequest) returns (CreateUserReply) {}
 
 }
 
-message NoiseRequest {
-  string noise = 1;
+message CreateUserRequest {
+  string user = 1;
+  string email = 1;
+  string senha = 1;
 }
 
-message NoiseReply {
+message CreateUserReply {
   string message = 1;
 }

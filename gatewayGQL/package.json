@@ -1,5 +1,6 @@
 {
   "type": "commonjs",
+  "license":"MIT",
   "dependencies": {
     "@apollo/server": "^4.5.0",
     "@grpc/grpc-js": "^1.8.13",

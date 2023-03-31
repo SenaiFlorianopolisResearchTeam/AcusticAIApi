@@ -10,10 +10,6 @@ const typeDefnoiseAI = `
     type GreeterPredictResponse {
         noisePredicted: NoiseReply
     }
-    
-    type Greeter {
-        predict(noise: NoiseRequest): GreeterPredictResponse
-    }
 
     type Query {
         predict(noise: String): NoiseReply
