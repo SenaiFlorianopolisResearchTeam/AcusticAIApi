@@ -1,5 +1,5 @@
 import typeDefTrafficAI from "./trafiicAITypes";
-import typeDefnoiseAI from "./noiseAITypes"
+import typeDefnoiseAI from "./noiseAITypes";
 
 const typeDefs = `
     ${typeDefTrafficAI}

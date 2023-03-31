@@ -6,7 +6,7 @@ const client = new GreeterClient('http://localhost:50051', grpc.credentials.crea
 
 export const resolverNoiseAI = {
   Query: {
-    hello: async (parent:any, args:any) => {
+    predict: async (parent:any, args:any) => {
       const request = new HelloRequest();
       request.setName(args.name);
       return new Promise((resolve, reject) => {

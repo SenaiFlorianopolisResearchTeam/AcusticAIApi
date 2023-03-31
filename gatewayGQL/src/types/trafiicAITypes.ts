@@ -40,6 +40,10 @@ const typeDefTrafficAI = `
         sendImage(input: ImageRequest): GreeterSendImageResponse
         sendVideo(input: VideoRequest): GreeterSendVideoResponse
     }
+
+    type Query {
+        sayHello(name: String): HelloReply
+    }
 `;
 
 export default typeDefTrafficAI

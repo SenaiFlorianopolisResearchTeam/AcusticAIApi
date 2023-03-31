@@ -6,7 +6,7 @@ const client = new GreeterClient('http://localhost:50051', grpc.credentials.crea
 
 const resolverTrafficAI = {
   Query: {
-    hello2: async (parent:any, args:any) => {
+    sayHello: async (parent:any, args:any) => {
       const request = new HelloRequest();
       request.setName(args.name);
       return new Promise((resolve, reject) => {
