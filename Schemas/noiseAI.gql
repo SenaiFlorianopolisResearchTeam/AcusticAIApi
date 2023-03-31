@@ -1,0 +1,7 @@
+type NoiseReply {
+    message: String
+}
+
+type Query {
+    predict(noise: String): NoiseReply
+}
