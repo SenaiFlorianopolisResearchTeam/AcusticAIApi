@@ -1,0 +1,7 @@
+# sayHello function from trafficAI
+
+mutation Mutation($name: String!) {
+  sayHello(name: $name) {
+    message
+  }
+}
