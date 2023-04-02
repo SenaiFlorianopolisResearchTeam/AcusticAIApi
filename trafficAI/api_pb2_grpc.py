@@ -14,18 +14,18 @@ class GreeterStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.SayHello = channel.unary_unary(
-                '/helloworld.Greeter/SayHello',
+        self.sayHello = channel.unary_unary(
+                '/trafficAI.Greeter/sayHello',
                 request_serializer=api__pb2.HelloRequest.SerializeToString,
                 response_deserializer=api__pb2.HelloReply.FromString,
                 )
-        self.SendImage = channel.unary_unary(
-                '/helloworld.Greeter/SendImage',
+        self.sendImage = channel.unary_unary(
+                '/trafficAI.Greeter/sendImage',
                 request_serializer=api__pb2.ImageRequest.SerializeToString,
                 response_deserializer=api__pb2.ImageReply.FromString,
                 )
-        self.SendVideo = channel.unary_unary(
-                '/helloworld.Greeter/SendVideo',
+        self.sendVideo = channel.unary_unary(
+                '/trafficAI.Greeter/sendVideo',
                 request_serializer=api__pb2.VideoRequest.SerializeToString,
                 response_deserializer=api__pb2.VideoReply.FromString,
                 )
@@ -34,19 +34,19 @@ class GreeterStub(object):
 class GreeterServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def SayHello(self, request, context):
+    def sayHello(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def SendImage(self, request, context):
+    def sendImage(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def SendVideo(self, request, context):
+    def sendVideo(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -55,24 +55,24 @@ class GreeterServicer(object):
 
 def add_GreeterServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'SayHello': grpc.unary_unary_rpc_method_handler(
-                    servicer.SayHello,
+            'sayHello': grpc.unary_unary_rpc_method_handler(
+                    servicer.sayHello,
                     request_deserializer=api__pb2.HelloRequest.FromString,
                     response_serializer=api__pb2.HelloReply.SerializeToString,
             ),
-            'SendImage': grpc.unary_unary_rpc_method_handler(
-                    servicer.SendImage,
+            'sendImage': grpc.unary_unary_rpc_method_handler(
+                    servicer.sendImage,
                     request_deserializer=api__pb2.ImageRequest.FromString,
                     response_serializer=api__pb2.ImageReply.SerializeToString,
             ),
-            'SendVideo': grpc.unary_unary_rpc_method_handler(
-                    servicer.SendVideo,
+            'sendVideo': grpc.unary_unary_rpc_method_handler(
+                    servicer.sendVideo,
                     request_deserializer=api__pb2.VideoRequest.FromString,
                     response_serializer=api__pb2.VideoReply.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'helloworld.Greeter', rpc_method_handlers)
+            'trafficAI.Greeter', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
@@ -81,7 +81,7 @@ class Greeter(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def SayHello(request,
+    def sayHello(request,
             target,
             options=(),
             channel_credentials=None,
@@ -91,14 +91,14 @@ class Greeter(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/helloworld.Greeter/SayHello',
+        return grpc.experimental.unary_unary(request, target, '/trafficAI.Greeter/sayHello',
             api__pb2.HelloRequest.SerializeToString,
             api__pb2.HelloReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def SendImage(request,
+    def sendImage(request,
             target,
             options=(),
             channel_credentials=None,
@@ -108,14 +108,14 @@ class Greeter(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/helloworld.Greeter/SendImage',
+        return grpc.experimental.unary_unary(request, target, '/trafficAI.Greeter/sendImage',
             api__pb2.ImageRequest.SerializeToString,
             api__pb2.ImageReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def SendVideo(request,
+    def sendVideo(request,
             target,
             options=(),
             channel_credentials=None,
@@ -125,7 +125,7 @@ class Greeter(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/helloworld.Greeter/SendVideo',
+        return grpc.experimental.unary_unary(request, target, '/trafficAI.Greeter/sendVideo',
             api__pb2.VideoRequest.SerializeToString,
             api__pb2.VideoReply.FromString,
             options, channel_credentials,

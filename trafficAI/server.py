@@ -9,7 +9,7 @@ import cv2
 
 class ApiServicer(api_pb2_grpc.GreeterServicer):
     
-    def SayHello(self, request, context):
+    def sayHello(self, request, context):
         
         print("Request {}".format(request))
         
@@ -18,7 +18,7 @@ class ApiServicer(api_pb2_grpc.GreeterServicer):
         
         return reply
     
-    def SendImage(self, request, context):
+    def sendImage(self, request, context):
         print("Request: {} bytes".format(len(request.image)))
         
         img_array = np.frombuffer(request.image, np.uint8)
@@ -32,7 +32,7 @@ class ApiServicer(api_pb2_grpc.GreeterServicer):
         
         return reply
         
-    def SendVideo(self, request, context):
+    def sendVideo(self, request, context):
         print("Request: {} bytes".format(len(request.video)))
 
         with open("video_temp.mp4", "wb") as f:
@@ -60,7 +60,7 @@ def serve():
         ('grpc.max_send_message_length', 104857600)
     ])
     api_pb2_grpc.add_GreeterServicer_to_server(ApiServicer(), server)
-    server.add_insecure_port("localhost:50051")
+    server.add_insecure_port("localhost:8070")
     server.start()
     server.wait_for_termination()
     

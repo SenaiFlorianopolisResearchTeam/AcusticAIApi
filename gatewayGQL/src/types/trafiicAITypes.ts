@@ -1,27 +1,21 @@
 const typeDefTrafficAI = `
-    type HelloReply {
-        message: String
-    }
-        
-    type ImageReply {
-        message: String
-    }
-        
-    type VideoReply {
-        message: String
-    }
+  type HelloReply {
+    message: String
+  }
 
-    type Query {
-        sayHello(name: String): HelloReply
-    }
+  type ImageReply {
+    message: String
+  }
 
-    type Query {
-        predictImage(image: String): ImageReply
-    }
+  type VideoReply {
+    message: String
+  }
 
-    type Query {
-        predictVideo(video: String): VideoReply
-    }
+  type Mutation {
+    sayHello(name: String!): HelloReply!
+    predictImage(image: String): ImageReply
+    predictVideo(video: String): VideoReply
+  }
 `;
 
-export default typeDefTrafficAI
+export default typeDefTrafficAI;

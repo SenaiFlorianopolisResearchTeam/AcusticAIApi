@@ -17,6 +17,9 @@
   },
   "scripts": {
     "setupTS": "bash src/tools/build.bash",
-    "start": "yarn setupTS && node ./dist/gateway.js"
+    "start": "yarn setupTS && node ./dist/gateway.js",
+    "test:hello": "yarn setupTS && node ./dist/func/hello.js",
+    "test:image": "yarn setupTS && node ./dist/func/image.js",
+    "test:video": "yarn setupTS && node ./dist/func/video.js"
   }
 }

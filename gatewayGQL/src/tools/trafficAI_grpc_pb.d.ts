@@ -8,13 +8,13 @@ import * as grpc from "grpc";
 import * as trafficAI_pb from "./trafficAI_pb";
 
 interface IGreeterService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
-    sayHello: IGreeterService_ISayHello;
-    sendImage: IGreeterService_ISendImage;
-    sendVideo: IGreeterService_ISendVideo;
+    sayHello: IGreeterService_IsayHello;
+    sendImage: IGreeterService_IsendImage;
+    sendVideo: IGreeterService_IsendVideo;
 }
 
-interface IGreeterService_ISayHello extends grpc.MethodDefinition<trafficAI_pb.HelloRequest, trafficAI_pb.HelloReply> {
-    path: "/trafficAI.Greeter/SayHello";
+interface IGreeterService_IsayHello extends grpc.MethodDefinition<trafficAI_pb.HelloRequest, trafficAI_pb.HelloReply> {
+    path: "/trafficAI.Greeter/sayHello";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<trafficAI_pb.HelloRequest>;
@@ -22,8 +22,8 @@ interface IGreeterService_ISayHello extends grpc.MethodDefinition<trafficAI_pb.H
     responseSerialize: grpc.serialize<trafficAI_pb.HelloReply>;
     responseDeserialize: grpc.deserialize<trafficAI_pb.HelloReply>;
 }
-interface IGreeterService_ISendImage extends grpc.MethodDefinition<trafficAI_pb.ImageRequest, trafficAI_pb.ImageReply> {
-    path: "/trafficAI.Greeter/SendImage";
+interface IGreeterService_IsendImage extends grpc.MethodDefinition<trafficAI_pb.ImageRequest, trafficAI_pb.ImageReply> {
+    path: "/trafficAI.Greeter/sendImage";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<trafficAI_pb.ImageRequest>;
@@ -31,8 +31,8 @@ interface IGreeterService_ISendImage extends grpc.MethodDefinition<trafficAI_pb.
     responseSerialize: grpc.serialize<trafficAI_pb.ImageReply>;
     responseDeserialize: grpc.deserialize<trafficAI_pb.ImageReply>;
 }
-interface IGreeterService_ISendVideo extends grpc.MethodDefinition<trafficAI_pb.VideoRequest, trafficAI_pb.VideoReply> {
-    path: "/trafficAI.Greeter/SendVideo";
+interface IGreeterService_IsendVideo extends grpc.MethodDefinition<trafficAI_pb.VideoRequest, trafficAI_pb.VideoReply> {
+    path: "/trafficAI.Greeter/sendVideo";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<trafficAI_pb.VideoRequest>;
