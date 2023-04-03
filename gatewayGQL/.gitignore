@@ -8,3 +8,4 @@ noiseAI_grpc_pb.js
 noiseAI_pb.js
 trafficAI_grpc_pb.js
 trafficAI_pb.js
+.env
