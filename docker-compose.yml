@@ -5,18 +5,18 @@ services:
       context: ./trafficAI
       dockerfile: Dockerfile
     ports:
-      - 50051:50051
+      - 8070:8070
   noiseai:
     image: noiseai
     build:
       context: ./noiseAI
       dockerfile: Dockerfile
     ports:
-      - 50052:50052
+      - 8060:8060
   gateway:
     image: gatewaygql
     build:
       context: ./gatewayGQL
       dockerfile: Dockerfile
     ports:
-      - 50050:50050
+      - 4000:4000

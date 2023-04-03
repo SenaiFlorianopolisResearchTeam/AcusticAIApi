@@ -1,4 +1,4 @@
-FROM node:16-alpine3.16
+FROM node:19-alpine
 
 COPY . .
 
@@ -8,10 +8,10 @@ RUN apk add --no-cache libc6-compat
 
 WORKDIR /gatewaygql
 
-RUN yarn install --frozen-lockfile
+RUN yarn install
 
 RUN yarn setupTS
 
-ENV PORT=3000
+ENV PORT=4000
 
 CMD [ "node", "gateway.js" ]
