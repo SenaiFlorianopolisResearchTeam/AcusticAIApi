@@ -1,23 +1,17 @@
 type HelloReply {
     message: String
 }
-    
+
 type ImageReply {
     message: String
 }
-    
+
 type VideoReply {
     message: String
 }
 
-type Query {
-    sayHello(name: String): HelloReply
-}
-
-type Query {
+type Mutation {
+    sayHello(name: String!): HelloReply!
     predictImage(image: String): ImageReply
-}
-
-type Query {
     predictVideo(video: String): VideoReply
 }
