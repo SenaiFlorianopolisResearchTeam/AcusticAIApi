@@ -8,7 +8,7 @@ import grpc
 
 
 def run():
-    with grpc.insecure_channel('localhost:50051', options=[
+    with grpc.insecure_channel('localhost:8070', options=[
         ('grpc.max_receive_message_length', 104857600),
         ('grpc.max_send_message_length', 104857600)
     ]) as channel:
@@ -20,7 +20,7 @@ def run():
         
         if rpc_call == "1":
             request = api_pb2.HelloRequest(name = "test")
-            reply = stub.SayHello(request)
+            reply = stub.sayHello(request)
             print("Response {}".format(reply))
             
         elif rpc_call == "2":
@@ -38,17 +38,17 @@ def run():
             print("Response {}".format(reply))
             
 def hello():
-    with grpc.insecure_channel('localhost:50051', options=[
+    with grpc.insecure_channel('localhost:8070', options=[
         ('grpc.max_receive_message_length', 104857600),
         ('grpc.max_send_message_length', 104857600)
     ]) as channel:
         stub = api_pb2_grpc.GreeterStub(channel)
         request = api_pb2.HelloRequest(name = "test")
-        reply = stub.SayHello(request)
+        reply = stub.sayHello(request)
         print("Response {}".format(reply))
         
 def image():
-    with grpc.insecure_channel('localhost:50051', options=[
+    with grpc.insecure_channel('localhost:8070', options=[
         ('grpc.max_receive_message_length', 104857600),
         ('grpc.max_send_message_length', 104857600)
     ]) as channel:
@@ -60,7 +60,7 @@ def image():
         print("Response {}".format(reply))
         
 def video():
-    with grpc.insecure_channel('localhost:50051', options=[
+    with grpc.insecure_channel('localhost:8070', options=[
         ('grpc.max_receive_message_length', 104857600),
         ('grpc.max_send_message_length', 104857600)
     ]) as channel:

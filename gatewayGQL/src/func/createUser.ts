@@ -11,11 +11,15 @@ const createUser = ( name: string, email: string, password: string ) => {
         
         connect()
 
-        const hashedPassword = bcrypt.hash(password, 10);
-    
+        const hashedPassword = bcrypt.hashSync(password, 10);
+
         User.create({username: name, email: email, password: hashedPassword})
-    
-        return resolve({message: "usuario criado"})
+        .then(() => {
+            resolve({message: "usuario criado"})
+        })
+        .catch((error) => {
+            reject(error);
+        });
     })
 }
 
