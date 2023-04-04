@@ -10,11 +10,13 @@
     "dotenv": "^16.0.3",
     "google-protobuf": "^3.21.2",
     "graphql": "^16.6.0",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.3"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
     "@types/google-protobuf": "^3.15.6",
+    "@types/jsonwebtoken": "^9.0.1",
     "@types/node": "^18.15.10",
     "grpc-tools": "^1.12.4",
     "grpc_tools_node_protoc_ts": "^5.3.3",
