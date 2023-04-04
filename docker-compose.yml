@@ -1,18 +1,4 @@
 services:
-  trafficai:
-    image: trafficai
-    build:
-      context: ./trafficAI
-      dockerfile: Dockerfile
-    ports:
-      - 8070:8070
-  noiseai:
-    image: noiseai
-    build:
-      context: ./noiseAI
-      dockerfile: Dockerfile
-    ports:
-      - 8060:8060
   gateway:
     image: gatewaygql
     build:

@@ -10,4 +10,4 @@ mkdir -p dist/tools/
     -I ./src/proto \
     src/proto/*.proto
 
-tsc
+yarn tsc

@@ -4,13 +4,11 @@ COPY . .
 
 ENV NODE_ENV=production
 
-RUN apk add --no-cache libc6-compat
-
-WORKDIR /gatewaygql
-
 RUN yarn install
 
-RUN yarn setupTS
+RUN apk add bash
+
+RUN yarn start
 
 ENV PORT=4000
 

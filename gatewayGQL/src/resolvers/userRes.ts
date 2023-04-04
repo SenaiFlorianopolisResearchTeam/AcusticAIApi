@@ -1,7 +1,3 @@
-import connect from '../tools/database';
-import User from '../models/User';
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 import createUser from '../func/createUser';
 import logUser from '../func/logUser';
 
