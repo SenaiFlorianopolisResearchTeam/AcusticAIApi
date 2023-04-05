@@ -1,6 +1,6 @@
 const typeDefTrafficAI = `
   type HelloReply {
-    message: String
+    message: String!
   }
 
   type ImageReply {
@@ -12,7 +12,7 @@ const typeDefTrafficAI = `
   }
 
   type Mutation {
-    sayHello(name: String): HelloReply
+    sayHello(name: String!): HelloReply!
     predictImage(image: String): ImageReply
     predictVideo(video: String): VideoReply
   }

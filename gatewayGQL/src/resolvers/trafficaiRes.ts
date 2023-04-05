@@ -4,11 +4,13 @@ import hello from "../func/hello"
 const resolverTrafficAI = {
   Mutation: {
     sayHello: async (root:any, args:any, context:any) => {
-      console.log("recebeu")
       const response = await hello(args.name);
-      return { message: response.message};
+      if (!response || response.message === null) {
+        throw new Error("Failed to say hello");
+      }
+      return { message: response.message };
     },
   },
 };
 
-export default resolverTrafficAI
+export default resolverTrafficAI;

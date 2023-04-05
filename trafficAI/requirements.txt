@@ -1,4 +1,6 @@
 grpcio_tools
-numpy
 opencv-python
+grpcio
+protobuf
 ultralytics
+numpy

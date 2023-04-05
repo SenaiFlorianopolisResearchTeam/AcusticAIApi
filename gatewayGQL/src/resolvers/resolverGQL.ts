@@ -5,7 +5,7 @@ import resolverUser from "./userRes";
 const resolvers = {
     ...resolverTrafficAI,
     ...resolverNoiseAI,
-    ...resolverUser
+    ...resolverUser,
 };
 
 export default resolvers;
