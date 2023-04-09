@@ -6,6 +6,7 @@ import api_pb2_grpc
 import api_pb2
 import numpy as np
 import cv2
+from AIs.traffic import trafficAI
 
 class ApiServicer(api_pb2_grpc.GreeterServicer):
     
@@ -20,15 +21,10 @@ class ApiServicer(api_pb2_grpc.GreeterServicer):
     
     def sendImage(self, request, context):
         print("Request: {} bytes".format(len(request.image)))
-        
-        img_array = np.frombuffer(request.image, np.uint8)
-        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-        cv2.imshow('Imagem Recebida', img)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
+
         
         reply = api_pb2.ImageReply()
-        reply.message = "Enviado"
+        reply.message = trafficAI.image(request.image)
         
         return reply
         

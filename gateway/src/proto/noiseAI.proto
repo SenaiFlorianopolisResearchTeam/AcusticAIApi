@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package noiseAI;
+
+service Greeter {
+
+  rpc Predict (NoiseRequest) returns (NoiseReply) {}
+
+}
+
+message NoiseRequest {
+  string noise = 1;
+}
+
+message NoiseReply {
+  string message = 1;
+}
