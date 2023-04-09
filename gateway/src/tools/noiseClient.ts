@@ -1,4 +1,4 @@
-import { GreeterClient } from "../tools/noiseAI_grpc_pb";
+import { GreeterClient } from "./noiseAI_grpc_pb";
 import { credentials } from "@grpc/grpc-js"
 
 const port = 8060

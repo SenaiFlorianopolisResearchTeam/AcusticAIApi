@@ -1,4 +1,4 @@
-import { GreeterClient } from "../tools/trafficAI_grpc_pb";
+import { GreeterClient } from "./trafficAI_grpc_pb";
 import { credentials } from "@grpc/grpc-js"
 
 const port = 8070
