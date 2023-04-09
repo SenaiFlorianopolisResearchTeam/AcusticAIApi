@@ -24,6 +24,7 @@
   },
   "scripts": {
     "setupTS": "bash src/tools/build.bash",
-    "start": "yarn setupTS && node ./dist/gateway.js"
+    "start": "yarn setupTS && node ./dist/gateway.js",
+    "test": "yarn setupTS && node ./dist/func/hello.js"
   }
 }

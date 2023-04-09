@@ -20,4 +20,6 @@ const hello = ( name: string ) => {
     })
 }
 
+hello("fnosd")
+
 export default hello

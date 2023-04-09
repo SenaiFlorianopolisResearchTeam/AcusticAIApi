@@ -27,14 +27,14 @@ def run():
             with open("img/car.jpg", "rb") as f:
                 image_bytes = f.read()
             request = api_pb2.ImageRequest(image=image_bytes)
-            reply = stub.SendImage(request)
+            reply = stub.sendImage(request)
             print("Response {}".format(reply))
             
         elif rpc_call == "3":
             with open("video/car.MOV", "rb") as f:
                 video_bytes = f.read()
             request = api_pb2.VideoRequest(video=video_bytes)
-            reply = stub.SendVideo(request)
+            reply = stub.sendVideo(request)
             print("Response {}".format(reply))
             
 def hello():
@@ -56,7 +56,7 @@ def image():
         with open("img/car.jpg", "rb") as f:
                 image_bytes = f.read()
         request = api_pb2.ImageRequest(image=image_bytes)
-        reply = stub.SendImage(request)
+        reply = stub.sendImage(request)
         print("Response {}".format(reply))
         
 def video():
@@ -68,7 +68,7 @@ def video():
         with open("video/car.MOV", "rb") as f:
                 video_bytes = f.read()
         request = api_pb2.VideoRequest(video=video_bytes)
-        reply = stub.SendVideo(request)
+        reply = stub.sendVideo(request)
         print("Response {}".format(reply))
             
 if __name__ == "__main__":

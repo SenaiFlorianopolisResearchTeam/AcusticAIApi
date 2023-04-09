@@ -4,3 +4,4 @@ grpcio
 protobuf
 ultralytics
 numpy
+roboflow
