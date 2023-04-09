@@ -4,10 +4,10 @@ import { client } from "../tools/trafficClient";
 import fs from 'fs';
 
 
-const sendImage = (video: Uint8Array) => {
+const sendImage = (image: Uint8Array) => {
   return new Promise((resolve, reject) => {
     const request = new ImageRequest();
-    request.setImage(video);
+    request.setImage(image);
 
     client.sendImage(request, (err, response) => {
       if (err) reject(err);

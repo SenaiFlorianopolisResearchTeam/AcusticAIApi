@@ -5,10 +5,7 @@ const resolverTrafficAI = {
   Mutation: {
     sayHello: async (root:any, args:any, context:any) => {
       const response = await hello(args.name);
-      if (!response || response.message === null) {
-        throw new Error("Failed to say hello");
-      }
-      return { message: response.message };
+      return { message: response.message! };
     },
   },
 };
