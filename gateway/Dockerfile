@@ -6,6 +6,8 @@ ENV NODE_ENV=production
 
 RUN yarn install
 
+RUN yarn add tsc
+
 RUN apk add bash
 
 RUN yarn start
