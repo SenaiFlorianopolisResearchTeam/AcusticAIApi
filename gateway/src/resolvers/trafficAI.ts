@@ -1,4 +1,3 @@
-import { blob } from "stream/consumers";
 import hello from "../func/hello"
 import sendImage from "../func/image";
 
@@ -9,10 +8,8 @@ export const trafficAI = {
       return { message: response.message };
     },
     predictImage: async (root:any, args:any, context:any) => {
-      const response = await sendImage(args.image);
-      
-      const message = "foi"
-      return { message: message };
+      const response = await hello(args.name);
+      return { message: response.message };
     },
   }
 };

@@ -12,13 +12,15 @@
     "google-protobuf": "^3.21.2",
     "graphql": "^16.6.0",
     "jsonwebtoken": "^9.0.0",
-    "mongoose": "^7.0.3"
+    "mongoose": "^7.0.3",
+    "redis": "^4.6.5"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
     "@types/google-protobuf": "^3.15.6",
     "@types/jsonwebtoken": "^9.0.1",
     "@types/node": "^18.15.10",
+    "@types/redis": "^4.0.11",
     "grpc-tools": "^1.12.4",
     "grpc_tools_node_protoc_ts": "^5.3.3",
     "typescript": "^5.0.2"
