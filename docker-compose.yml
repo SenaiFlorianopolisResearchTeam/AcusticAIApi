@@ -1,8 +1,6 @@
 services:
-  gateway:
-    image: gatewaygql
-    build:
-      context: ./gatewayGQL
-      dockerfile: Dockerfile
+  redis:
+    image: redis
+    command: redis-server --requirepass TesteLocal!
     ports:
-      - 4000:4000
+      - "6379:6379"
