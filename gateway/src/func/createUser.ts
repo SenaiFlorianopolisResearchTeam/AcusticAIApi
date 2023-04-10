@@ -1,6 +1,7 @@
 import connect from '../tools/database';
 import User from '../models/User';
 import bcrypt from 'bcrypt';
+import Data from '../models/Data';
 
 interface UserReply {
     userId?: string;
@@ -13,8 +14,12 @@ const createUser = (name: string, email: string, password: string) => {
 
         const hashedPassword = bcrypt.hashSync(password, 10);
 
+        let userID:string = ""
+
         User.create({ username: name, email: email, password: hashedPassword })
             .then((user) => {
+                userID = user._id.toString()
+                Data.create({userId: userID})
                 resolve({ userId: user._id.toString() });
             })
             .catch((error) => {
