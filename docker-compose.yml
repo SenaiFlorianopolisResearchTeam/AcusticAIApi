@@ -5,7 +5,7 @@ services:
     ports:
       - "6379:6379"
 
-  website:
+  website:  
     container_name: website
     image: website
     build:
