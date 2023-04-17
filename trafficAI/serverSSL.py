@@ -56,9 +56,12 @@ def serve():
         ('grpc.max_send_message_length', 104857600)
     ])
     api_pb2_grpc.add_GreeterServicer_to_server(ApiServicer(), server)
-    server.add_insecure_port("[::]:8070")
+    key = open('./cert/server.key', 'rb').read()
+    cert = open('./cert/server.crt', 'rb').read()
+    creds = grpc.ssl_server_credentials(((key, cert),))
+    server.add_secure_port("[::]:8070", creds)
     server.start()
     server.wait_for_termination()
-
+    
 if __name__ == "__main__":
     serve()

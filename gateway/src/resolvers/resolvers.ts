@@ -1,9 +1,9 @@
-import trafficAI from "./trafficAI";
-import user from "./user";
+import trafficAIResolvers from "./trafficAI";
+import userResolvers from "./user";
 
-const resolvers = {
-    ...trafficAI,
-    ...user
-};
+const resolvers: any[] = [
+  trafficAIResolvers,
+  userResolvers
+];
 
 export default resolvers;

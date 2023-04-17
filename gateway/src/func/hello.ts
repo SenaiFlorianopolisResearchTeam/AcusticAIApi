@@ -5,19 +5,22 @@ interface HelloReply {
     message: string
 }
 
-const hello = ( name: string ) => {
-    return new Promise<HelloReply>((resolve, reject) => {
-        const request = new HelloRequest()
-        request.setName(name)
-        
+const hello = async (name: string): Promise<HelloReply> => {
+    const request = new HelloRequest()
+    request.setName(name)
+
+    return new Promise((resolve, reject) => {
         client.sayHello(request, (err, message) => {
-            if (err) reject(err)
-            else{
+            if (err) {
+                reject(err)
+            } else {
                 const value: any = message!
-                return resolve({ message: value.array![0] })
-            } 
+                resolve({ message: value.array![0] })
+            }
         })
     })
 }
+
+hello("fd")
 
 export default hello
