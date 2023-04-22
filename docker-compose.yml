@@ -4,21 +4,3 @@ services:
     command: redis-server --requirepass TesteLocal!
     ports:
       - "6379:6379"
-
-  website:  
-    container_name: website
-    image: website
-    build:
-      context: ./Website
-      dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
-  
-  trafficai:
-    container_name: trafficai
-    image: trafficai
-    build:
-      context: ./trafficAI
-      dockerfile: Dockerfile
-    ports:
-      - "8070:8070"
