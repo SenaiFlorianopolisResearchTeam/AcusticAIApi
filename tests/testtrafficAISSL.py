@@ -6,8 +6,15 @@ import api_pb2 as api_pb2
 import time
 import grpc
 
+with open('./cert/server.key', 'rb') as f:
+    client_key = f.read()
+with open('./cert/server.crt', 'rb') as f:
+    client_cert = f.read()
+    
+creds = grpc.ssl_channel_credentials(root_certificates=None, private_key=client_key, certificate_chain=client_cert)
+
 def run():
-    with grpc.insecure_channel('localhost:8070', options=[
+    with grpc.secure_channel('[::]:8070', creds, options=[
         ('grpc.max_receive_message_length', 104857600),
         ('grpc.max_send_message_length', 104857600)
     ]) as channel:

@@ -11,3 +11,9 @@ mutation CreateUser($username: String, $email: String, $password: String) {
     message
   }
 }
+
+mutation PredictImage($image: String!) {
+  predictImage(image: $image) {
+    message
+  }
+}

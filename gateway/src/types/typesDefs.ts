@@ -3,7 +3,7 @@ import User from "./user";
 
 const typeDefs = `
     ${trafficAI},
-    ${User}
+    ${User},
 `
 
 export default typeDefs;
