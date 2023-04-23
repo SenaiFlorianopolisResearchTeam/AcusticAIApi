@@ -9,8 +9,7 @@ const client = createClient({
 });
 
 const data = {
-  video: [],
-  image: []
+  video: ""
 }
 
 interface UserReply {

@@ -10,7 +10,7 @@ const Home : NextPage = () => {
       <Head>
         <title>AcustticAI - Login</title>
       </Head>
-      <main>
+      <main className='Horizontal'>
         <LoginForm/>
         <BackgroundForm/>
       </main>

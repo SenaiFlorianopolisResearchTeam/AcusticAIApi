@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import { NextPage } from 'next'
-import Navbar from '@/components/navbar'
 import Link from 'next/link'
 import { useMutation } from '@apollo/client'
 import { CREATE_USER } from '@/graphql/mutations'
@@ -26,7 +25,6 @@ const Signup : NextPage = () => {
         <title>AcustticAI - Signup</title>
       </Head>
       <main>
-        <Navbar/>
         <div>
           <h1>AcustticAI</h1>
           <form>

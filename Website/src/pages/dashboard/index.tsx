@@ -2,7 +2,6 @@ import Head from 'next/head'
 import { NextPage } from 'next'
 import { useMutation} from "@apollo/client"
 import { SAY_HELLO } from '@/graphql/mutations'
-import Navbar from '@/components/navbar'
 
 const Dashboard : NextPage = () => {
 
@@ -21,7 +20,6 @@ const Dashboard : NextPage = () => {
             <title>AcustticAI - Dashboard</title>
         </Head>
         <main>
-            <Navbar/>
             <button onClick={(e) => send(e)}>Testar</button>
         </main>
         </>
