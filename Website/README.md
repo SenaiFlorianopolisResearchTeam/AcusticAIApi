@@ -1,1 +1,0 @@
-Erros redirecionar usuario a criar a conta
