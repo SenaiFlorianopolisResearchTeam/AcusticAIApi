@@ -21,13 +21,22 @@
     "@types/jsonwebtoken": "^9.0.1",
     "@types/node": "^18.15.10",
     "@types/redis": "^4.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.43.0",
+    "eslint": "^8.0.1",
+    "eslint-config-standard-with-typescript": "^34.0.1",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
     "grpc-tools": "^1.12.4",
     "grpc_tools_node_protoc_ts": "^5.3.3",
-    "typescript": "^5.0.2"
+    "typescript": "*"
   },
   "scripts": {
     "build": "bash src/tools/build.bash",
     "start": "yarn build && node ./dist/gateway.js",
-    "test": "yarn build && node ./dist/func/hello.js"
-  }
+    "test": "jest --config jest.config.ts ./__tests__"
+  },
+  "name": "gateway",
+  "version": "1.0.0",
+  "main": "src/gateway.ts"
 }

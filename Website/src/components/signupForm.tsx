@@ -1,7 +1,5 @@
 import { NextComponentType } from "next";
 import Styles from "@/scss/login.module.scss"
-import { useMutation } from "@apollo/client";
-import { CREATE_USER, SAY_HELLO } from "@/graphql/mutations";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from 'next/router';
@@ -10,32 +8,21 @@ const SignupForm: NextComponentType = () => {
 
     const router = useRouter();
 
-    const [createUser, { data, loading, error }] = useMutation(CREATE_USER);
     const [password1, setPassword1] = useState("")
     const [password2, setPassword2] = useState("")
     const [username, setUsername] = useState("")
     const [email, setEmail] = useState("")
 
-    const send = async (e: any) => {
+    const sendSignup = async (e: any) => {
         e.preventDefault();
-        let state = false
-
-        if (password1 === password2) {
-            state = true
-            await createUser({ variables: { username, email, password: password1 } })
-        }else{
-            alert("password dont check")
-        }
-
-        if(state === true){
-            router.push("/")
-        }
+        console.log("s")
+        router.push("/")
     }
 
     return(
         <div className={Styles.Login}>
             <h1>AcustiicAI</h1>
-            <form onSubmit={(e) => send(e)}>
+            <form onSubmit={(e) => sendSignup(e)}>
                 <div>
                     <input type="text" id="username" name="username" onChange={(e) => setUsername(e.target.value)} required />
                 </div>

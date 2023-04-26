@@ -4,9 +4,7 @@ COPY . .
 
 ENV NODE_ENV=production
 
-RUN yarn install
-
-RUN yarn add tsc
+RUN yarn install 
 
 RUN apk add bash
 
