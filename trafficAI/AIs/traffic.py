@@ -2,6 +2,10 @@ from ultralytics import YOLO
 import cv2
 import os
 import numpy as np
+from ByteTrack import yolox
+from ByteTrack.yolox.tracker.byte_tracker import BYTETracker, STrack
+from onemetric.cv.utils.iou import box_iou_batch
+from dataclasses import dataclass
 
 HOME = os.getcwd()
 AIPath = f'{HOME}/AIs'
@@ -18,15 +22,30 @@ class trafficAI():
         model = YOLO(f'{AIPath}/yolov8n.pt')
 
         model.train(data=f'{AIPath}/Traffic-Survey-3/data.yaml', epochs=epochs, imgsz=640, project=f'{AIPath}/') # recomended 100
-
-    
-    def image(image):
         
-        img_array = np.frombuffer(image, np.uint8)
-        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-        #predicts = model.predict(source=img, show=True)
+    def predict(video):
         
-        #for predict in predicts:
-        #    result = f'labels: {predict.probs}'
+        HOME = os.getcwd()
+        AIPath = f'{HOME}/AIs'
+        Video = f"{AIPath}/test/car.MOV" # test line
+        
+        print(f"{yolox.__version__}")
+        
+        @dataclass(frozen=True)
+        class ByteTrackerArgs:
+            track_thresh: float = 0.25
+            track_buffer: int = 30
+            match_thresh: float = 0.8
+            aspect_ratio_thresh: float = 3.0
+            min_box_area: float = 1.0
+            mot20: bool = False
             
-        #return result
+        
+        
+        
+        
+
+# treinar modelo:
+# trafficAI.train(10)
+
+trafficAI.predict(10)
