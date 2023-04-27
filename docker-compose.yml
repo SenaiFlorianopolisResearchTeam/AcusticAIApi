@@ -24,6 +24,15 @@ services:
       - 8070:8070
     networks:
       - network
+  website:
+    image: website
+    build:
+      context: ./website
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    networks:
+      - network
 
 networks: 
   network:

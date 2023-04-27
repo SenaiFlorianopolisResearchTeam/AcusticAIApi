@@ -16,7 +16,6 @@ COPY dist/tools/ ./dist/tools
 RUN yarn tsc
 
 ENV PORT=4000
-
 EXPOSE 4000:4000
 
 CMD [ "yarn", "start" ]

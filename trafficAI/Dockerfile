@@ -2,8 +2,12 @@ FROM python:3.10.10
 
 COPY . .
 
-RUN pip install grpcio_tools opencv-python grpcio protobuf ultralytics numpy roboflow
+RUN pip3 install grpcio_tools opencv-python grpcio protobuf ultralytics numpy roboflow
 
-EXPOSE 50051:50051
+ENV PORT=8070
+EXPOSE 8070:8070
 
-CMD [ "python", "server.py" ]
+ENV GRPC_ENABLE_TCP_PROXY=true
+ENV GRPC_VERBOSITY=debug
+
+CMD [ "python3", "server.py" ]
