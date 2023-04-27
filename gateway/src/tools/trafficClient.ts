@@ -4,6 +4,6 @@ import { credentials } from "@grpc/grpc-js"
 const port = 8070
 
 export const client = new GreeterClient(
-    `localhost:${port}`,
+    `0.0.0.0:${port}`,
     credentials.createInsecure()
 )
