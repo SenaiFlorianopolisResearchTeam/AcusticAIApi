@@ -33,7 +33,8 @@
   },
   "scripts": {
     "build": "bash src/tools/build.bash",
-    "start": "yarn build && node ./dist/gateway.js",
+    "dev": "yarn build && node ./dist/gateway.js",
+    "start": "node ./dist/gateway.js",
     "test": "jest --config jest.config.ts ./__tests__"
   },
   "name": "gateway",

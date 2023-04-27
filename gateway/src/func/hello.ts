@@ -21,6 +21,6 @@ const hello = async (name: string): Promise<HelloReply> => {
     })
 }
 
-hello("Conexao estavel")
+//hello("Conexao estavel")
 
 export default hello

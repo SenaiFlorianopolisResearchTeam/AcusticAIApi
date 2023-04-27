@@ -1,15 +1,22 @@
 FROM node:19-alpine
 
-COPY . .
+WORKDIR /app
 
-ENV NODE_ENV=production
+RUN mkdir -p dist/tools/
 
-RUN yarn install 
+COPY package*.json ./
 
-RUN apk add bash
+RUN yarn install --frozen-lockfile
 
-RUN yarn start
+COPY .env ./
+COPY src/ ./src
+COPY tsconfig.json ./
+COPY dist/tools/ ./dist/tools
+
+RUN yarn tsc
 
 ENV PORT=4000
 
-CMD [ "node", "gateway.js" ]
+EXPOSE 4000:4000
+
+CMD [ "yarn", "start" ]
