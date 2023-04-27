@@ -1,12 +1,7 @@
 from concurrent import futures
-import time
-import os
 import grpc
 import api_pb2_grpc
 import api_pb2
-import numpy as np
-import cv2
-from AIs.traffic import trafficAI
 
 class ApiServicer(api_pb2_grpc.GreeterServicer):
     
@@ -18,32 +13,9 @@ class ApiServicer(api_pb2_grpc.GreeterServicer):
         reply.message = f"{request.name}"
         
         return reply
-    
-    def sendImage(self, request, context):
-        print("Request: {} bytes".format(len(request.image)))
-
-        
-        reply = api_pb2.ImageReply()
-        reply.message = trafficAI.image(request.image)
-        
-        return reply
         
     def sendVideo(self, request, context):
         print("Request: {} bytes".format(len(request.video)))
-
-        with open("video_temp.mp4", "wb") as f:
-            f.write(request.video)
-
-        video = cv2.VideoCapture("video_temp.mp4")
-        while True:
-            ret, frame = video.read()
-            if not ret:
-                break
-            cv2.imshow('frame', frame)
-            if cv2.waitKey(1) == ord('q'):
-                break
-        cv2.destroyAllWindows()
-        video.release()
 
         reply = api_pb2.VideoReply()
         reply.message = "Enviado"
@@ -56,7 +28,7 @@ def serve():
         ('grpc.max_send_message_length', 104857600)
     ])
     api_pb2_grpc.add_GreeterServicer_to_server(ApiServicer(), server)
-    server.add_insecure_port("0.0.0.0:8070")
+    server.add_insecure_port("127.0.0.1:8070")
     server.start()
     server.wait_for_termination()
 
