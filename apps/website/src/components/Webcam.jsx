@@ -1,12 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Webcam from 'react-webcam';
 import '../scss/webcam.scss';
+// import { detect, detectVideo } from "./utils/detect";
+import * as tf from '@tensorflow/tfjs';
 
 const WebcamC = () => {
   const webcamRef = useRef(null);
   const [multipleCameras, setMultipleCameras] = useState(false);
   const [selectedCamera, setSelectedCamera] = useState(null);
   const [videoDevices, setVideoDevices] = useState([]);
+  const [model, setModel] = useState({ net: null, inputShape: [1, 0, 0, 3] });
+
+  // implemntar detect labels e render boxes
 
   useEffect(() => {
     const getMediaDevices = async () => {
@@ -23,6 +28,23 @@ const WebcamC = () => {
 
     getMediaDevices();
   }, []);
+
+  useEffect(() => {
+    tf.ready().then(async () => {
+      
+      const yolov8 = await tf.loadLayersModel(`${window.location.href}/model.json`);
+
+      const dummyInput = tf.ones(yolov8.inputs[0].shape);
+      const warmupResults = yolov8.execute(dummyInput);
+      
+      setModel({
+        net: yolov8,
+        inputShape: yolov8.inputs[0].shape,
+      })
+
+      tf.dispose([warmupResults, dummyInput]);
+    })
+  })
 
   const switchCamera = () => {
     setSelectedCamera(prevCamera => {
@@ -51,6 +73,7 @@ const WebcamC = () => {
           screenshotFormat="image/jpeg"
           className="webcam"
           videoConstraints={videoConstraints}
+          onPlay={() => detectVideo(cameraRef.current, model, canvasRef.current)}
         />
       </div>
     </>
