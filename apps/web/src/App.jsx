@@ -3,7 +3,9 @@ import "@tensorflow/tfjs-backend-webgl";
 import { useEffect, useState } from "react";
 
 const App = () => {
-  
+
+  const [webcam, setWebcam] = useState(False)
+  const [video, setVideo] = useState(False)
   const [model, setModel] = useState({
     net: null,
     inputShape: [1, 0, 0, 3],
@@ -29,7 +31,11 @@ const App = () => {
 
   return (
     <>
-      
+      <h1> teste modelo v5.2 </h1>
+      <div>
+        { webcam && <></> }
+        { video && <></> }
+      </div>
     </>
   )
 }
