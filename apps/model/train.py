@@ -1,46 +1,63 @@
 import tensorflow as tf
+from object_detection.utils import dataset_util
+from object_detection.utils import label_map_util
+from object_detection.utils import config_util
+from object_detection import model_lib_v2
 
-def parse_example(example_proto):
-    feature_description = {
-        'image': tf.io.FixedLenFeature([], tf.string),
-        'label': tf.io.FixedLenFeature([], tf.int64),
-    }
+# Definir os caminhos para os arquivos de configuração do modelo
+pipeline_config_path = 'caminho/para/o/arquivo/pipeline.config'
+model_dir = 'caminho/para/o/diretorio/de/saida'
+checkpoint_dir = 'caminho/para/o/diretorio/com/checkpoints'
 
-    example = tf.io.parse_single_example(example_proto, feature_description)
-    
+# Carregar o arquivo de configuração do modelo EfficientDet
+configs = config_util.get_configs_from_pipeline_file(pipeline_config_path)
+model_config = configs['model']
 
-    image = tf.io.decode_image(example['image'], channels=3)
+# Carregar o label map (opcional, se você tiver um arquivo de mapeamento de rótulos)
+label_map_path = 'caminho/para/o/arquivo/label_map.pbtxt'
+label_map = label_map_util.load_labelmap(label_map_path)
+categories = label_map_util.convert_label_map_to_categories(label_map, max_num_classes=model_config.ssd.num_classes)
+category_index = label_map_util.create_category_index(categories)
 
-    return image, example['label']
+# Definir as configurações de treinamento
+train_config = configs['train_config']
+train_input_config = configs['train_input_config']
 
-train_dataset = tf.data.TFRecordDataset('./TrafficAI-4/train/car-truck-bike.tfrecord').map(parse_example)
-test_dataset = tf.data.TFRecordDataset('./TrafficAI-4/test/car-truck-bike.tfrecord').map(parse_example)
-validation_dataset = tf.data.TFRecordDataset('./TrafficAI-4/valid/car-truck-bike.tfrecord').map(parse_example)
+# Definir a função para converter o seu TFRecord em exemplos de treinamento
+def tfrecord_to_training_examples(tfrecord_path):
+    dataset = tf.data.TFRecordDataset(tfrecord_path)
+    # Use as funções do TF Object Detection API para criar exemplos de treinamento a partir do seu TFRecord
+    # Veja a documentação para mais detalhes sobre como definir as features e os exemplos
+    examples = ...  # Implemente essa função para converter o TFRecord em exemplos
+    return examples
 
-batch_size = 16
-num_classes = 4
-num_epochs = 1000
-width = 1240
-height = 920
-channels = 1
+# Carregar os exemplos de treinamento
+train_input = train_input_config
+train_input.tf_record_input_reader.input_path[:] = ['caminho/para/o/seu/train.tfrecord']
+train_input.label_map_path = 'caminho/para/o/seu/label_map.pbtxt'
+train_input.fine_tune_checkpoint = 'caminho/para/o/seu/checkpoint.ckpt'
 
-train_dataset = train_dataset.shuffle(buffer_size=50000)
-train_dataset = train_dataset.repeat()
-train_dataset = train_dataset.batch(batch_size)
-train_dataset = train_dataset.prefetch(1)
+# Definir as configurações de validação (opcional)
+eval_config = configs['eval_config']
+eval_input_config = configs['eval_input_config']
 
-test_dataset = test_dataset.batch(batch_size)
-validation_dataset = validation_dataset.batch(batch_size)
+# Carregar os exemplos de validação (opcional)
+eval_input = eval_input_config
+eval_input.tf_record_input_reader.input_path[:] = ['caminho/para/o/seu/val.tfrecord']
+eval_input.label_map_path = 'caminho/para/o/seu/label_map.pbtxt'
 
-model = tf.keras.Sequential()
-model.add(tf.keras.layers.Conv2D(filters=32, kernel_size=(3, 3), activation='relu', input_shape=(width, height, channels)))
-model.add(tf.keras.layers.MaxPooling2D(pool_size=(2, 2)))
-model.add(tf.keras.layers.Flatten())
-model.add(tf.keras.layers.Dense(units=64, activation='relu'))
-model.add(tf.keras.layers.Dense(units=num_classes, activation='softmax'))
+# Treinar o modelo
+model_lib_v2.train_loop(
+    pipeline_config=model_config,
+    model_dir=model_dir,
+    train_config=train_config,
+    train_input_config=train_input,
+    eval_config=eval_config,
+    eval_input_config=eval_input
+)
 
-model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-
-model.fit(train_dataset, epochs=num_epochs, validation_data=validation_dataset)
-
-loss, accuracy = model.evaluate(test_dataset)
+# Realizar a detecção de objetos
+detection_model = model_lib_v2.create_inference_graph(
+    pipeline_config_path=pipeline_config_path,
+    checkpoint_dir=checkpoint_dir
+)
