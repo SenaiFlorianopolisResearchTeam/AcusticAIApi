@@ -6,12 +6,14 @@ const WebcamC = () => {
   const webcamRef = useRef(null);
   const [multipleCameras, setMultipleCameras] = useState(false);
   const [selectedCamera, setSelectedCamera] = useState(null);
+  const [videoDevices, setVideoDevices] = useState([]);
 
   useEffect(() => {
     const getMediaDevices = async () => {
       try {
         const devices = await navigator.mediaDevices.enumerateDevices();
         const videoDevices = devices.filter(device => device.kind === 'videoinput');
+        setVideoDevices(videoDevices);
         setMultipleCameras(videoDevices.length > 1);
         setSelectedCamera(videoDevices[0]?.deviceId); // Seleciona a primeira câmera como padrão
       } catch (error) {
@@ -23,7 +25,6 @@ const WebcamC = () => {
   }, []);
 
   const switchCamera = () => {
-    console.log("a")
     setSelectedCamera(prevCamera => {
       const currentIndex = videoDevices.findIndex(device => device.deviceId === prevCamera);
       const nextIndex = (currentIndex + 1) % videoDevices.length;
@@ -38,7 +39,7 @@ const WebcamC = () => {
   return (
     <>
       {multipleCameras && (
-        <button onClick={() => switchCamera()} className="botao">
+        <button onClick={switchCamera} className="botao">
           Alternar câmera
         </button>
       )}
