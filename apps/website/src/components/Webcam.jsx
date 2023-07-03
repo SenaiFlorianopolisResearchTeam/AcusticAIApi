@@ -22,6 +22,7 @@ const WebcamC = () => {
   }, []);
 
   const switchCamera = () => {
+    console.log("ativou")
     setFacingMode(prevMode => (prevMode === 'user' ? 'environment' : 'user'));
   };
 
