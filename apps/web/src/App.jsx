@@ -1,11 +1,13 @@
 import * as tf from "@tensorflow/tfjs";
 import "@tensorflow/tfjs-backend-webgl"; 
 import { useEffect, useState } from "react";
+import Webcam from "./components/webcam";
+import Video from "./components/video";
 
 const App = () => {
 
-  const [webcam, setWebcam] = useState(False)
-  const [video, setVideo] = useState(False)
+  const [webcam, setWebcam] = useState(false)
+  const [video, setVideo] = useState(false)
   const [model, setModel] = useState({
     net: null,
     inputShape: [1, 0, 0, 3],
@@ -29,12 +31,37 @@ const App = () => {
     });
   }, []);
 
+  const changeWebcam = () => {
+    if (video === false && webcam === true){
+      return
+    }
+    resetAll()
+    setWebcam(!webcam)
+  }
+
+  const changeVideo = () => {
+    if (webcam === false && video === true){
+      return
+    }
+    resetAll()
+    setVideo(!video)
+  }
+
+  const resetAll = () => {
+    setWebcam(false)
+    setVideo(false)
+  }
+
   return (
     <>
       <h1> teste modelo v5.2 </h1>
+      <div className="modelo">
+        { webcam && <Webcam/> }
+        { video && <Video/> }
+      </div>
       <div>
-        { webcam && <></> }
-        { video && <></> }
+        <button onClick={() => changeWebcam()}>webcam</button>
+        <button onClick={() => changeVideo()}>video</button>
       </div>
     </>
   )
