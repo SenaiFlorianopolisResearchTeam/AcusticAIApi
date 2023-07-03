@@ -5,7 +5,7 @@ import '../scss/webcam.scss';
 const WebcamC = () => {
   const webcamRef = useRef(null);
   const [multipleCameras, setMultipleCameras] = useState(false);
-  const [facingMode, setFacingMode] = useState('user');
+  const [selectedCamera, setSelectedCamera] = useState(null);
 
   useEffect(() => {
     const getMediaDevices = async () => {
@@ -13,6 +13,7 @@ const WebcamC = () => {
         const devices = await navigator.mediaDevices.enumerateDevices();
         const videoDevices = devices.filter(device => device.kind === 'videoinput');
         setMultipleCameras(videoDevices.length > 1);
+        setSelectedCamera(videoDevices[0]?.deviceId); // Seleciona a primeira câmera como padrão
       } catch (error) {
         console.error('Erro ao obter dispositivos de mídia:', error);
       }
@@ -21,32 +22,37 @@ const WebcamC = () => {
     getMediaDevices();
   }, []);
 
-  const switchCamera = (e) => {
-    e.preventDefault()
-    console.log("ativou")
-    setFacingMode(prevMode => (prevMode === 'user' ? 'environment' : 'user'));
+  const switchCamera = () => {
+    console.log("a")
+    setSelectedCamera(prevCamera => {
+      const currentIndex = videoDevices.findIndex(device => device.deviceId === prevCamera);
+      const nextIndex = (currentIndex + 1) % videoDevices.length;
+      return videoDevices[nextIndex]?.deviceId || null;
+    });
   };
 
   const videoConstraints = {
-    facingMode: { exact: facingMode },
+    deviceId: selectedCamera ? { exact: selectedCamera } : undefined,
   };
 
   return (
-    <div className="webcam-container">
+    <>
       {multipleCameras && (
-        <button onClick={ (e) => switchCamera(e)}>
+        <button onClick={() => switchCamera()} className="botao">
           Alternar câmera
         </button>
       )}
-      <Webcam
-        audio={false}
-        ref={webcamRef}
-        mirrored={true}
-        screenshotFormat="image/jpeg"
-        className="webcam"
-        videoConstraints={videoConstraints}
-      />
-    </div>
+      <div className="webcam-container">
+        <Webcam
+          audio={false}
+          ref={webcamRef}
+          mirrored={true}
+          screenshotFormat="image/jpeg"
+          className="webcam"
+          videoConstraints={videoConstraints}
+        />
+      </div>
+    </>
   );
 };
 
