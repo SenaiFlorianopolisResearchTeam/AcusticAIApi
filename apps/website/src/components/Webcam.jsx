@@ -21,7 +21,8 @@ const WebcamC = () => {
     getMediaDevices();
   }, []);
 
-  const switchCamera = () => {
+  const switchCamera = (e) => {
+    e.preventDefault()
     console.log("ativou")
     setFacingMode(prevMode => (prevMode === 'user' ? 'environment' : 'user'));
   };
@@ -33,7 +34,7 @@ const WebcamC = () => {
   return (
     <div className="webcam-container">
       {multipleCameras && (
-        <button onClick={switchCamera}>
+        <button onClick={ (e) => switchCamera(e)}>
           Alternar câmera
         </button>
       )}
