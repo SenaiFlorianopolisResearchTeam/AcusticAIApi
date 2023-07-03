@@ -57,8 +57,10 @@ const Webcam = (props) => {
       {isRunning && cameras.length > 1 && (
         <button className='change-w' onClick={toggleCamera}>Trocar de câmera</button>
       )}
-      <video className='video-w' width={props.model.inputShape[1]} height={props.model.inputShape[2]} ref={videoRef} muted autoPlay></video>
-      <canvas className='canvas-w' width={props.model.inputShape[1]} height={props.model.inputShape[2]} ref={canvasRef} />
+      <div className='container'>
+        <video className='video-w' width={props.model.inputShape[1]} height={props.model.inputShape[2]} ref={videoRef} muted autoPlay></video>
+        <canvas className='canvas-w' width={props.model.inputShape[1]} height={props.model.inputShape[2]} ref={canvasRef} />
+      </div>
     </>
   );
 };

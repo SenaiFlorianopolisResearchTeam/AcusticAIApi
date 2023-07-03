@@ -7,11 +7,20 @@
   .title-w{
     
   }
-  .video-w{
-    border-radius: 5px;
-  }
-  .canvas-w {
-    
+  .container{
+    display: inline-block;
+    position: relative;
+
+    .video-w, .canvas-w {
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .canvas-w {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
   }
 }
 
