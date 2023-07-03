@@ -3,19 +3,15 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 2px;
-  .title-w{
-    
-  }
   .container{
+    margin-top: -25%;
     display: inline-block;
     position: relative;
-
+    transform: scale(0.5);
     .video-w, .canvas-w {
       display: inline-block;
       vertical-align: top;
     }
-
     .canvas-w {
       position: absolute;
       top: 0;
