@@ -1,11 +1,12 @@
 import React, { useRef, useState, useEffect } from 'react';
 import "../scss/webcam.scss"
 
-const Webcam = () => {
+const Webcam = (props) => {
   const videoRef = useRef(null);
   const [cameras, setCameras] = useState([]);
   const [selectedCamera, setSelectedCamera] = useState('');
   const [isRunning, setIsRunning] = useState(false);
+  const canvasRef = useRef(null);
 
   const getVideoDevices = async () => {
     const devices = await navigator.mediaDevices.enumerateDevices();
@@ -56,7 +57,8 @@ const Webcam = () => {
       {isRunning && cameras.length > 1 && (
         <button className='change-w' onClick={toggleCamera}>Trocar de câmera</button>
       )}
-      <video className='video-w' ref={videoRef} autoPlay></video>
+      <video className='video-w' width={props.model.inputShape[1]} height={props.model.inputShape[2]} ref={videoRef} muted autoPlay></video>
+      <canvas className='canvas-w' width={props.model.inputShape[1]} height={props.model.inputShape[2]} ref={canvasRef} />
     </>
   );
 };

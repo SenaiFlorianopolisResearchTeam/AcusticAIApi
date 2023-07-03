@@ -56,7 +56,7 @@ const App = () => {
     <>
       <h1> teste modelo v5.2 </h1>
       <div className="modelo">
-        { webcam && <Webcam/> }
+        { webcam && <Webcam model={model} /> }
         { video && <Video/> }
       </div>
       <div>
