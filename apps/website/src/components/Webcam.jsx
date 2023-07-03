@@ -13,7 +13,6 @@ const WebcamC = () => {
         mirrored={true}
         screenshotFormat="image/jpeg"
         className="webcam"
-        videoConstraints={videoConstraints}
       />
     </div>
   );
