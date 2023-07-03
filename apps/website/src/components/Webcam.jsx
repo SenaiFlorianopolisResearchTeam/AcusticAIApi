@@ -25,6 +25,10 @@ const WebcamC = () => {
     setFacingMode(prevMode => (prevMode === 'user' ? 'environment' : 'user'));
   };
 
+  const videoConstraints = {
+    facingMode: { exact: facingMode },
+  };
+
   return (
     <div className="webcam-container">
       {multipleCameras && (
@@ -38,7 +42,7 @@ const WebcamC = () => {
         mirrored={true}
         screenshotFormat="image/jpeg"
         className="webcam"
-        facingMode={facingMode}
+        videoConstraints={videoConstraints}
       />
     </div>
   );
