@@ -520,7 +520,15 @@
     "@types/seedrandom" "^2.4.28"
     seedrandom "^3.0.5"
 
-"@tensorflow/tfjs-backend-webgl@4.8.0", "@tensorflow/tfjs-backend-webgl@^4.8.0":
+"@tensorflow/tfjs-backend-wasm@4.8.0":
+  version "4.8.0"
+  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-backend-wasm/-/tfjs-backend-wasm-4.8.0.tgz#bdcb9b8195e861e18d1d1ec45e71d0d06df05b3c"
+  integrity sha512-RApzSxxA+W0rB+Ug1RfMpQZn+IKjrcXlcjvQeXIrWFqJtWznpu4EqCgvPCHmqMyAm5KTCCzNcWNp+GR6jDqvwg==
+  dependencies:
+    "@tensorflow/tfjs-backend-cpu" "4.8.0"
+    "@types/emscripten" "~0.0.34"
+
+"@tensorflow/tfjs-backend-webgl@4.8.0":
   version "4.8.0"
   resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-backend-webgl/-/tfjs-backend-webgl-4.8.0.tgz#b361c28660aee3d33554b0b50032a8d78bcd268c"
   integrity sha512-iAJzQbndBtarV+OWk9Ukur5U0Xk/4t7j7O5WhPQO/q9yuRyWjAT6MPaCEW/+Ew4XC8yJGuvlfL0Oqi1X0drvfA==
@@ -616,6 +624,11 @@
     ts-node "^10.9.1"
     update-check "^1.5.4"
     validate-npm-package-name "^5.0.0"
+
+"@types/emscripten@~0.0.34":
+  version "0.0.34"
+  resolved "https://registry.yarnpkg.com/@types/emscripten/-/emscripten-0.0.34.tgz#12b4a344274fb102ff2f6c877b37587bc3e46008"
+  integrity sha512-QSb9ojDincskc+uKMI0KXp8e1NALFINCrMlp8VGKGcTSxeEyRTTKyjWw75NYrCZHUsVEEEpr1tYHpbtaC++/sQ==
 
 "@types/glob@^7.1.1":
   version "7.2.0"
