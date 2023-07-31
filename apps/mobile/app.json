@@ -5,6 +5,14 @@
       "bundler": "metro"
     },
     "name": "mobile",
-    "slug": "mobile"
+    "slug": "mobile",
+    "extra": {
+      "eas": {
+        "projectId": "0b7e7420-463b-4bf4-8c7a-37441d4ce8d0"
+      }
+    },
+    "android": {
+      "package": "com.fullzer4.mobile"
+    }
   }
 }

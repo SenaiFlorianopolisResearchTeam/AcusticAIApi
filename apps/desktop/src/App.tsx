@@ -1,11 +1,11 @@
-import { useState } from "react";
-import { invoke } from "@tauri-apps/api/tauri";
+import React from "react"
 
-const App = () => {
-    <>
-      <h1> oi </h1>
-    </>
-  );
+const App: React.FC = () => {
+   return(
+      <>
+         <h1> oi </h1>
+      </>
+   )
 }
 
 export default App;
