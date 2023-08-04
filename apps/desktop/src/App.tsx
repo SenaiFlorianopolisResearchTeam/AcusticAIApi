@@ -1,11 +1,11 @@
-import React from "react"
+import "./scss/home.scss";
 
-const App: React.FC = () => {
-   return(
-      <>
-         <h1> oi </h1>
-      </>
-   )
+const App = () => {
+
+  return (
+    <>
+    </>
+  );
 }
 
 export default App;
