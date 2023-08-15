@@ -5,10 +5,6 @@ export const fastify = Fastify({
   logger: true
 })
 
-fastify.get('/', async function handler (request, reply) {
-  return { hello: 'world' }
-})
-
 const main: Effect.Effect<never, void, string> = Effect.tryPromise({
   try: async () => await fastify.listen({ port: 4000 }),
   catch: (err) => {

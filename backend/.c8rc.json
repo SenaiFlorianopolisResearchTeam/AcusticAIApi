@@ -1,0 +1,9 @@
+{
+    "exclude": [
+        "test/*",
+        "jest.config.ts"
+    ],
+    "include": [
+        "main.ts"
+    ]
+}
