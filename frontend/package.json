@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "vitest",
+    "coverage": "c8 vitest"
   },
   "dependencies": {
     "eslint": "8.47.0",
@@ -16,11 +18,17 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "jest": "^29.6.2",
-    "sass": "^1.65.1",
-    "typescript": "5.1.6",
+    "@testing-library/jest-dom": "^6.0.0",
+    "@testing-library/react": "^14.0.0",
     "@types/node": "20.5.0",
     "@types/react": "18.2.20",
-    "@types/react-dom": "18.2.7"
+    "@types/react-dom": "18.2.7",
+    "@vitejs/plugin-react": "^4.0.4",
+    "c8": "^8.0.1",
+    "jsdom": "^22.1.0",
+    "sass": "^1.65.1",
+    "ts-node": "^10.9.1",
+    "typescript": "5.1.6",
+    "vitest": "^0.34.1"
   }
 }
