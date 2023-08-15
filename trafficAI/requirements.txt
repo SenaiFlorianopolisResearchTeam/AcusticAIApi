@@ -1,7 +1,0 @@
-grpcio_tools
-opencv-python
-grpcio
-protobuf
-ultralytics
-numpy
-roboflow
