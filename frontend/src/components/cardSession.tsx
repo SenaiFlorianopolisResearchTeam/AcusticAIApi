@@ -1,4 +1,4 @@
-import Style from "@/scss/components/cardSession.module.scss"
+import Style from "../scss/components/cardSession.module.scss"
 import { NextComponentType } from "next";
 
 interface Props { 
@@ -19,7 +19,7 @@ type Data<T> = [
 const CardSession = (props: Props) => {
 
     return (
-        <div className={Style.cardSessionContainer}>
+        <section className={Style.cardSessionContainer}>
             <div className={Style.graphContainer}>
                 <div className={Style.session}>
                     <p className={Style.sessionTitle}>{props.name}</p>
@@ -59,7 +59,7 @@ const CardSession = (props: Props) => {
                     {/* botar imagem */}
                 </div>
             </div>
-        </div>
+        </section>
     );
 }
 

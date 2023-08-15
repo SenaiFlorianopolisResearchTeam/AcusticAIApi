@@ -1,16 +1,10 @@
-import { Suspense } from 'react'
-import { render, screen } from '@testing-library/react'; 
-import CardSession from '@/components/cardSession';
+import '@testing-library/jest-dom'
+import { expect, test } from 'vitest'
+import { render, screen, within } from '@testing-library/react'
+import CardSession from '../../src/components/cardSession'
 
-describe('CardSession component', () => {
-  it('should render component with provided props', async () => {
-    render(
-      <Suspense fallback="loading">
-        <CardSession id='1' name='Test Session' data={[1, 2, 3, 4, 5, 6]} />
-      </Suspense>
-    );
-
-    const heading = await screen.findByRole('heading')
-    expect(heading).toHaveTextContent('Test Session')
-  });
-});
+test('home', () => {
+  render(<CardSession id='1' name='test' data={[1,2,3,4,5,6]}/>)
+  
+  expect(screen.getByText('test')).toBeInTheDocument()
+})

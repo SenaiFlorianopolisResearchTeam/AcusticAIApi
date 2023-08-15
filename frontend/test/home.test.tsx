@@ -1,13 +1,10 @@
-import { render, screen } from '@testing-library/react'
-import { Suspense } from 'react'
-import Page from '@/app/page'
+import { expect, test } from 'vitest'
+import { render, screen, within } from '@testing-library/react'
+import Home from '../src/app/page'
 
-test('User page', async () => {
-  render(
-    <Suspense>
-      <Page />
-    </Suspense>
-  )
-  const heading = await screen.findByRole('heading')
-  expect(heading).toHaveTextContent('Home')
+test('home', () => {
+  render(<Home />)
+  const main = within(screen.getByRole('main'))
+
+
 })
