@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:18
 
 WORKDIR /app
 
@@ -9,3 +9,5 @@ RUN yarn install --frozen-lockfile
 COPY . .
 
 RUN yarn build
+
+CMD ["yarn", "start"]
