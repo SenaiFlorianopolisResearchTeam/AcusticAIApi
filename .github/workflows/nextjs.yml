@@ -22,4 +22,4 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: cd frontend && yarn
-    - run: cd frontend && yarn build
+    - run: cd frontend && yarn test
