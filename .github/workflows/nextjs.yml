@@ -1,4 +1,4 @@
-name: Node.js tests
+name: Next.js tests
 
 on:
   push:
