@@ -1,11 +1,10 @@
 import { NextComponentType } from "next"
 
-const Home: NextComponentType = () => {
-
+const Signup: NextComponentType = () => {
   return (
     <main>
       <div>
-        <h1>Home</h1>
+        <h1>Signup</h1>
       </div>
       <div>
 
@@ -14,4 +13,4 @@ const Home: NextComponentType = () => {
   )
 }
 
-export default Home
+export default Signup
