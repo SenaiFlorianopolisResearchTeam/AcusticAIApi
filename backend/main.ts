@@ -1,4 +1,6 @@
 import Fastify from 'fastify'
+import * as Effect from "@effect/io/Effect";
+
 const fastify = Fastify({
   logger: true
 })
@@ -7,13 +9,12 @@ fastify.get('/', async function handler (request, reply) {
   return { hello: 'world' }
 })
 
-const main = async () => {
-    try {
-        await fastify.listen({ port: 4000 })
-    } catch (err) {
-        fastify.log.error(err)
-        process.exit(1)
-    }
-}
+const main: Effect.Effect<never, void, string> = Effect.tryPromise({
+  try: async () => await fastify.listen({ port: 4000 }),
+  catch: (err) => {
+    fastify.log.error(err)
+    new Error(`something went wrong ${err}`)
+  }
+})
 
-main()
+Effect.runPromise(main)

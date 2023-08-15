@@ -6,6 +6,7 @@ coverage
 .next/
 out/
 build
+dist
 
 .DS_Store
 *.pem
