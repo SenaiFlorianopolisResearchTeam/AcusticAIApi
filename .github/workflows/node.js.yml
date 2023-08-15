@@ -1,4 +1,4 @@
-name: Node.js test suite
+name: Node.js tests
 
 on:
   push:
