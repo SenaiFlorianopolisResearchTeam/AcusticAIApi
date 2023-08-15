@@ -1,10 +1,7 @@
 import Fastify from 'fastify'
 import * as Effect from "@effect/io/Effect";
-import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient();
-
-const fastify = Fastify({
+export const fastify = Fastify({
   logger: true
 })
 
