@@ -16,7 +16,7 @@ type Data<T> = [
     moto: T,
 ]
 
-const CardSession = (props: Props) => {
+const CardSession: React.FC<Props> = (props: Props) => {
 
     return (
         <section className={Style.cardSessionContainer}>
