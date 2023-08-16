@@ -1,4 +1,7 @@
-![Team logo](imgs/logo.png)
+<div style="text-align:center">
+  <img src="imgs/logo.png" alt="Team logo">
+</div>
+
 
 #
 
