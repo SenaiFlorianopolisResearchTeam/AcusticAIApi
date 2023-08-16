@@ -304,16 +304,6 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
-"@effect/data@^0.17.1":
-  version "0.17.1"
-  resolved "https://registry.yarnpkg.com/@effect/data/-/data-0.17.1.tgz#8a5904c16ae67fa132641a6d9490a46b840522fd"
-  integrity sha512-QCYkLE5Y5Dm5Yax5R3GmW4ZIgTx7W+kSZ7yq5eqQ/mFWa8i4yxbLuu8cudqzdeZtRtTGZKlhDxfFfgVtMywXJg==
-
-"@effect/io@^0.38.0":
-  version "0.38.0"
-  resolved "https://registry.yarnpkg.com/@effect/io/-/io-0.38.0.tgz#9ecbc8b00e6a9ec948552bd766ddb759697a553e"
-  integrity sha512-qlVC9ASxNC+L2NKX5qOV9672CE5wWizfwBSFaX2XLI7CC118WRvohCTIPQ52n50Bj5TmR20+na+U9C7e4VkqzA==
-
 "@fastify/accept-negotiator@^1.0.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@fastify/accept-negotiator/-/accept-negotiator-1.1.0.tgz#c1c66b3b771c09742a54dd5bc87c582f6b0630ff"
