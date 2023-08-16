@@ -10,11 +10,13 @@
 [![Python tests](https://github.com/fullzer4/AcustticAI/actions/workflows/python-ai.yml/badge.svg)](https://github.com/fullzer4/AcustticAI/actions/workflows/python-ai.yml)
 [![Next.js tests](https://github.com/fullzer4/AcustticAI/actions/workflows/nextjs.yml/badge.svg)](https://github.com/fullzer4/AcustticAI/actions/workflows/nextjs.yml)
 
-## to do
-
-usar k6 para teste de carga, o pactumjs para teste de integracao e OWASP ZAP para teste de seguranca
-
 ## AI ( artificial inteligence ) 
+
+.env pattern:
+
+```bash
+
+```
 
 ## Backend
 
@@ -29,3 +31,9 @@ usar k6 para teste de carga, o pactumjs para teste de integracao e OWASP ZAP par
 ```
 
 ## Frontend
+
+.env pattern:
+
+```bash
+
+```
