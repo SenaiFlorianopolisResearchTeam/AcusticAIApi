@@ -21,7 +21,7 @@ const Home: NextComponentType = () => {
         <h2 className={Styles.membersTitle}>Members</h2>
         <div className={Styles.photos}>
           <div className={Styles.photoContainer}>
-            <img className={Styles.photo} src="/fullzer4.jpg" alt="logo" />
+            <img className={Styles.photo} src="/fullzer4.jpg" alt="fullzer4" />
             <p className={Styles.name}>Gabriel Pelizzaro</p>
           </div>
         </div>
