@@ -1,4 +1,4 @@
-![Team logo](path/to/your/image.png)
+![Team logo](imgs/logo.png)
 
 #
 
