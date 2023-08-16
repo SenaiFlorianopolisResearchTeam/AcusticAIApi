@@ -1,7 +1,6 @@
-<div style="text-align:center">
-  <img src="imgs/logo.png" alt="Team logo">
+<div align="center">
+  <img src="imgs/logo.png" alt="Team logo" width="350"> 
 </div>
-
 
 #
 
