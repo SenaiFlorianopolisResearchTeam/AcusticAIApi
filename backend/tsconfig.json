@@ -1,4 +1,5 @@
 {
+  "extends": "fastify-tsconfig",
   "compilerOptions": {
     "target": "ES2022",                                 
     "lib": ["ES2022"],                                       
@@ -9,7 +10,7 @@
     "resolveJsonModule": true,                       
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,     
-    "strict": true                       
+    "strict": true,               
   },
   "exclude": ["node_modules"]
 }

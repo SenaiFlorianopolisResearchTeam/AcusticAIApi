@@ -1,16 +1,14 @@
-import Fastify from 'fastify'
-import * as Effect from "@effect/io/Effect";
+import { build } from './server';
+import initializeDatabase from './services/initDatabase';
 
-export const fastify = Fastify({
-  logger: true
-})
-
-const main: Effect.Effect<never, void, string> = Effect.tryPromise({
-  try: async () => await fastify.listen({ port: 4000 }),
-  catch: (err) => {
-    fastify.log.error(err)
-    new Error(`something went wrong ${err}`)
-  }
-})
-
-Effect.runPromise(main)
+initializeDatabase()
+  .then(() => {
+    const server = build();
+    server.listen({ port: 4000 }, () => {
+      console.log('Server is running on port 4000');
+    });
+  })
+  .catch((error) => {
+    console.error('Error initializing database:', error);
+    process.exit(1);
+  });

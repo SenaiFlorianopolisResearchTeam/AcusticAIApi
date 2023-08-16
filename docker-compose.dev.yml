@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  postgresqldb:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_USER=fullzer4
+      - POSTGRES_DB=acustticai
+    networks:
+      - postgres-bridge-network
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "gabrielpelizzaro@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "123456"
+    ports:
+      - "16543:80"
+    networks:
+      - postgres-bridge-network
+
+networks: 
+  postgres-bridge-network:
+    driver: bridge

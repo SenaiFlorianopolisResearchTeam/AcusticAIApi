@@ -1,4 +1,6 @@
-![Team logo](path/to/your/image.png)
+<div align="center">
+  <img align="center" src="imgs/logo.png" alt="Team logo" width="300"> 
+</div>
 
 #
 
@@ -7,3 +9,23 @@
 [![Node.js tests](https://github.com/fullzer4/AcustticAI/actions/workflows/backend.yml/badge.svg)](https://github.com/fullzer4/AcustticAI/actions/workflows/backend.js.yml)
 [![Python tests](https://github.com/fullzer4/AcustticAI/actions/workflows/python-ai.yml/badge.svg)](https://github.com/fullzer4/AcustticAI/actions/workflows/python-ai.yml)
 [![Next.js tests](https://github.com/fullzer4/AcustticAI/actions/workflows/nextjs.yml/badge.svg)](https://github.com/fullzer4/AcustticAI/actions/workflows/nextjs.yml)
+
+## to do
+
+usar k6 para teste de carga, o pactumjs para teste de integracao e OWASP ZAP para teste de seguranca
+
+## AI ( artificial inteligence ) 
+
+## Backend
+
+.env pattern:
+
+```bash
+  DB_HOST=host
+  DB_PORT=5432
+  DB_NAME=databasename
+  DB_USERNAME=username
+  DB_PASSWORD=password
+```
+
+## Frontend
