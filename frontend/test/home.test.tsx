@@ -3,7 +3,7 @@ import { expect, test } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import Home from '../src/app/page'
 
-test('home', async () => {
+test('test elements', async () => {
   const { getByAltText } = render(<Home />)
   
   expect(screen.getByText('AcustticAI')).toBeInTheDocument()
@@ -11,8 +11,8 @@ test('home', async () => {
   expect(screen.getByText('Members')).toBeInTheDocument()
   expect(screen.getByText('Gabriel Pelizzaro')).toBeInTheDocument()
   
-  const Logoimg = getByAltText('logo');
-  const Fullimg = getByAltText('fullzer4');
+  const Logoimg = getByAltText('logo')
+  const Fullimg = getByAltText('fullzer4')
 
   expect(Logoimg).toHaveAttribute('src', '/logo.webp')
   expect(Fullimg).toHaveAttribute('src', '/fullzer4.jpg')
