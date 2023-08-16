@@ -1,19 +1,18 @@
-import { test, expect, afterAll } from '@jest/globals';
-import { fastify } from '../main';
+import { build } from '../server';
 
-test('Deve iniciar o servidor', async () => {
-    try {
-      await fastify.ready();
-      
-      await new Promise(resolve => setTimeout(resolve, 100));
-  
-      const address = fastify.server.address();
-      expect(address).not.toBeNull();
-    } catch (err) {
-      throw err;
-    }
+describe('Server', () => {
+  let server: any;
+
+  beforeAll(() => {
+    server = build();
+    return server.listen(0);
   });
-  
+
   afterAll(async () => {
-    await fastify.close();
+    await server.close();
   });
+
+  it('should start the server', async () => {
+    expect(server.server.listening).toBeTruthy();
+  });
+});
