@@ -3,7 +3,7 @@ name: Security Test
 on:
   push:
     branches:
-      - main
+      - sec
 
 jobs:
   security-test:
