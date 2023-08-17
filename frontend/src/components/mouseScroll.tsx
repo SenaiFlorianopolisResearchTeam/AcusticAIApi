@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react';
 import Styles from '../scss/components/mouseScroll.module.scss'
 
