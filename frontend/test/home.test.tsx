@@ -6,7 +6,6 @@ import Home from '../src/app/page'
 test('test elements', async () => {
   const { getByAltText } = render(<Home />)
   
-  expect(screen.getByText('AcustticAI')).toBeInTheDocument()
   expect(screen.getByText('This project is maintained by Gabriel Pelizzaro (Fullzer4), a member of the Sesi Florianopolis Scientific Initiation team. It was created to streamline the counting and classification of cars, along with the interactive analysis of this data.')).toBeInTheDocument()
   expect(screen.getByText('Members')).toBeInTheDocument()
   expect(screen.getByText('Gabriel Pelizzaro')).toBeInTheDocument()

@@ -1,4 +1,3 @@
-import LandingBar from "@/components/landingBar"
 import "../scss/index.scss"
 
 export default function RootLayout({
@@ -9,7 +8,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <LandingBar page="home"/>
         {children}
       </body>
     </html>

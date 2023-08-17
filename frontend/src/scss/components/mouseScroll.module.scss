@@ -8,9 +8,10 @@
 }
 
 .svg {
-    
+    transform-style: preserve-3d;
     .wheel {
         animation: scroll ease-in-out 2s infinite;
+		transform-style: preserve-3d;
     }
 
 }
