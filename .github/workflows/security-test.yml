@@ -13,10 +13,13 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
 
+      - name: Set Permissions
+        run: sudo chown -R $USER:$USER /github/workspace
+
       - name: Build and Start Application
         run: |
           docker-compose up -d
-
+          
       - name: Run Security Tests - website
         run: |
           docker run --rm -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py -t http://localhost:3000 -r security-report.html
