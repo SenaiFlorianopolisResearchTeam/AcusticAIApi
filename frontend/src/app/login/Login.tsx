@@ -24,7 +24,7 @@ const Login: NextComponentType = () => {
           <input className={Styles.submitButton} type="submit" value="Login"/>
         </form>
         <hr/>
-        <Link href="/signup">Don't have an account? Sign up, click here to register</Link>
+        <Link href="/signup">Dont have an account? Sign up, click here to register</Link>
       </div>
       <City />
     </main>
