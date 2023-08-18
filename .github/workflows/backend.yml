@@ -25,20 +25,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: Start Docker Compose
-      run: docker-compose -f docker-compose.dev.yml up -d
-
-    - name: Copy .env file to backend directory
-      run: cp .env backend/
-
-    - name: Setup .env variables
-      env:
-        DB_HOST: '127.0.0.1'
-        DB_PORT: 5432
-        DB_NAME: 'acustticai'
-        DB_USERNAME: 'fullzer4'
-        DB_PASSWORD: '123456'
-      run: |
-        echo $DB_HOST
+      run: docker-compose -f docker-compose.dev.yml up -dT
 
     - name: Install dependencies and run tests
       run: |
