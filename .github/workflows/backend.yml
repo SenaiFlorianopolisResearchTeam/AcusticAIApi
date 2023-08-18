@@ -16,20 +16,29 @@ jobs:
         node-version: [16.x, 18.x]
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Check out code
+      uses: actions/checkout@v2
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-    - run: docker-compose -f docker-compose.dev.yml up -d
+
+    - name: Start Docker Compose
+      run: docker-compose -f docker-compose.dev.yml up -d
+
     - name: Setup .env variables
-        env:
-          DB_HOST: ${{ DATABASEHOSTTEST }}
-          DB_PORT: ${{ DATABASEPORTTEST }}
-          DB_NAME: ${{ DATABASENAMETEST }}
-          DB_USERNAME: ${{ DATABASEUSERTEST }}
-          DB_PASSWORD: ${{ DATABASEPASSWORDTEST }}
-        run: |
-          echo $DB_HOST
-    - run: cd backend && yarn
-    - run: cd backend && yarn test
+      env:
+        DB_HOST: ${{ env.DATABASEHOSTTEST }}
+        DB_PORT: ${{ env.DATABASEPORTTEST }}
+        DB_NAME: ${{ env.DATABASENAMETEST }}
+        DB_USERNAME: ${{ env.DATABASEUSERTEST }}
+        DB_PASSWORD: ${{ env.DATABASEPASSWORDTEST }}
+      run: |
+        echo $DB_HOST
+
+    - name: Install dependencies and run tests
+      run: |
+        cd backend
+        yarn
+        yarn test
