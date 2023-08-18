@@ -21,5 +21,6 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
+    - run: docker-compose -f docker-compose.dev.yml up -d
     - run: cd backend && yarn
     - run: cd backend && yarn test
