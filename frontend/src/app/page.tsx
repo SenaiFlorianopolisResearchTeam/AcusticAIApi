@@ -2,12 +2,6 @@ import { NextComponentType } from "next"
 import Styles from '../scss/home.module.scss'
 import MouseScroll from "../components/mouseScroll"
 import LandingBar from "../components/landingBar"
-import type { Metadata } from 'next'
- 
-export const metadata: Metadata = {
-  title: 'AcustticAI - home',
-  description: '...',
-}
 
 const Home: NextComponentType = () => {
 
@@ -23,7 +17,8 @@ const Home: NextComponentType = () => {
 
         <section className={Styles.about} >
           <img className={Styles.logo} src="/logo.webp" alt="logo" />
-          <p className={Styles.aboutText}>This project is maintained by Gabriel Pelizzaro (Fullzer4), a member of the Sesi Florianopolis Scientific Initiation team. It was created to streamline the counting and classification of cars, along with the interactive analysis of this data.</p>        </section>
+          <p className={Styles.aboutText}>This project is maintained by Gabriel Pelizzaro (Fullzer4), a member of the Sesi Florianopolis Scientific Initiation team. It was created to streamline the counting and classification of cars, along with the interactive analysis of this data.</p>
+        </section>
 
         <section className={Styles.members}>
           <h2 className={Styles.membersTitle}>Members</h2>
@@ -41,6 +36,10 @@ const Home: NextComponentType = () => {
               <p className={Styles.name}>Wagner souza</p>
             </div>
           </div>
+        </section>
+
+        <section className={Styles.links}>
+          
         </section>
       </section>
     </>
