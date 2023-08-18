@@ -1,4 +1,5 @@
 import sql from './connection'; 
+import bcrypt from 'bcrypt';
 
 export default async function initializeDatabase() {
 
@@ -28,4 +29,19 @@ export default async function initializeDatabase() {
       url text
     )
   `;
+
+  const testUserEmail = 'test@example.com';
+  const testUserName = 'Test User';
+  const testUserPassword = await bcrypt.hash('password123', 10);
+
+  const existingUser = await sql`
+    SELECT id FROM "User" WHERE email = ${testUserEmail}
+  `;
+
+  if (!existingUser.length) {
+    await sql`
+      INSERT INTO "User" (email, name, password)
+      VALUES (${testUserEmail}, ${testUserName}, ${testUserPassword})
+    `;
+  }
 }
