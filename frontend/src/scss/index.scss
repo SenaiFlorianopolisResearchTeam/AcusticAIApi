@@ -46,6 +46,7 @@ html, body {
             display: flex;
             gap: 20px;
             a {
+                transition: 1s ease;
                 color: var(--color-light);
                 font-size: var(--home-desc);
                 font-weight: 600;

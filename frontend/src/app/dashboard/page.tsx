@@ -1,11 +1,11 @@
-import { NextComponentType } from "next"
-
-const Dashboard: NextComponentType = () => {
-  return (
-    <main>
-      <h1>Dashboard</h1>
-    </main>
-  )
+import type { Metadata } from 'next'
+import Dashboard from './Dashboard'
+ 
+export const metadata: Metadata = {
+  title: 'AcustticAI - Dashboard',
+  description: '...',
 }
 
-export default Dashboard
+export default function Page(){
+  return <><Dashboard/></>
+ }
