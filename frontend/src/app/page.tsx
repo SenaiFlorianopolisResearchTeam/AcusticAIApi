@@ -1,8 +1,13 @@
 import { NextComponentType } from "next"
-import { Fragment } from "react"
 import Styles from '../scss/home.module.scss'
 import MouseScroll from "../components/mouseScroll"
 import LandingBar from "../components/landingBar"
+import type { Metadata } from 'next'
+ 
+export const metadata: Metadata = {
+  title: 'AcustticAI - home',
+  description: '...',
+}
 
 const Home: NextComponentType = () => {
 
