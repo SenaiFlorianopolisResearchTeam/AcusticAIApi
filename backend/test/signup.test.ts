@@ -1,5 +1,6 @@
 import request from 'supertest';
 import { build } from '../server';
+import initializeDatabase from '../services/initDatabase';
 
 function generateRandomEmail() {
   const timestamp = new Date().getTime();
@@ -11,6 +12,7 @@ describe('Signup Route', () => {
 
   beforeAll(() => {
     server = build();
+    initializeDatabase()
     return server.listen(0);
   });
 

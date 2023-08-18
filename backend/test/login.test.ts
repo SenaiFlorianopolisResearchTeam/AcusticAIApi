@@ -1,11 +1,13 @@
 import request from 'supertest';
 import { build } from '../server';
+import initializeDatabase from '../services/initDatabase';
 
 describe('Login Route', () => {
     let server: any;
 
     beforeAll(() => {
         server = build();
+        initializeDatabase()
         return server.listen(0);
     });
 

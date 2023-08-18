@@ -29,11 +29,11 @@ jobs:
 
     - name: Setup .env variables
       env:
-        DB_HOST: ${{ env.DATABASEHOSTTEST }}
-        DB_PORT: ${{ env.DATABASEPORTTEST }}
-        DB_NAME: ${{ env.DATABASENAMETEST }}
-        DB_USERNAME: ${{ env.DATABASEUSERTEST }}
-        DB_PASSWORD: ${{ env.DATABASEPASSWORDTEST }}
+        DB_HOST: 127.0.0.1
+        DB_PORT: 5432
+        DB_NAME: acustticai
+        DB_USERNAME: fullzer4
+        DB_PASSWORD: 123456
       run: |
         echo $DB_HOST
 
