@@ -1,6 +1,6 @@
 "use client"
 
-import City from "@/components/city"
+import City from "../../components/city"
 import { NextComponentType } from "next"
 import Styles from "../../scss/signup.module.scss"
 import { useForm } from "react-hook-form"
