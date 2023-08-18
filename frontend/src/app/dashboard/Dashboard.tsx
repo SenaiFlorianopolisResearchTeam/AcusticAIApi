@@ -1,4 +1,4 @@
-import CardSession from "@/components/cardSession"
+import CardSession from "../../components/cardSession"
 import { NextComponentType } from "next"
 
 const Dashboard: NextComponentType = () => {

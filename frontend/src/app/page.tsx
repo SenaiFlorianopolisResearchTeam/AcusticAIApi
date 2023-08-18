@@ -15,7 +15,7 @@ const Home: NextComponentType = () => {
           <MouseScroll />
         </section>
 
-        <section className={Styles.about} >
+        <section className={Styles.about}>
           <img className={Styles.logo} src="/logo.webp" alt="logo" />
           <p className={Styles.aboutText}>This project is maintained by Gabriel Pelizzaro (Fullzer4), a member of the Sesi Florianopolis Scientific Initiation team. It was created to streamline the counting and classification of cars, along with the interactive analysis of this data.</p>
         </section>
