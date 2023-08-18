@@ -34,7 +34,7 @@ const LandingBar = (props: Props) => {
                     <Link href="/"> AcustticAI </Link>
                 </div>
                 <div>
-                    <Link href="/signin"> Signin </Link>
+                    <Link href="/login"> Login </Link>
                     <Link href="/signup"> Signup </Link>
                 </div>
             </div>
