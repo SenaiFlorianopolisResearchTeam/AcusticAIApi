@@ -27,6 +27,9 @@ jobs:
     - name: Start Docker Compose
       run: docker-compose -f docker-compose.dev.yml up -d
 
+    - name: Copy .env file to backend directory
+      run: cp .env backend/
+
     - name: Setup .env variables
       env:
         DB_HOST: '127.0.0.1'
