@@ -22,5 +22,14 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: docker-compose -f docker-compose.dev.yml up -d
+    - name: Setup .env variables
+        env:
+          DB_HOST: ${{ DATABASEHOSTTEST }}
+          DB_PORT: ${{ DATABASEPORTTEST }}
+          DB_NAME: ${{ DATABASENAMETEST }}
+          DB_USERNAME: ${{ DATABASEUSERTEST }}
+          DB_PASSWORD: ${{ DATABASEPASSWORDTEST }}
+        run: |
+          echo $DB_HOST
     - run: cd backend && yarn
     - run: cd backend && yarn test
