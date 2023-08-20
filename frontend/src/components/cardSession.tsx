@@ -1,5 +1,4 @@
 import Style from "../scss/components/cardSession.module.scss"
-import { NextComponentType } from "next";
 
 interface Props { 
     readonly id: string;

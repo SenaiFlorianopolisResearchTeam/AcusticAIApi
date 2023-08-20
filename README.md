@@ -11,7 +11,7 @@
 [![Next.js tests](https://github.com/fullzer4/AcustticAI/actions/workflows/nextjs.yml/badge.svg)](https://github.com/fullzer4/AcustticAI/actions/workflows/nextjs.yml)
 ![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=acusttic-ai&style=plastic)
 
-
+This project was designed to simplify the counting and classification of cars for road analysis purposes, featuring a user-friendly interface and a precise system. Alongside this, it provides analyses that will assist users when evaluating a project.
 
 ## AI ( artificial inteligence ) 
 
@@ -25,6 +25,8 @@ In the AI folder, you'll find the computer vision model responsible for vehicle 
 
 ## Backend
 
+In this folder, you will find the API responsible for managing user sessions, as well as handling their registration and login processes. This API has been developed using Fastify, incorporating type-safety concepts along with the PostgresJS ORM. Additionally, the backend of my project will oversee all control and utilization of the AI API.
+
 .env pattern:
 
 ```bash
@@ -36,6 +38,8 @@ DB_PASSWORD=password
 ```
 
 ## Frontend
+
+I built my frontend using Next.js 13, incorporating App Router and TypeScript. To ensure type safety during development, I utilized SCSS for styling. For data fetching, I integrated React Query. To validate the data flowing in and out of the application, I employed Zod. As for handling forms, I chose to work with React Hook Form.
 
 .env pattern:
 

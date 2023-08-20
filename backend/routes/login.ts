@@ -23,6 +23,7 @@ const plugin: FastifyPluginAsyncTypebox = async function (fastify, _opts) {
             const [user] = await sql`SELECT id, password FROM "User" WHERE email = ${email}`;
 
             if (user && await bcrypt.compare(password, user.password)) {
+                // implementar jwt
                 return { message: 'Login successful.' };
             } else {
                 return res.status(401).send({ message: 'Invalid credentials.' });
