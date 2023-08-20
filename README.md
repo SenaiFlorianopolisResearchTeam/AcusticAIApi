@@ -28,11 +28,11 @@ In the AI folder, you'll find the computer vision model responsible for vehicle 
 .env pattern:
 
 ```bash
-  DB_HOST=host
-  DB_PORT=5432
-  DB_NAME=databasename
-  DB_USERNAME=username
-  DB_PASSWORD=password
+DB_HOST=host
+DB_PORT=5432
+DB_NAME=databasename
+DB_USERNAME=username
+DB_PASSWORD=password
 ```
 
 ## Frontend
