@@ -1,4 +1,4 @@
-name: ZAP-Test
+name: Security tests
 
 on:
   push: 
