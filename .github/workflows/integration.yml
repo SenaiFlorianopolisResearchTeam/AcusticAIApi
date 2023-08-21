@@ -23,5 +23,6 @@ jobs:
       - name: rodar test de integracao
         run: |
           cd .github/integration_test/
+          yarn
           yarn build
           node dist/main.js
