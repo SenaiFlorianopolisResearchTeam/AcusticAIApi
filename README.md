@@ -4,12 +4,17 @@
 
 #
 
+<div align="center">
+
 [![Roboflow Universe Dataset](https://app.roboflow.com/images/download-dataset-badge.svg)](https://universe.roboflow.com/senai-qb205/trafficai)
 [![Docker tests](https://github.com/fullzer4/AcustticAI/actions/workflows/docker-images.yml/badge.svg)](https://github.com/fullzer4/AcustticAI/actions/workflows/docker-images.yml)
 [![Node.js tests](https://github.com/fullzer4/AcustticAI/actions/workflows/backend.yml/badge.svg)](https://github.com/fullzer4/AcustticAI/actions/workflows/backend.js.yml)
 [![Python tests](https://github.com/fullzer4/AcustticAI/actions/workflows/python-ai.yml/badge.svg)](https://github.com/fullzer4/AcustticAI/actions/workflows/python-ai.yml)
 [![Next.js tests](https://github.com/fullzer4/AcustticAI/actions/workflows/nextjs.yml/badge.svg)](https://github.com/fullzer4/AcustticAI/actions/workflows/nextjs.yml)
+[![Security tests](https://github.com/fullzer4/AcustticAI/actions/workflows/security-test.yml/badge.svg)](https://github.com/fullzer4/AcustticAI/actions/workflows/security-test.yml)
 ![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=acusttic-ai&style=plastic)
+
+</div>
 
 This project was designed to simplify the counting and classification of cars for road analysis purposes, featuring a user-friendly interface and a precise system. Alongside this, it provides analyses that will assist users when evaluating a project.
 
