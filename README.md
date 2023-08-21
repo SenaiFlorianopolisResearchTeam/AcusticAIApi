@@ -28,7 +28,8 @@ In the AI folder, you'll find the computer vision model responsible for vehicle 
 .env pattern:
 
 ```bash
-
+ai-key=key
+backend-key=key
 ```
 
 ## Backend
@@ -38,6 +39,9 @@ In this folder, you will find the API responsible for managing user sessions, as
 .env pattern:
 
 ```bash
+ai-key=key
+backend-key=key
+
 DB_HOST=host
 DB_PORT=5432
 DB_NAME=databasename
@@ -52,5 +56,6 @@ I built my frontend using Next.js 13, incorporating App Router and TypeScript. T
 .env pattern:
 
 ```bash
-
+ai-key=key
+backend-key=key
 ```
