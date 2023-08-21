@@ -18,6 +18,10 @@ html, body {
     background-color: #EEEEEE;
 }
 
+html::-webkit-scrollbar {
+    display: none;
+}
+
 :root {
     --color-light: #FFFFFF;
     --color-dark: #000;
