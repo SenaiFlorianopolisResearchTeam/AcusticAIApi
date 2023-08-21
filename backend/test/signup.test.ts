@@ -1,36 +1,27 @@
-import request from 'supertest';
+import { test, expect } from 'vitest';
 import { build } from '../server';
 import initializeDatabase from '../services/initDatabase';
+import axios from 'axios';
 
 function generateRandomEmail() {
   const timestamp = new Date().getTime();
   return `user${timestamp}@example.com`;
 }
 
-describe('Signup Route', () => {
-  let server: any;
+test('Signup Route - should register a new user', async () => {
+  const server = build();
+  await initializeDatabase();
+  await server.listen({port: 4001});
 
-  beforeAll(async () => {
-    server = build();
-    await initializeDatabase()
-    return await server.listen(0);
+  const randomEmail = generateRandomEmail();
+  const response = await axios.post('http://localhost:4001/signup', {
+    email: randomEmail,
+    name: 'Test User',
+    password: 'password123',
   });
 
-  it('should register a new user', async () => {
-    const randomEmail = generateRandomEmail();
-    const response = await request(server.server)
-      .post('/signup')
-      .send({
-        email: randomEmail,
-        name: 'Test User',
-        password: 'password123',
-      });
+  expect(response.status).toBe(200);
+  expect(response.data.message).toBe('User registered successfully.');
 
-    expect(response.status).toBe(200);
-    expect(response.body.message).toBe('User registered successfully.');
-  });
-
-  afterAll(async () => {
-    await server.close();
-  });
+  server.close();
 });

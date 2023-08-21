@@ -1,30 +1,32 @@
-import request from 'supertest';
+import { afterAll, test, expect } from 'vitest';
 import { build } from '../server';
 import initializeDatabase from '../services/initDatabase';
+import axios from 'axios';
 
-describe('Login Route', () => {
-    let server: any;
+const server = build();
+initializeDatabase();
+server.listen({ port: 4000 });
 
-    beforeAll(async () => {
-        server = build();
-        await initializeDatabase()
-        return await server.listen(0);
+test('Login Route - should login with valid credentials', async () => {
+
+  console.log(server.server.address());
+
+  const postData = {
+    name: 'test',
+    email: 'test@example.com',
+    password: 'password123',
+  };
+
+  const response = await axios.post('http://localhost:4000/login', postData, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
     });
 
-    it('should login with valid credentials', async () => {
-        const response = await request(server.server)
-            .post('/login')
-            .send({
-                name: 'test',
-                email: 'test@example.com',
-                password: 'password123',
-            });
-
-        expect(response.status).toBe(200);
-        expect(response.body.message).toBe('Login successful.');
-    });
-
-    afterAll(async () => {
-        await server.close();
-    });
+    expect(response.status).toBe(200);
+    expect(response.data.success).toBe(true);
 });
+
+afterAll(async () => {
+  await server.close()
+})

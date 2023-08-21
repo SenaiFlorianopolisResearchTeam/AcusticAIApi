@@ -1,18 +1,11 @@
+import { test, expect } from 'vitest';
 import { build } from '../server';
 
-describe('Server', () => {
-  let server: any;
+test('Server - should start the server', async () => {
+  const server = build();
+  await server.listen(0);
 
-  beforeAll(async() => {
-    server = build();
-    return await server.listen(0);
-  });
+  expect(server.server.listening).toBe(true);
 
-  afterAll(async () => {
-    await server.close();
-  });
-
-  it('should start the server', async () => {
-    expect(server.server.listening).toBeTruthy();
-  });
+  server.close();
 });
