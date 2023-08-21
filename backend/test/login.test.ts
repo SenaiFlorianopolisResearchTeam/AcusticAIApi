@@ -5,10 +5,10 @@ import initializeDatabase from '../services/initDatabase';
 describe('Login Route', () => {
     let server: any;
 
-    beforeAll(() => {
+    beforeAll(async () => {
         server = build();
-        initializeDatabase()
-        return server.listen(0);
+        await initializeDatabase()
+        return await server.listen(0);
     });
 
     it('should login with valid credentials', async () => {

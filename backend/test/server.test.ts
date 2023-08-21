@@ -3,9 +3,9 @@ import { build } from '../server';
 describe('Server', () => {
   let server: any;
 
-  beforeAll(() => {
+  beforeAll(async() => {
     server = build();
-    return server.listen(0);
+    return await server.listen(0);
   });
 
   afterAll(async () => {

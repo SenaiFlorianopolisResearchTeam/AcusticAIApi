@@ -10,10 +10,10 @@ function generateRandomEmail() {
 describe('Signup Route', () => {
   let server: any;
 
-  beforeAll(() => {
+  beforeAll(async () => {
     server = build();
-    initializeDatabase()
-    return server.listen(0);
+    await initializeDatabase()
+    return await server.listen(0);
   });
 
   it('should register a new user', async () => {

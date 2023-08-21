@@ -3,7 +3,7 @@
     "build": "tsc -p tsconfig.json",
     "start": "node dist/main.js",
     "dev": "ts-node main.ts",
-    "test": "jest",
+    "test": "jest --detectOpenHandles",
     "coverage": "c8 jest"
   },
   "devDependencies": {
