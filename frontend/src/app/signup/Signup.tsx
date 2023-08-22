@@ -22,7 +22,6 @@ const Signup: NextComponentType = () => {
 
   const onSubmit: SubmitHandler<UserType> = (data) => {
     if(data.password === data.rpassword) {
-      alert("foi")
       createUser({
         name: data.name,
         email: data.email,

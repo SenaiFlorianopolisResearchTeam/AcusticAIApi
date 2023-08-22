@@ -3,10 +3,14 @@
 import City from "../../components/city"
 import { NextComponentType } from "next"
 import Styles from "../../scss/login.module.scss"
-import { useForm } from "react-hook-form"
+import { SubmitHandler, useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link"
 import User from "../../models/user"
+import { z } from "zod"
+import logUser from "../../fetchs/logUser"
 
+// set log component
 const Login: NextComponentType = () => {
 
   const {register, handleSubmit} = useForm()
