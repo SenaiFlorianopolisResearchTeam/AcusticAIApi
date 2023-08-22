@@ -1,5 +1,5 @@
 import "../scss/index.scss"
-
+import { QueryClientProvider, QueryClient  } from "react-query"
 import type { Metadata } from 'next'
  
 export const metadata: Metadata = {
@@ -7,6 +7,8 @@ export const metadata: Metadata = {
   title: 'AcustticAI - home',
   description: '...',
 }
+
+const queryClient = new QueryClient()
 
 export default function RootLayout({
   children,
@@ -16,7 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {children}
+        <QueryClientProvider client={queryClient}>
+          {children}
+        </QueryClientProvider>
       </body>
     </html>
   )

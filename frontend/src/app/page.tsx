@@ -39,7 +39,10 @@ const Home: NextComponentType = () => {
         </section>
 
         <section className={Styles.links}>
-          
+          <h3>Links</h3>
+          <div>
+            
+          </div>
         </section>
       </section>
     </>

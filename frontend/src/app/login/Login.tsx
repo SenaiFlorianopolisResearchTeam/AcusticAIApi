@@ -5,13 +5,15 @@ import { NextComponentType } from "next"
 import Styles from "../../scss/login.module.scss"
 import { useForm } from "react-hook-form"
 import Link from "next/link"
+import User from "../../models/user"
 
 const Login: NextComponentType = () => {
 
   const {register, handleSubmit} = useForm()
 
   const onSubmit = (data: any) => {
-
+    alert(data)
+    User.parse(data)
   }
 
   return (
