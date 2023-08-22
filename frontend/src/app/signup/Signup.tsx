@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link"
 import User from "../../models/user"
 import { z } from "zod"
-import createUser from "@/fetchs/createUser"
+import createUser from "../../fetchs/createUser"
 
 const Signup: NextComponentType = () => {
 
