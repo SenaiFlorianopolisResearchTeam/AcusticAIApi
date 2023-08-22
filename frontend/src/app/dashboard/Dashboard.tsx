@@ -1,3 +1,5 @@
+"use client"
+
 import CardSession from "../../components/cardSession"
 import { NextComponentType } from "next"
 

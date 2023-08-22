@@ -8,12 +8,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link"
 import User from "../../models/user"
 import { z } from "zod"
-import { useQuery } from 'react-query'
-import { useState } from "react"
+import createUser from "@/fetchs/createUser"
 
 const Signup: NextComponentType = () => {
-
-  const [valUser, setValUser] = useState<UserType>();
 
   type UserType = z.infer<typeof User>;
 
@@ -23,14 +20,17 @@ const Signup: NextComponentType = () => {
     formState: { errors, isSubmitting },
   } = useForm<UserType>({resolver: zodResolver(User)})
 
-  const { status, data: UserType } = useQuery(["currency", valUser]);
-
   const onSubmit: SubmitHandler<UserType> = (data) => {
-    setValUser(data)
+    if(data.password === data.rpassword) {
+      alert("foi")
+      createUser({
+        user: data.name,
+        email: data.email,
+        password: data.password
+      })
+    }
   }
-
-  // validar senha e criar usuarion no backend
-
+  
   return (
     <main className={Styles.signupContainer}>
       <div className={Styles.signupForm}>
