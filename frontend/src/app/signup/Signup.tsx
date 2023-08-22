@@ -24,7 +24,7 @@ const Signup: NextComponentType = () => {
     if(data.password === data.rpassword) {
       alert("foi")
       createUser({
-        user: data.name,
+        name: data.name,
         email: data.email,
         password: data.password
       })

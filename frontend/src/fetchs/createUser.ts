@@ -1,8 +1,6 @@
 import http from "http"
 
-// habilitar cors arrumar criacao
-
-const createUser = (data: {user: string, email: string, password: string}) => {
+const createUser = (data: {name: string, email: string, password: string}) => {
     const postData = JSON.stringify(data);
 
     const options = {
