@@ -6,19 +6,19 @@ import Styles from "../../scss/signup.module.scss"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link"
-import User from "../../models/user"
+import { SignUser } from "../../models/user"
 import { z } from "zod"
 import createUser from "../../fetchs/createUser"
 
 const Signup: NextComponentType = () => {
 
-  type UserType = z.infer<typeof User>;
+  type UserType = z.infer<typeof SignUser>;
 
   const {
     register, 
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<UserType>({resolver: zodResolver(User)})
+  } = useForm<UserType>({resolver: zodResolver(SignUser)})
 
   const onSubmit: SubmitHandler<UserType> = (data) => {
     if(data.password === data.rpassword) {

@@ -1,10 +1,13 @@
 import { z } from "zod"
 
-const User = z.object({
+export const SignUser = z.object({
     name: z.string().min(6),
     email: z.string().email().min(5),
     password: z.string().min(6),
     rpassword: z.string().min(6), 
 });
 
-export default User
+export const LogUser = z.object({
+    email: z.string().email().min(5),
+    password: z.string().min(6),
+});

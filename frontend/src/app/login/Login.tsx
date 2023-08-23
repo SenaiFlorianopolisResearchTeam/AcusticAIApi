@@ -6,18 +6,25 @@ import Styles from "../../scss/login.module.scss"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link"
-import User from "../../models/user"
+import { LogUser } from "../../models/user"
 import { z } from "zod"
 import logUser from "../../fetchs/logUser"
 
-// set log component
 const Login: NextComponentType = () => {
 
-  const {register, handleSubmit} = useForm()
+  type UserType = z.infer<typeof LogUser>;
 
-  const onSubmit = (data: any) => {
-    alert(data)
-    User.parse(data)
+  const {
+    register, 
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<UserType>({resolver: zodResolver(LogUser)})
+
+  const onSubmit: SubmitHandler<UserType> = (data) => {
+    logUser({
+      email: data.email,
+      password: data.password
+    })
   }
 
   return (
