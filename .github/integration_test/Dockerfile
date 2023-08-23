@@ -2,8 +2,9 @@ FROM alpine
 
 COPY . .
 
-# instalar firefox
+RUN apk update
+RUN apk add firefox
 
-# buildar aplicacao
+RUN yarn build
 
-# rodar test
+CMD ["yarn", "start"]
