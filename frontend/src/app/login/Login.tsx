@@ -9,6 +9,7 @@ import Link from "next/link"
 import { LogUser } from "../../models/user"
 import { z } from "zod"
 import logUser from "../../fetchs/logUser"
+import getUser from "@/fetchs/getUser"
 
 const Login: NextComponentType = () => {
 
@@ -20,11 +21,14 @@ const Login: NextComponentType = () => {
     formState: { errors, isSubmitting },
   } = useForm<UserType>({resolver: zodResolver(LogUser)})
 
+  //testar este componente
   const onSubmit: SubmitHandler<UserType> = (data) => {
-    logUser({
-      email: data.email,
-      password: data.password
-    })
+    const user = getUser({email: data.email})
+    alert(`find: ${user}`)
+    //logUser({
+    //  email: data.email,
+    //  password: data.password
+    //})
   }
 
   return (
