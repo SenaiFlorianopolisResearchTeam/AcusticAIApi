@@ -41,6 +41,7 @@ In this folder, you will find the API responsible for managing user sessions, as
 ```bash
 ai-key=key
 backend-key=key
+JWT-ket=key
 
 DB_HOST=host
 DB_PORT=5432
