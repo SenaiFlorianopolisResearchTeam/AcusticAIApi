@@ -1,4 +1,4 @@
-name: OWASP Zap SEC Analysis
+name: OWASP Zap SEC
 
 on:
   push: 
