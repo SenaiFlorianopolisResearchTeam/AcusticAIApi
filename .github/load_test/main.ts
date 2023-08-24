@@ -1,7 +1,9 @@
-import http from 'k6/http';
+/*import http from 'k6/http';
 import { sleep } from 'k6';
 
 export default function () {
   http.get('http://sua-api.com');
   sleep(1);
-}
+}*/
+
+console.log("test")
