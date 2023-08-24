@@ -11,8 +11,15 @@ const plugin: FastifyPluginAsyncTypebox = async function (fastify, _opts) {
                 password: Type.String(),
             }),
             response: {
-                200: Type.Object({
+                202: Type.Object({
                     message: Type.String(),
+                    token: Type.String()
+                }),
+                401: Type.Object({
+                    message: Type.String()
+                }),
+                500: Type.Object({
+                    message: Type.String()
                 }),
             },
         },
@@ -23,8 +30,10 @@ const plugin: FastifyPluginAsyncTypebox = async function (fastify, _opts) {
             const [user] = await sql`SELECT id, password FROM "User" WHERE email = ${email}`;
 
             if (user && await bcrypt.compare(password, user.password)) {
-                // implementar jwt
-                return { message: 'Login successful.' };
+               
+                const token = fastify.jwt.sign({ id: user.id })
+
+                return res.status(202).send({ message: 'Usuario criado com sucesso.', token: token });
             } else {
                 return res.status(401).send({ message: 'Invalid credentials.' });
             }
