@@ -1,4 +1,4 @@
-name: Security tests
+name: OWASP Zap SEC Analysis
 
 on:
   push: 
