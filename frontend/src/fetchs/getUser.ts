@@ -8,7 +8,7 @@ const getUser = (data: { email: string }) => {
       hostname: 'localhost',
       port: 4000,
       path: '/getuser',
-      method: 'POST',
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         'Content-Length': postData.length
