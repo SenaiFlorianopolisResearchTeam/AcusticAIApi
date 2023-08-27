@@ -21,7 +21,9 @@ export function build () {
   });
 
   server.register(fastifyCors, {
-    origin: '*'
+    origin: '*',
+    methods: ['GET', 'PUT', 'POST'],
+    allowedHeaders: ['Content-Type']
   });
 
   server.register(AutoLoad, {

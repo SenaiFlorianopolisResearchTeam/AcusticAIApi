@@ -4,7 +4,7 @@ import sql from '../services/connection';
 import bcrypt from 'bcrypt';
 
 const plugin: FastifyPluginAsyncTypebox = async function (fastify, _opts) {
-    fastify.post('/login', {
+    fastify.get('/login', {
         schema: {
             body: Type.Object({
                 email: Type.String(),

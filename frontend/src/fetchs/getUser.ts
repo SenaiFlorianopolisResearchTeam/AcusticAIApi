@@ -10,8 +10,7 @@ const getUser = (data: { email: string }) => {
       path: '/getuser',
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json',
-        'Content-Length': postData.length
+        'Content-Type': 'application/json'
       }
     };
 

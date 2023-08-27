@@ -7,10 +7,9 @@ const logUser = (data: {email: string, password: string}) => {
         hostname: 'localhost',
         port: 4000,
         path: '/login',
-        method: 'POST',
+        method: 'GET',
         headers: {
-            'Content-Type': 'application/json',
-            'Content-Length': postData.length
+            'Content-Type': 'application/json'
         }
     };
 

@@ -3,7 +3,7 @@ import { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import sql from '../services/connection';
 
 const plugin: FastifyPluginAsyncTypebox = async function (fastify, _opts) {
-    fastify.post('/getuser', {
+    fastify.get('/getuser', {
         schema: {
             body: Type.Object({
                 email: Type.String(),
