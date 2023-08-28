@@ -4,7 +4,7 @@ import sql from '../services/connection';
 import bcrypt from 'bcrypt';
 
 const plugin: FastifyPluginAsyncTypebox = async function (fastify, _opts) {
-    fastify.get('/login', {
+    fastify.post('/login', {
         schema: {
             body: Type.Object({
                 email: Type.String(),
@@ -31,9 +31,9 @@ const plugin: FastifyPluginAsyncTypebox = async function (fastify, _opts) {
 
             if (user && await bcrypt.compare(password, user.password)) {
                
-                const token = fastify.jwt.sign({ id: user.id })
+                //const token = fastify.jwt.sign({ id: user.id })
 
-                return res.status(202).send({ message: 'Usuario criado com sucesso.', token: token });
+                return res.status(202).send({ message: 'Usuario criado com sucesso.' });
             } else {
                 return res.status(401).send({ message: 'Invalid credentials.' });
             }

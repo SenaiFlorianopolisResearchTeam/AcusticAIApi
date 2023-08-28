@@ -2,8 +2,8 @@ import { build } from './server';
 import initializeDatabase from './services/initDatabase';
 
 initializeDatabase()
-  .then(() => {
-    const server = build();
+  .then(async () => {
+    const server = await build();
     server.listen({ port: 4000 }, () => {
       console.log('Server is running on port 4000');
     });
