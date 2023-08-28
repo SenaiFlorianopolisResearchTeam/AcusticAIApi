@@ -1,14 +1,12 @@
 import postgres from 'postgres';
-import dotenv from 'dotenv';
-
-dotenv.config();
+import { database, host, password, port, username } from '../secrets';
 
 const sql = postgres({
-  host: process.env.DB_HOST,
-  port: Number(process.env.DB_PORT),
-  database: process.env.DB_NAME,
-  username: process.env.DB_USERNAME,
-  password: process.env.DB_PASSWORD,
+  host: host,
+  port: port,
+  database: database,
+  username: username,
+  password: password,
 });
 
 export default sql;

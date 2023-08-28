@@ -5,10 +5,10 @@ const getUser = (data: { email: string }) => {
     const postData = JSON.stringify(data);
 
     const options = {
-      hostname: 'localhost',
+      hostname: '127.0.0.1',
       port: 4000,
       path: '/getuser',
-      method: 'GET',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       }

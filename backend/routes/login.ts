@@ -1,7 +1,9 @@
-import { Type } from '@sinclair/typebox';
+import { Type } from '@sinclair/typebox'
 import { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox'
-import sql from '../services/connection';
-import bcrypt from 'bcrypt';
+import sql from '../services/connection'
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+import { JWTKey } from '../secrets'
 
 const plugin: FastifyPluginAsyncTypebox = async function (fastify, _opts) {
     fastify.post('/login', {
@@ -31,9 +33,9 @@ const plugin: FastifyPluginAsyncTypebox = async function (fastify, _opts) {
 
             if (user && await bcrypt.compare(password, user.password)) {
                
-                //const token = fastify.jwt.sign({ id: user.id })
+                const token = jwt.sign({ id: user.id }, String(JWTKey))
 
-                return res.status(202).send({ message: 'Usuario criado com sucesso.' });
+                return res.status(202).send({ message: 'Usuario criado com sucesso.', token: token });
             } else {
                 return res.status(401).send({ message: 'Invalid credentials.' });
             }

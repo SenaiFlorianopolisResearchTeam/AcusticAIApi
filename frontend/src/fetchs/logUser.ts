@@ -4,10 +4,10 @@ const logUser = (data: {email: string, password: string}) => {
     const postData = JSON.stringify(data);
 
     const options = {
-        hostname: 'localhost',
+        hostname: '127.0.0.1',
         port: 4000,
         path: '/login',
-        method: 'GET',
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         }

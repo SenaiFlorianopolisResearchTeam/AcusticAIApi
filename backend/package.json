@@ -7,6 +7,7 @@
     "coverage": "c8 vitest"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.2",
     "@types/node": "^20.5.0",
     "axios": "^1.4.0",
     "c8": "^8.0.1",
@@ -18,7 +19,6 @@
   "dependencies": {
     "@fastify/autoload": "^5.7.1",
     "@fastify/cors": "^8.3.0",
-    "@fastify/jwt": "^7.2.0",
     "@fastify/sensible": "^5.2.0",
     "@fastify/swagger": "^8.8.0",
     "@fastify/swagger-ui": "^1.9.3",
@@ -28,6 +28,7 @@
     "bcrypt": "^5.1.1",
     "dotenv": "^16.3.1",
     "fastify": "^4.21.0",
+    "jsonwebtoken": "^9.0.1",
     "postgres": "^3.3.5"
   }
 }
