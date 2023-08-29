@@ -42,9 +42,7 @@ const Login: NextPage = () => {
 
             const user: UserResponse = JSON.parse(response.trim());
             if (user && user.message === "User found.") {
-                // refatorar para 1 linha
-                const response = await logUser({ email: data.email, password: data.password })
-                const token: LogResponse = JSON.parse(response.trim()).token
+                const token = JSON.parse((await logUser({ email: data.email, password: data.password })).trim()).token
 
                 console.log(token)
 
