@@ -1,37 +1,38 @@
 import http from "http"
 
 const createUser = (data: {name: string, email: string, password: string}) => {
-    const postData = JSON.stringify(data);
-
-    const options = {
+    return new Promise<string>((resolve, reject) => {
+      const postData = JSON.stringify(data);
+  
+      const options = {
         hostname: '127.0.0.1',
         port: 4000,
         path: '/signup',
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
-            'Content-Length': postData.length
+            'Content-Type': 'application/json'
         }
-    };
-
-    const req = http.request(options, (res) => {
+      };
+  
+      const req = http.request(options, (res) => {
         let responseData = '';
-
+  
         res.on('data', (chunk) => {
-            responseData += chunk;
+          responseData += chunk;
         });
-
+  
         res.on('end', () => {
-            console.log('Response:', responseData);
+          resolve(responseData);
         });
+      });
+  
+      req.on('error', (error) => {
+        reject(error); 
+      });
+  
+      req.write(postData);
+      req.end();
     });
-
-    req.on('error', (error) => {
-        console.error('Error:', error);
-    });
-
-    req.write(postData);
-    req.end();
-}
+  }
 
 export default createUser

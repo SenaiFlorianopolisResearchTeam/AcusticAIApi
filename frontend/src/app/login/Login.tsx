@@ -10,6 +10,7 @@ import { LogUser } from "../../models/user"
 import { z } from "zod"
 import logUser from "../../fetchs/logUser"
 import getUser from "../../fetchs/getUser"
+import { useRouter } from "next/navigation"
 
 interface UserResponse {
   message: string;
@@ -19,9 +20,15 @@ interface UserResponse {
   };
 }
 
+interface LogResponse  {
+  message: string;
+  token: string;
+}
+
 const Login: NextComponentType = () => {
 
   type UserType = z.infer<typeof LogUser>;
+  const router = useRouter()
 
   const {
     register, 
@@ -35,7 +42,12 @@ const Login: NextComponentType = () => {
   
       const user: UserResponse = JSON.parse(response.trim());
       if (user && user.message === "User found.") {
-        logUser({email: data.email, password: data.password})
+        // refatorar
+        const response = await logUser({email: data.email, password: data.password})
+        const token: LogResponse = JSON.parse(response.trim())
+        localStorage.setItem("token", token.token);
+        // redirecionar
+        router.push('/dashboard')
       } else {
         console.log("User not found.");
       }

@@ -9,10 +9,12 @@ import Link from "next/link"
 import { SignUser } from "../../models/user"
 import { z } from "zod"
 import createUser from "../../fetchs/createUser"
+import { useRouter } from "next/navigation"
 
 const Signup: NextComponentType = () => {
 
   type UserType = z.infer<typeof SignUser>;
+  const router = useRouter()
 
   const {
     register, 
@@ -20,13 +22,15 @@ const Signup: NextComponentType = () => {
     formState: { errors, isSubmitting },
   } = useForm<UserType>({resolver: zodResolver(SignUser)})
 
-  const onSubmit: SubmitHandler<UserType> = (data) => {
+  const onSubmit: SubmitHandler<UserType> = async (data) => {
     if(data.password === data.rpassword) {
-      createUser({
+      await createUser({
         name: data.name,
         email: data.email,
         password: data.password
       })
+
+      router.push('/login')
     }
   }
   
