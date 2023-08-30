@@ -1,11 +1,21 @@
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
- 
-export function middleware(request: NextRequest) {
-  if (request.nextUrl.pathname.startsWith('/dashboard')) {
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
-    request.cookies.get('token')?.value
+export async function middleware(request: NextRequest, response: any) {
+    if (request.nextUrl.pathname.startsWith('/dashboard')) {
+        try {
+            const isAuthenticated = request.cookies.get('authToken');
 
-    return NextResponse.redirect(new URL('/login', request.url))
-  }
+            if (isAuthenticated) {
+                return null;
+            } else {
+                return NextResponse.redirect(new URL('/login', request.url));
+            }
+        } catch (error) {
+            console.error("Error checking token:", error);
+            return NextResponse.redirect(new URL('/error', request.url));
+        }
+    }
+
+    return null;
 }

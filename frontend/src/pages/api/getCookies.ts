@@ -2,12 +2,15 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import Cookies from 'cookies';
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
-  const keys = ['keyboard cat'];
-  const cookies = new Cookies(req, res, { keys });
 
-  const token = req.body.token;
+    if (req.method !== 'GET') {
+        return res.status(405).json({ message: 'Method Not Allowed' });
+    }
 
-  cookies.set('authToken', token, { httpOnly: true, sameSite: 'none', secure: false });
+    const keys = ['keyboard cat'];
+    const cookies = new Cookies(req, res, { keys });
 
-  res.status(200).json({ message: 'Token stored in a secure cookie.' });
+    const token = cookies.get('authToken');
+
+    res.status(200).json({ token: token });
 };

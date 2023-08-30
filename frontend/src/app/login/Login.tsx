@@ -12,6 +12,7 @@ import logUser from "../../fetchs/logUser"
 import getUser from "../../fetchs/getUser"
 import { useRouter } from "next/navigation"
 import setCookie from "../../fetchs/setCookie"
+import getCookie from "../../fetchs/getCookie"
 
 interface UserResponse {
     message: string;
@@ -39,25 +40,25 @@ const Login: NextPage = () => {
 
     const onSubmit: SubmitHandler<UserType> = async (data) => {
         try {
-            const response = await getUser({ email: data.email });
-
-            const user: UserResponse = JSON.parse(response.trim());
-            if (user && user.message === "User found.") {
-                const token = JSON.parse((await logUser({ email: data.email, password: data.password })).trim()).token
-
-                console.log(token)
-                const response = await setCookie(token)
-                console.log(response)
-
-                // redirecionar
-                router.push('/dashboard')
-            } else {
-                console.log("User not found.");
+          const response = await getUser({ email: data.email });
+      
+          const user: UserResponse = JSON.parse(response.trim());
+          if (user && user.message === "User found.") {
+            const token = JSON.parse((await logUser({ email: data.email, password: data.password })).trim()).token
+            try {
+              await setCookie(token);
+              router.push('/dashboard');
+            } catch (cookieError) {
+              console.error("Error setting cookie:", cookieError);
             }
+          } else {
+            console.log("User not found.");
+          }
         } catch (error) {
-            console.error("Error fetching user:", error);
+          console.error("Error fetching user:", error);
         }
-    }
+      };
+      
 
     return (
         <main className={Styles.loginContainer}>

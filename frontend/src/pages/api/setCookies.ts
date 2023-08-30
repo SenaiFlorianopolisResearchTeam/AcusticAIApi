@@ -2,12 +2,26 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import Cookies from 'cookies';
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
-  const keys = ['keyboard cat'];
-  const cookies = new Cookies(req, res, { keys });
 
-  const token = req.body.token;
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  cookies.set('authToken', token, { httpOnly: true, sameSite: 'none', secure: false });
+    if (req.method === 'OPTIONS') {
+        res.status(200).end();
+        return;
+    }
 
-  res.status(200).json({ message: 'Token stored in a secure cookie.' });
+    const keys = ['keyboard cat'];
+    const cookies = new Cookies(req, res, { keys });
+
+    const token = req.body;
+
+    if (!token) {
+        return res.status(400).json({ message: 'Token not provided' });
+    }
+
+    cookies.set('authToken', token, { httpOnly: true, sameSite: 'none', secure: false });
+
+    res.status(200).json({ message: 'Token stored in a secure cookie.' });
 };
