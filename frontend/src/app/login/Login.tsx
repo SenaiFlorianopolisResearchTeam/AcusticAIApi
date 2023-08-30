@@ -11,6 +11,7 @@ import { z } from "zod"
 import logUser from "../../fetchs/logUser"
 import getUser from "../../fetchs/getUser"
 import { useRouter } from "next/navigation"
+import setCookie from "../../fetchs/setCookie"
 
 interface UserResponse {
     message: string;
@@ -45,6 +46,8 @@ const Login: NextPage = () => {
                 const token = JSON.parse((await logUser({ email: data.email, password: data.password })).trim()).token
 
                 console.log(token)
+                const response = await setCookie(token)
+                console.log(response)
 
                 // redirecionar
                 router.push('/dashboard')
@@ -71,12 +74,6 @@ const Login: NextPage = () => {
             <City />
         </main>
     )
-}
-
-{
-    'use server'
-
-
 }
 
 export default Login
