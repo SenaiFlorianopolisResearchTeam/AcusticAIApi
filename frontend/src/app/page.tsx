@@ -2,6 +2,8 @@ import { NextComponentType } from "next"
 import Styles from '../scss/home.module.scss'
 import MouseScroll from "../components/mouseScroll"
 import LandingBar from "../components/landingBar"
+import Code from "../svgs/code"
+import Article from "../svgs/article"
 
 const Home: NextComponentType = () => {
 
@@ -40,8 +42,17 @@ const Home: NextComponentType = () => {
 
         <section className={Styles.links}>
           <h3>Links</h3>
-          <div>
-            
+          <div className={Styles.container}>
+            <a className={Styles.card} href="https://github.com/fullzer4/AcustticAI">
+                <div className={Styles.img}>
+                    <Code/>
+                </div>
+                <p>Code Respositoy</p>
+            </a>
+            <a className={Styles.card} href="">
+                <Article/>
+                <p>Article Link</p>
+            </a>
           </div>
         </section>
       </section>
