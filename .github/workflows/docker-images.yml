@@ -2,9 +2,9 @@ name: Docker tests
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "unit" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "unit" ]
 
 jobs:
   build:
