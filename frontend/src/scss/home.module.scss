@@ -89,6 +89,45 @@
             }
         }
     }
+
+    .links {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        h3 {
+            text-align: left;
+            font-size: var(--home-subtitle);
+            font-weight: 600;
+        }
+        .container{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            .card{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+                height: 9rem;
+                font-style: none;
+                text-decoration: none;
+                color: #000;
+                .img{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    height: 100%;
+                }
+                p {
+                    font-size: var(--home-desc);
+                    font-weight: 500;
+                    font-style: none;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
 }
 
 .space {
