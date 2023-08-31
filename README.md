@@ -15,7 +15,6 @@
 [![Load balance tests](https://github.com/fullzer4/AcustticAI/actions/workflows/load-balance.yml/badge.svg)](https://github.com/fullzer4/AcustticAI/actions/workflows/load-balance.yml)
 [![OWASP Zap SEC Analysis](https://github.com/fullzer4/AcustticAI/actions/workflows/OWASP-Zap.yml/badge.svg)](https://github.com/fullzer4/AcustticAI/actions/workflows/OWASP-Zap.yml)
 [![CodeQL](https://github.com/fullzer4/AcustticAI/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/fullzer4/AcustticAI/actions/workflows/github-code-scanning/codeql)
-![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=acusttic-ai&style=plastic)
 
 </div>
 
