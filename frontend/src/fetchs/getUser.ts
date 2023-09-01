@@ -5,7 +5,7 @@ const getUser = (data: { email: string }) => {
     const postData = JSON.stringify(data);
 
     const options = {
-      hostname: '127.0.0.1',
+      hostname: '0.0.0.0',
       port: 4000,
       path: '/getuser',
       method: 'POST',

@@ -1,8 +1,8 @@
 {
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc",
     "start": "node dist/main.js",
-    "dev": "ts-node main.ts",
+    "dev": "yarn build && yarn start",
     "test": "vitest run",
     "coverage": "c8 vitest"
   },
@@ -23,7 +23,7 @@
     "@fastify/swagger": "^8.8.0",
     "@fastify/swagger-ui": "^1.9.3",
     "@fastify/type-provider-typebox": "^3.4.0",
-    "@sinclair/typebox": "^0.31.1",
+    "@sinclair/typebox": "^0.30.0",
     "@types/bcrypt": "^5.0.0",
     "bcrypt": "^5.1.1",
     "dotenv": "^16.3.1",
