@@ -55,6 +55,9 @@ services:
             - 3000:3000
         networks:
             - postgres-bridge-network
+        links:
+            - backend
+            - ai
         depends_on:
             - backend
             - ai
