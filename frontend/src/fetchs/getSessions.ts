@@ -1,13 +1,13 @@
 import http from "http"
 
-const createUser = (data: {userId: number, name: string}) => {
+const createUser = (data: {userId: number}) => {
     return new Promise<string>((resolve, reject) => {
       const postData = JSON.stringify(data);
   
       const options = {
         hostname: '0.0.0.0',
         port: 4000,
-        path: '/createsession',
+        path: '/getsessions',
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

@@ -1,14 +1,25 @@
 "use client"
 
+import Navbar from "../../components/navbar"
 import CardSession from "../../components/cardSession"
-import { NextComponentType } from "next"
+import { NextPage } from "next"
+import Styles from "../../scss/dashboard.module.scss"
+import CreateSession from "@/components/createSession"
 
-const Dashboard: NextComponentType = () => {
-  return (
-    <main>
-      <CardSession name="sessao1" id="1" data={[1,2,3,4,5,6]}/>
-    </main>
-  )
+const Dashboard: NextPage = () => {
+
+    return (
+        <main className={Styles.dashboard}>
+            <Navbar page="dashboard" />
+            <div className={Styles.cards}>
+                <div className={Styles.noneCard}>
+                    <p>Create your firts AI traffic session</p>
+                    <button>Create</button>
+                </div>
+            </div>
+            <CreateSession/>
+        </main>
+    )
 }
 
 export default Dashboard
