@@ -1,10 +1,16 @@
+import Navbar from "../../components/navbar"
 import CardSession from "../../components/cardSession"
-import { NextComponentType } from "next"
+import { NextPage } from "next"
+import Styles from "../../scss/dashboard.module.scss"
 
-const Dashboard: NextComponentType = () => {
+const Dashboard: NextPage = () => {
   return (
-    <main>
-      
+    <main className={Styles.dashboard}>
+      <Navbar page="dashboard"/>
+      <div className={Styles.cards}>
+        <p>Create your firts AI traffic session</p>
+        <button>Create</button>
+      </div>
     </main>
   )
 }

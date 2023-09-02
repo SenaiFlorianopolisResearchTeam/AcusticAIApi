@@ -16,7 +16,13 @@ html, body {
     min-height: 100%;
     transform-style: preserve-3d;
     background-color: #EEEEEE;
-    padding-bottom: 40px;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 100%;
 }
 
 html::-webkit-scrollbar {
