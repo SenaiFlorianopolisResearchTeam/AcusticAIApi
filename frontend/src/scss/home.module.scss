@@ -4,6 +4,7 @@
     align-items: center;
     min-height: 100%;
     height: fit-content;
+    padding-bottom: 40px;
     .home{
         position: relative;
         display: flex;
@@ -94,6 +95,7 @@
         display: flex;
         flex-direction: column;
         width: 80%;
+        gap: 40px;
         h3 {
             text-align: left;
             font-size: var(--home-subtitle);
