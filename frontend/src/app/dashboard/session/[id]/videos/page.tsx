@@ -1,12 +1,6 @@
 import { NextPage } from "next"
 
-interface Props {
-    params: {
-        id: number
-    }
-}
-
-const page: NextPage<Props> = ({params}) => {
+const page: NextPage = () => {
     return(
         <div>
             
