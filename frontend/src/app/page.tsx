@@ -27,15 +27,15 @@ const Home: NextComponentType = () => {
           <div className={Styles.photos}>
             <div className={Styles.photoContainer}>
               <img className={Styles.photo} src="/fullzer4.jpg" alt="fullzer4" />
-              <p className={Styles.name}>Gabriel Pelizzaro</p>
+              <p className={Styles.name}>Nome</p>
             </div>
             <div className={Styles.photoContainer}>
               <img className={Styles.photo} src="/fullzer4.jpg" alt="lucas" />
-              <p className={Styles.name}>Lucas garcez</p>            
+              <p className={Styles.name}>Nome</p>            
             </div>
             <div className={Styles.photoContainer}>
               <img className={Styles.photo} src="/fullzer4.jpg" alt="wagner" />
-              <p className={Styles.name}>Wagner souza</p>
+              <p className={Styles.name}>Nome</p>
             </div>
           </div>
         </section>

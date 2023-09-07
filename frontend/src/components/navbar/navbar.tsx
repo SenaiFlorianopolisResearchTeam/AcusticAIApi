@@ -1,17 +1,17 @@
-import Plus from "../../svgs/plus"
-import Home from "../../svgs/home"
-import Styles from "../scss/components/navbar.module.scss"
+import Styles from "../../scss/components/navbar.module.scss"
+import { NavbarProvider } from "../../context/navbar";
+import HomeC from "./home";
+import SessionC from "./sessions";
+import UserC from "./user";
 
 const Navbar: React.FC = () => {
     return (
         <div className={Styles.navbar}>
-            <div className={Styles.homeContainer}>
-                <Home page="dashboard"/>
-                <hr />
-            </div>
-            <div className={Styles.sessionContainer}>
-                <Plus />
-            </div>
+            <NavbarProvider>
+                <HomeC/>
+                <SessionC/>
+                <UserC/>
+            </NavbarProvider>
         </div>
     )
 }
