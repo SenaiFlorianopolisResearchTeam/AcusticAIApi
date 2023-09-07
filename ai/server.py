@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from model.model import count as model
 
 app = Flask(__name__)
@@ -9,10 +9,8 @@ def ping():
 
 @app.route("/count")
 def count():
-    line_start = (0, 600)
-    line_end = (1240, 600)
     
-    result = model("./video/video.mp4", line_start, line_end)
+    result = jsonify(model("./video/video.mp4", 0, 350, 1300, 350))
     return result
 
 if __name__ == "__main__":

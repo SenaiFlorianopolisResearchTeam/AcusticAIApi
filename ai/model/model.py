@@ -1,63 +1,126 @@
-from collections import defaultdict
-import cv2
-import numpy as np
+import supervision as sv
 from ultralytics import YOLO
 
-def count(video_path: str ,line_start: tuple[int, int], line_end: tuple[int, int]) -> list:
+class object_line_counter():
+    def __init__(self,class_id_number,line_counter):
+        self.class_id_number = class_id_number
+        self.line_counter = line_counter
+
+    def detections(self,result):
+        detections = sv.Detections.from_yolov8(result)
+        detections = detections[detections.class_id == self.class_id_number]
+
+        if result.boxes.id is not None:
+            detections.tracker_id = result.boxes.id.cpu().numpy().astype(int)  
+            
+        self.line_counter.trigger(detections=detections)
+        count_in = self.line_counter.in_count
+        count_out = self.line_counter.out_count
+
+        return count_in,count_out
+
+def count(video_path: str ,line_startX: int, line_startY:int, line_endX: int, line_endY:int) -> list:
 
     model = YOLO('./best.pt')
-    track_history = defaultdict(lambda: [])
-    object_count_up = 0
-    object_count_down = 0
-    counted_ids = set()
-    cap = cv2.VideoCapture(video_path)
+    START = sv.Point(line_startX, line_startY)
+    END = sv.Point(line_endX, line_endY)
 
-    while cap.isOpened():
-        success, frame = cap.read()
+    ids = {
+        "caminhaog": 0,
+        "caminhaop": 1,
+        "carro": 2,
+        "moto": 3,
+        "onibus": 4,
+        "tuktuk": 5,
+        "van": 6
+    }
 
-        if success:
+    line_counter = sv.LineZone(start=START, end=END)
+    line_1 = sv.LineZone(start=START, end=END)
+    line_2 = sv.LineZone(start=START, end=END)
+    line_3 = sv.LineZone(start=START, end=END)
+    line_4 = sv.LineZone(start=START, end=END)
+    line_5 = sv.LineZone(start=START, end=END)
+    line_6 = sv.LineZone(start=START, end=END)
+    line_7 = sv.LineZone(start=START, end=END)
+    line_zone_annotator = sv.LineZoneAnnotator(
+        thickness=2,
+        text_thickness=1,
+        text_scale=0.5
+    )
 
-            frame = cv2.resize(frame, (1240, 920))
+    box_annotator = sv.BoxAnnotator(
+        thickness=2,
+        text_thickness=1,
+        text_scale=0.5
+    )
 
-            results = model.track(frame, persist=True)
-            boxes = results[0].boxes.xywh.cpu()
-            track_ids = results[0].boxes.id.int().cpu().tolist()
-            annotated_frame = results[0].plot()
+    caminhaog = object_line_counter(ids.get("caminhaog"), line_1)
+    caminhaop = object_line_counter(ids.get("caminhaop"), line_2)
+    carro = object_line_counter(ids.get("carro"), line_3)
+    moto = object_line_counter(ids.get("moto"), line_4)
+    onibus = object_line_counter(ids.get("onibus"), line_5)
+    tuktuk = object_line_counter(ids.get("tuktuk"), line_6)
+    van = object_line_counter(ids.get("van"), line_7)
 
-            for box, track_id in zip(boxes, track_ids):
-                x, y, w, h = box
-                track = track_history[track_id]
-                track.append((float(x), float(y)))
-                if len(track) > 30:
-                    track.pop(0)
+    for result in model.track(source=video_path, stream=True, agnostic_nms=True):
+        frame = result.orig_img
+        detections = sv.Detections.from_yolov8(result)
 
-                points = np.hstack(track).astype(np.int32).reshape((-1, 1, 2))
-                cv2.polylines(annotated_frame, [points], isClosed=False, color=(230, 230, 230), thickness=5)
+        if result.boxes.id is not None:
+            detections.tracker_id = result.boxes.id.cpu().numpy().astype(int)
+        
+        detections = detections[detections.class_id != 0]
 
-                if y + h > line_start[1] and y < line_start[1]:
-                    if (x + w > line_start[0] and x < line_start[0]) or (x + w > line_end[0] and x < line_end[0]):
-                        if x + w > line_start[0] and x < line_start[0]:
-                            if track_id not in counted_ids:
-                                object_count_up += 1
-                                counted_ids.add(track_id)
-                        elif x + w > line_end[0] and x < line_end[0]:
-                            if track_id not in counted_ids: 
-                                object_count_down += 1
-                                counted_ids.add(track_id)
+        frame = box_annotator.annotate(
+            scene=frame, 
+            detections=detections
+        )
 
-            cv2.putText(annotated_frame, f'Counted Up: {object_count_up}', (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-            cv2.putText(annotated_frame, f'Counted Down: {object_count_down}', (10, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-            cv2.line(annotated_frame, line_start, line_end, (0, 0, 255), 2)
-        else:
-            break
+        caminhaog_in,caminhaog_out = caminhaog.detections(result)
+        caminhaop_in,caminhaop_out = caminhaop.detections(result)
+        carro_in,carro_out = carro.detections(result)
+        moto_in,moto_out = moto.detections(result)
+        onibus_in,onibus_out = onibus.detections(result)
+        tuktuk_in,tuktuk_out = tuktuk.detections(result)
+        van_in,van_out = van.detections(result)
 
-    cap.release()
+        line_counter.trigger(detections=detections)
+        line_zone_annotator.annotate(frame=frame, line_counter=line_counter)
 
-    return []
+    result = [
+        {
+            "caminhaog_in": caminhaog_in,
+            "caminhaog_out": caminhaog_out
+        },
+        {
+            "caminhaop_in": caminhaop_in,
+            "caminhaop_out": caminhaop_out
+        },
+        {
+            "carro_in": carro_in,
+            "carro_out": carro_out
+        },
+        {
+            "moto_in": moto_in,
+            "moto_out": moto_out
+        },
+        {
+            "onibus_in": onibus_in,
+            "onibus_out": onibus_out
+        },
+        {
+            "tuktuk_in": tuktuk_in,
+            "tuktuk_out": tuktuk_out
+        },
+        {
+            "van_in": van_in,
+            "van_out": van_out
+        },
+    ]
+    print(result)
+    return result
 
 if __name__ == "__main__":
 
-    line_start = (0, 600)
-    line_end = (1240, 600)
-
-    count("../video/video.mp4", line_start, line_end)
+    count("./video/video.mp4", 0, 350, 1300, 350)
