@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Navbar from "../../components/navbar/navbar"
-import { NavbarProvider } from "@/context/navbar";
+import { NavbarProvider } from "../../context/navbar";
 
 export const metadata: Metadata = {
     icons: '/logo.ico',
@@ -16,6 +16,7 @@ const Layout = ({
     return (
         <> 
             <Navbar/>
+            {/* client side */}
             <NavbarProvider>
                 {children}
             </NavbarProvider>

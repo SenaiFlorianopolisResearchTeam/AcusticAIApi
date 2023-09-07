@@ -24,9 +24,21 @@
                 "file": "Components/navbar/Arq.excalidraw.md"
               }
             }
+          },
+          {
+            "id": "c411ef71bd85baf8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Arquiteture/Folders.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -92,7 +104,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Components/navbar/Arq.excalidraw.md",
+                "file": "Arquiteture/Folders.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -109,7 +121,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Components/navbar/Arq.excalidraw.md",
+                "file": "Arquiteture/Folders.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -132,7 +144,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Components/navbar/Arq.excalidraw.md"
+                "file": "Arquiteture/Folders.md"
               }
             }
           }
@@ -154,10 +166,11 @@
       "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "active": "1913dfaf8f937b08",
+  "active": "c411ef71bd85baf8",
   "lastOpenFiles": [
-    "Untitled.canvas",
     "Components/navbar/Arq.excalidraw.md",
+    "Arquiteture/Folders.md",
+    "Untitled.canvas",
     "Navbar.md",
     "Components/navbar",
     "Components",
