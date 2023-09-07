@@ -1,28 +1,69 @@
-import threading
-from ultralytics import YOLO
+from collections import defaultdict
 import cv2
+import numpy as np
+from ultralytics import YOLO
 
-model = YOLO('../best.pt')
-cap = cv2.VideoCapture("../video/video.mp4")
+def count(video_path: str ,line_start: tuple[int, int], line_end: tuple[int, int]) -> list:
 
-line_start = (0, 600)
-line_end = (1800, 600)
+    model = YOLO('../best.pt')
+    track_history = defaultdict(lambda: [])
+    object_count_up = 0
+    object_count_down = 0
+    counted_ids = set()
+    cap = cv2.VideoCapture(video_path)
 
-while True:
-    ret, frame = cap.read()
-    if not ret:
-        break
-    results = model.track(frame, save_conf=True, tracker="./bytetrack.yaml")  # ou 'bytetrack.yaml')
-    labels = results[0].names
-    classes = results[0].boxes.cls.cpu().numpy().astype(int)
-    boxes = results[0].boxes.xyxy.cpu().numpy().astype(int)
-    ids = results[0].boxes.id.cpu().numpy().astype(int)
-    for box, id, class_index in zip(boxes, ids, classes):
-        class_label = labels[class_index]
-        
-        
-    cv2.line(frame, line_start, line_end, (255, 0, 0), 2)
-    
-    cv2.imshow("frame", frame)
-    if cv2.waitKey(1) & 0xFF == ord("q"):
-        break
+    while cap.isOpened():
+        success, frame = cap.read()
+
+        if success:
+
+            frame = cv2.resize(frame, (1240, 920))
+
+            results = model.track(frame, persist=True)
+            boxes = results[0].boxes.xywh.cpu()
+            track_ids = results[0].boxes.id.int().cpu().tolist()
+            annotated_frame = results[0].plot()
+
+            for box, track_id in zip(boxes, track_ids):
+                x, y, w, h = box
+                track = track_history[track_id]
+                track.append((float(x), float(y)))
+                if len(track) > 30:
+                    track.pop(0)
+
+                points = np.hstack(track).astype(np.int32).reshape((-1, 1, 2))
+                cv2.polylines(annotated_frame, [points], isClosed=False, color=(230, 230, 230), thickness=5)
+
+                if y + h > line_start[1] and y < line_start[1]:
+                    if (x + w > line_start[0] and x < line_start[0]) or (x + w > line_end[0] and x < line_end[0]):
+                        if x + w > line_start[0] and x < line_start[0]:
+                            if track_id not in counted_ids:
+                                object_count_up += 1
+                                counted_ids.add(track_id)
+                        elif x + w > line_end[0] and x < line_end[0]:
+                            if track_id not in counted_ids: 
+                                object_count_down += 1
+                                counted_ids.add(track_id)
+
+            cv2.putText(annotated_frame, f'Counted Up: {object_count_up}', (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+            cv2.putText(annotated_frame, f'Counted Down: {object_count_down}', (10, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+            cv2.line(annotated_frame, line_start, line_end, (0, 0, 255), 2)
+
+            cv2.imshow("YOLOv8 Tracking", annotated_frame)
+
+            if cv2.waitKey(1) & 0xFF == ord("q"):
+                break
+        else:
+            break
+
+    cap.release()
+    cv2.destroyAllWindows()
+
+    return []
+
+if __name__ == "__main__":
+
+    line_start = (0, 600)
+    line_end = (1240, 600)
+
+    count("../video/video.mp4", line_start, line_end)
