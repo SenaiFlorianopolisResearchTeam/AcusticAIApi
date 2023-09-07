@@ -1,3 +1,4 @@
 flask
 ultralytics
-opencv-python
+opencv-python===4.8.0.76
+roboflow

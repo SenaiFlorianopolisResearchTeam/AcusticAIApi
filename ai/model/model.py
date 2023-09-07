@@ -5,7 +5,7 @@ from ultralytics import YOLO
 
 def count(video_path: str ,line_start: tuple[int, int], line_end: tuple[int, int]) -> list:
 
-    model = YOLO('../best.pt')
+    model = YOLO('./best.pt')
     track_history = defaultdict(lambda: [])
     object_count_up = 0
     object_count_down = 0
@@ -48,16 +48,10 @@ def count(video_path: str ,line_start: tuple[int, int], line_end: tuple[int, int
             cv2.putText(annotated_frame, f'Counted Up: {object_count_up}', (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
             cv2.putText(annotated_frame, f'Counted Down: {object_count_down}', (10, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
             cv2.line(annotated_frame, line_start, line_end, (0, 0, 255), 2)
-
-            cv2.imshow("YOLOv8 Tracking", annotated_frame)
-
-            if cv2.waitKey(1) & 0xFF == ord("q"):
-                break
         else:
             break
 
     cap.release()
-    cv2.destroyAllWindows()
 
     return []
 
