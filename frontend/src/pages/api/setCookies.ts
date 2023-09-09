@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import { NextApiRequest, NextApiResponse } from 'next';
 import Cookies from 'cookies';
 
@@ -21,7 +22,7 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
         return res.status(400).json({ message: 'Token not provided' });
     }
 
-    cookies.set('authToken', token, { httpOnly: true, sameSite: 'none', secure: false });
+    cookies.set('authToken', token, { httpOnly: true, sameSite: 'lax', secure: false });
 
     res.status(200).json({ message: 'Token stored in a secure cookie.' });
 };

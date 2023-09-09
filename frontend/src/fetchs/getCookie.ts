@@ -1,6 +1,6 @@
 import http from "http";
 
-const setCookie = () => {
+const getCookie = () => {
   return new Promise<string>((resolve, reject) => {
 
     const options = {
@@ -33,4 +33,4 @@ const setCookie = () => {
   });
 }
 
-export default setCookie;
+export default getCookie;

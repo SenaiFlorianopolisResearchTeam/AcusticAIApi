@@ -1,31 +1,94 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 
 import CardSession from "../../components/cardSession"
 import { NextPage } from "next"
 import Styles from "../../scss/dashboard.module.scss"
-import CreateSession from "../../components/createSession"
 import { usePage } from "../../context/navbar"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
+import createSession from "../../fetchs/createSession"
+import getCookie from "../../fetchs/getCookie"
+import getID from "../../fetchs/getID"
+import { useRouter } from "next/navigation"
+import getSessions from "../../fetchs/getSessions"
 
 const Dashboard: NextPage = () => {
+    const { setPage, page } = usePage();
+    const [userId, setUserId] = useState<number | null>(null);
+    const [sessions, setSessions] = useState<any[]>([]);
+    const router = useRouter();
 
-    const { setPage, page } = usePage()
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await getCookie();
+                const cookie = JSON.parse(response).token;
+                const idResponse = await getID({ token: cookie });
+                const id = JSON.parse(idResponse).userId;
+                setUserId(id);
 
-    useEffect( () => {
-        setPage("dashboard")       
-    }, [])
+                const sessionsResponse = await getSessions({ userId: id });
+                const sessionsData = JSON.parse(sessionsResponse);
+                setSessions(sessionsData);
+
+            } catch (err) {
+                console.error(err);
+                router.push('/login');
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    const fetchUpdatedSessions = async () => {
+        try {
+            const sessionsResponse = await getSessions({ userId: Number(userId) });
+            const sessionsData = JSON.parse(sessionsResponse);
+            setSessions(sessionsData);
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    const handleCreateSession = async () => {
+        try {
+            await createSession({ userId: Number(userId), name: "Session" });
+            fetchUpdatedSessions();
+        } catch (err) {
+            console.error(err);
+        }
+    };
 
     return (
         <main className={Styles.dashboard}>
             <div className={Styles.cards}>
-                <div className={Styles.noneCard}>
-                    <p>Create your firts AI traffic session</p>
-                    <button onClick={() => alert(`${page}`)}>Create</button>
-                </div>
+                {sessions.length === 0 ? (
+                    <div className={Styles.noneCard}>
+                        <p>Create your first AI traffic session</p>
+                        <button onClick={() => handleCreateSession()}>
+                            Create
+                        </button>
+                    </div>
+                ) : (
+                    sessions.map((session) => (
+                        <CardSession
+                            key={session.id}
+                            id={session.id}
+                            name={session.name}
+                            data={[
+                                session.horas,
+                                session.videos,
+                                session.veiculos,
+                                session.carros,
+                                session.onibus,
+                                session.moto,
+                            ]}
+                        />
+                    ))
+                )}
             </div>
-            <CreateSession/>
         </main>
-    )
-}
+    );
+};
 
-export default Dashboard
+export default Dashboard;

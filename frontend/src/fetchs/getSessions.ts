@@ -1,38 +1,36 @@
-import http from "http"
+import http from "http";
 
-const createUser = (data: {userId: number}) => {
-    return new Promise<string>((resolve, reject) => {
-      const postData = JSON.stringify(data);
-  
-      const options = {
-        hostname: '0.0.0.0',
-        port: 4000,
-        path: '/getsessions',
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-      };
-  
-      const req = http.request(options, (res) => {
-        let responseData = '';
-  
-        res.on('data', (chunk) => {
-          responseData += chunk;
-        });
-  
-        res.on('end', () => {
-          resolve(responseData);
-        });
+const getSessions = (data: { userId: number }) => {
+  return new Promise<string>((resolve, reject) => {
+
+    const options = {
+      hostname: 'localhost',
+      port: 4000,
+      path: `/getsessions/${data.userId}`,
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    const req = http.request(options, (res) => {
+      let responseData = '';
+
+      res.on('data', (chunk) => {
+        responseData += chunk;
       });
-  
-      req.on('error', (error) => {
-        reject(error); 
+
+      res.on('end', () => {
+        resolve(responseData);
       });
-  
-      req.write(postData);
-      req.end();
     });
-  }
 
-export default createUser
+    req.on('error', (error) => {
+      reject(error);
+    });
+
+    req.end();
+  });
+};
+
+export default getSessions;

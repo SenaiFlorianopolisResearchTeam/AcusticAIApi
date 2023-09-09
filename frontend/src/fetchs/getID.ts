@@ -1,16 +1,17 @@
-import http from "http"
+import http from "http";
 
-const createSession = (data: {userId: number, name: string}) => {
+const getID = (data: { token: string }) => {
     return new Promise<string>((resolve, reject) => {
       const postData = JSON.stringify(data);
   
       const options = {
-        hostname: '0.0.0.0',
-        port: 4000,
-        path: '/createsession',
+        hostname: 'localhost',
+        port: 3000,
+        path: '/api/verifyJWT',
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${data.token}`
         }
       };
   
@@ -27,12 +28,13 @@ const createSession = (data: {userId: number, name: string}) => {
       });
   
       req.on('error', (error) => {
-        reject(error); 
+        reject(error);
       });
   
       req.write(postData);
       req.end();
     });
-  }
+  };
+  
 
-export default createSession
+export default getID;
