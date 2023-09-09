@@ -29,6 +29,12 @@ In the AI folder, you'll find the computer vision model responsible for vehicle 
 ```bash
 ai-key=key
 backend-key=key
+
+DB_HOST=host
+DB_PORT=5432
+DB_NAME=databasename
+DB_USERNAME=username
+DB_PASSWORD=password
 ```
 
 ## Backend
