@@ -4,12 +4,16 @@ import HomeC from "./home";
 import SessionC from "./sessions";
 import UserC from "./user";
 
-const Navbar: React.FC = () => {
+interface Props { 
+    onCreateSession: () => void;
+}
+
+const Navbar: React.FC<Props> = (props: Props) => {
     return (
         <div className={Styles.navbar}>
             <NavbarProvider>
                 <HomeC/>
-                <SessionC/>
+                <SessionC onCreateSession={props.onCreateSession}/>
                 <UserC/>
             </NavbarProvider>
         </div>

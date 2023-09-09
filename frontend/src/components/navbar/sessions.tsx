@@ -4,13 +4,17 @@ import Styles from "../../scss/components/navbar.module.scss"
 import Plus from "../../svgs/plus"
 import { usePage } from "../../context/navbar"
 
-const SessionC: React.FC = () => {
+interface Props { 
+    onCreateSession: () => void;
+}
+
+const SessionC: React.FC<Props> = (props: Props) => {
 
     const { page } = usePage()
     
     return (
         <div className={Styles.sessionContainer}>
-            <Plus />
+            <Plus onCreateSession={props.onCreateSession}/>
         </div>
     )
 }

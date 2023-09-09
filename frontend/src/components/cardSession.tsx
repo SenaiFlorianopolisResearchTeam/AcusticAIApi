@@ -4,6 +4,7 @@ interface Props {
     readonly id: string;
     readonly name: string;
     readonly data: Data<number>;
+    onDeleteSession: (sessionId: string) => void;
 }
 
 type Data<T> = [
@@ -23,9 +24,6 @@ const CardSession: React.FC<Props> = (props: Props) => {
                 <div className={Style.session}>
                     <p className={Style.sessionTitle}>{props.name}</p>
                     <p className={Style.graphText}>Total de veiculos reconhecidos</p>
-                </div>
-                <div className={Style.graph}>
-                    {/* grafico */}
                 </div>
             </div>
             <div className={Style.dataContainer}>
@@ -54,7 +52,7 @@ const CardSession: React.FC<Props> = (props: Props) => {
                     <p className={Style.dataNumber}>{props.data[5]}</p>
                 </div>
                 <div>
-                    <button>deletar</button>
+                    <button onClick={() => props.onDeleteSession(props.id)}>deletar</button>
                     {/* botar imagem */}
                 </div>
             </div>

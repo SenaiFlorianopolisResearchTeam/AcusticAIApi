@@ -15,8 +15,6 @@ const Layout = ({
 }) => {
     return (
         <> 
-            <Navbar/>
-            {/* client side */}
             <NavbarProvider>
                 {children}
             </NavbarProvider>

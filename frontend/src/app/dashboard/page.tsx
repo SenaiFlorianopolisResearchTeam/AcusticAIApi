@@ -10,7 +10,9 @@ import createSession from "../../fetchs/createSession"
 import getCookie from "../../fetchs/getCookie"
 import getID from "../../fetchs/getID"
 import getSessions from "../../fetchs/getSessions"
+import deleteSession from "../../fetchs/deleteSession"
 import { useRouter } from "next/navigation"
+import Navbar from "../../components/navbar/navbar"
 
 const Dashboard: NextPage = () => {
     const { setPage, page } = usePage();
@@ -60,8 +62,18 @@ const Dashboard: NextPage = () => {
         }
     };
 
+    const handleDeleteSession = async (sessionId: string) => {
+        try {
+            await deleteSession({ userId: Number(userId), sessionId });
+            fetchUpdatedSessions();
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
     return (
         <main className={Styles.dashboard}>
+            <Navbar onCreateSession={handleCreateSession}/>
             <div className={Styles.cards}>
                 {sessions.length === 0 ? (
                     <div className={Styles.noneCard}>
@@ -84,6 +96,7 @@ const Dashboard: NextPage = () => {
                                 session.onibus,
                                 session.moto,
                             ]}
+                            onDeleteSession={handleDeleteSession}
                         />
                     ))
                 )}
