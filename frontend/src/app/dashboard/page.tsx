@@ -9,8 +9,8 @@ import { useEffect, useState } from "react"
 import createSession from "../../fetchs/createSession"
 import getCookie from "../../fetchs/getCookie"
 import getID from "../../fetchs/getID"
-import { useRouter } from "next/navigation"
 import getSessions from "../../fetchs/getSessions"
+import { useRouter } from "next/navigation"
 
 const Dashboard: NextPage = () => {
     const { setPage, page } = usePage();
@@ -34,6 +34,7 @@ const Dashboard: NextPage = () => {
             } catch (err) {
                 console.error(err);
                 router.push('/login');
+                //remover user
             }
         };
 
