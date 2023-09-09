@@ -33,8 +33,17 @@ const plugin: FastifyPluginAsyncTypebox = async function (fastify, _opts) {
             }
 
             const result = await sql`
-                INSERT INTO "Session" (name, userId)
-                VALUES (${name}, ${userId})
+                INSERT INTO "Session" (name, userId, tmin, data)
+                VALUES (${name}, ${userId}, 0, jsonb_build_object(
+                    'videos', 0,
+                    'caminhaog', 0,
+                    'caminhaop', 0,
+                    'carro', 0,
+                    'moto', 0,
+                    'onibus', 0,
+                    'tuktuk', 0,
+                    'van', 0
+                ))
                 RETURNING id
             `;
 
