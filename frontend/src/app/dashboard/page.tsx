@@ -1,18 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 
-import CardSession from "../../components/cardSession"
-import { NextPage } from "next"
-import Styles from "../../scss/dashboard.module.scss"
-import { usePage } from "../../context/navbar"
 import { useEffect, useState } from "react"
+import { NextPage } from "next"
+import { useRouter } from "next/navigation"
+import CardSession from "../../components/cardSession"
+import Navbar from "../../components/navbar/navbar"
+import { usePage } from "../../context/navbar"
+import Styles from "../../scss/dashboard.module.scss"
 import createSession from "../../fetchs/createSession"
 import getCookie from "../../fetchs/getCookie"
 import getID from "../../fetchs/getID"
 import getSessions from "../../fetchs/getSessions"
 import deleteSession from "../../fetchs/deleteSession"
-import { useRouter } from "next/navigation"
-import Navbar from "../../components/navbar/navbar"
 
 const Dashboard: NextPage = () => {
     const { setPage, page } = usePage();
@@ -64,7 +64,7 @@ const Dashboard: NextPage = () => {
         }
     };
 
-    const handleDeleteSession = async (sessionId: string) => {
+    const handleDeleteSession = async (sessionId: number) => {
         try {
             await deleteSession({ userId: Number(userId), sessionId });
             fetchUpdatedSessions();
