@@ -18,14 +18,16 @@ const Dashboard: NextPage = () => {
     const { setPage, page } = usePage();
     const [userId, setUserId] = useState<number | null>(null);
     const [sessions, setSessions] = useState<any[]>([]);
+    const [cookie, setCookie] = useState<string>("")
     const router = useRouter();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await getCookie();
-                const cookie = JSON.parse(response).token;
-                const idResponse = await getID({ token: cookie });
+                const Rcookie = await JSON.parse(response).token;
+                setCookie(Rcookie)
+                const idResponse = await getID({ token: String(Rcookie) });
                 const id = JSON.parse(idResponse).userId;
                 setUserId(id);
 
@@ -85,16 +87,21 @@ const Dashboard: NextPage = () => {
                 ) : (
                     sessions.map((session) => (
                         <CardSession
+                            jwt={String(cookie)}
                             key={session.id}
+                            userId={Number(userId)}
                             id={session.id}
+                            tmin={session.tmin}
                             name={session.name}
                             data={[
-                                session.horas,
-                                session.videos,
-                                session.veiculos,
-                                session.carros,
-                                session.onibus,
-                                session.moto,
+                                session.data.videos,
+                                session.data.caminhaog,
+                                session.data.caminhaop,
+                                session.data.carro,
+                                session.data.moto,
+                                session.data.onibus,
+                                session.data.tuktuk,
+                                session.data.van
                             ]}
                             onDeleteSession={handleDeleteSession}
                         />

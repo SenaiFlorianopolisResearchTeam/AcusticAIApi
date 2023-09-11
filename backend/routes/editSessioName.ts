@@ -38,7 +38,7 @@ const plugin: FastifyPluginAsyncTypebox = async function (fastify, _opts) {
                 return res.status(404).send({ message: 'Session not found.' });
             }
 
-            if (existingSession.userId !== userId) {
+            if (existingSession.userid !== userId) {
                 return res.status(400).send({ message: 'User is not authorized to edit this session.' });
             }
 

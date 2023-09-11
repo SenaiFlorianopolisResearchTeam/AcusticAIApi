@@ -13,6 +13,17 @@ const plugin: FastifyPluginAsyncTypebox = async function (fastify, _opts) {
                     Type.Object({
                         id: Type.Number(),
                         name: Type.String(),
+                        tmin: Type.Number(),
+                        data: Type.Object({
+                            van: Type.Number(),
+                            moto: Type.Number(),
+                            carro: Type.Number(),
+                            onibus: Type.Number(),
+                            tuktuk: Type.Number(),
+                            videos: Type.Number(),
+                            caminhaog: Type.Number(),
+                            caminhaop: Type.Number()
+                        })
                     })
                 ),
                 400: Type.Object({
@@ -33,11 +44,13 @@ const plugin: FastifyPluginAsyncTypebox = async function (fastify, _opts) {
                 return res.status(400).send({ message: 'User not found.' });
             }
 
-            const sessions = await sql`SELECT id, name FROM "Session" WHERE userId = ${userId}`;
+            const sessions = await sql`SELECT * FROM "Session" WHERE userId = ${userId}`;
 
             return sessions.map((session) => ({
                 id: session.id,
                 name: session.name,
+                tmin: session.tmin,
+                data: session.data
             }));
         } catch (error) {
             console.error('Error:', error);

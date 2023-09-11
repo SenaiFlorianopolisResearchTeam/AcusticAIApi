@@ -1,63 +1,71 @@
-import Style from "../scss/components/cardSession.module.scss"
+import React, { useState } from 'react';
+import editSessionName from '../fetchs/editSessionName';
+import Style from '../scss/components/cardSession.module.scss';
+import Link from 'next/link';
 
-interface Props { 
-    readonly id: string;
-    readonly name: string;
-    readonly data: Data<number>;
-    onDeleteSession: (sessionId: string) => void;
+interface Props {
+  jwt: string;
+  userId: number;
+  id: number;
+  name: string;
+  tmin: number;
+  data: Data<number>;
+  onDeleteSession: (sessionId: string) => void;
 }
 
 type Data<T> = [
-    horas: T,
-    videos: T,
-    veiculos: T,
-    carros: T,
-    onibus: T,
-    moto: T,
-]
+  videos: T,
+  caminhaog: T,
+  caminhaop: T,
+  carro: T,
+  moto: T,
+  onibus: T,
+  tuktuk: T,
+  van: T
+];
 
 const CardSession: React.FC<Props> = (props: Props) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [name, setName] = useState(props.name);
 
-    return (
-        <section className={Style.cardSessionContainer}>
-            <div className={Style.graphContainer}>
-                <div className={Style.session}>
-                    <p className={Style.sessionTitle}>{props.name}</p>
-                    <p className={Style.graphText}>Total de veiculos reconhecidos</p>
-                </div>
-            </div>
-            <div className={Style.dataContainer}>
-                <div className={Style.data}>
-                    <p className={Style.dataTitle}>horas</p>
-                    <p className={Style.dataNumber}>{props.data[0]}</p>
-                </div>
-                <div className={Style.data}>
-                    <p className={Style.dataTitle}>videos</p>
-                    <p className={Style.dataNumber}>{props.data[1]}</p>
-                </div>
-                <div className={Style.data}>
-                    <p className={Style.dataTitle}>veiculos</p>
-                    <p className={Style.dataNumber}>{props.data[2]}</p>
-                </div>
-                <div className={Style.data}>
-                    <p className={Style.dataTitle}>carros</p>
-                    <p className={Style.dataNumber}>{props.data[3]}</p>
-                </div>
-                <div className={Style.data}>
-                    <p className={Style.dataTitle}>onibus</p>
-                    <p className={Style.dataNumber}>{props.data[4]}</p>
-                </div>
-                <div className={Style.data}>
-                    <p className={Style.dataTitle}>moto</p>
-                    <p className={Style.dataNumber}>{props.data[5]}</p>
-                </div>
-                <div>
-                    <button onClick={() => props.onDeleteSession(props.id)}>deletar</button>
-                    {/* botar imagem */}
-                </div>
-            </div>
-        </section>
-    );
-}
+
+
+  const toggleEdit = () => {
+    setIsEditing(!isEditing);
+  };
+
+  const handleEdit = async () => {
+    try {
+      await editSessionName({ id: Number(props.userId), name: name, sessionId: props.id });
+      toggleEdit();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setName(event.target.value);
+  };
+
+  return (
+    <Link href="/" className={Style.cardSessionContainer}>
+      {isEditing ? (
+        <div>
+          <input
+            type="text"
+            value={name}
+            onChange={handleNameChange}
+          />
+          <button onClick={handleEdit}>Salvar</button>
+        </div>
+      ) : (
+        <div>
+          <h2>{name}</h2>
+          <button onClick={toggleEdit}>Editar</button>
+        </div>
+      )}
+    </Link>
+  );
+};
 
 export default CardSession;
