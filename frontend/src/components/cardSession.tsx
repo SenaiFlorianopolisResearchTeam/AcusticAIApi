@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import editSessionName from '../fetchs/editSessionName';
 import Style from '../scss/components/cardSession.module.scss';
 import Link from 'next/link';
+import Edit from '../svgs/edit';
+import Video from '../svgs/video';
+import Time from '../svgs/time';
+import Car from '../svgs/car';
+import Trash from '../svgs/trash';
 
 interface Props {
   jwt: string;
@@ -10,7 +15,7 @@ interface Props {
   name: string;
   tmin: number;
   data: Data<number>;
-  onDeleteSession: (sessionId: string) => void;
+  onDeleteSession: (sessionId: number) => void;
 }
 
 type Data<T> = [
@@ -27,8 +32,6 @@ type Data<T> = [
 const CardSession: React.FC<Props> = (props: Props) => {
   const [isEditing, setIsEditing] = useState(false);
   const [name, setName] = useState(props.name);
-
-
 
   const toggleEdit = () => {
     setIsEditing(!isEditing);
@@ -48,23 +51,54 @@ const CardSession: React.FC<Props> = (props: Props) => {
   };
 
   return (
-    <Link href="/" className={Style.cardSessionContainer}>
+    <>
       {isEditing ? (
-        <div>
-          <input
-            type="text"
-            value={name}
-            onChange={handleNameChange}
-          />
-          <button onClick={handleEdit}>Salvar</button>
+        <div className={Style.cardSessionContainer}>
+          <div>
+            <input
+              type="text"
+              value={name}
+              onChange={handleNameChange}
+            />
+            <button onClick={handleEdit}><Edit /></button>
+          </div>
+          <div>
+            <p> Total: </p>
+            <div>
+              <div>
+                <div><Video /><p>12</p></div>
+                <div><Time /><p>12</p></div>
+              </div>
+              <div>
+                <div><Car /><p>12</p></div>
+                <button onClick={() => props.onDeleteSession(Number(props.id))}><p>deletar</p><Trash /></button>
+              </div>
+            </div>
+          </div>
         </div>
       ) : (
-        <div>
-          <h2>{name}</h2>
-          <button onClick={toggleEdit}>Editar</button>
+        <div className={Style.cardSessionContainer}>
+          {/*Link  href={`/${props.jwt}/${props.id}`} */}
+          <div className={Style.cardTitleContainer}>
+            <h2>{name}</h2>
+            <button onClick={toggleEdit}><Edit /></button>
+          </div>
+          <div>
+            <p> Total: </p>
+            <div>
+              <div>
+                <div><Video /><p>12</p></div>
+                <div><Time /><p>12</p></div>
+              </div>
+              <div>
+                <div><Car /><p>12</p></div>
+                <button onClick={() => props.onDeleteSession(Number(props.id))}><p>deletar</p><Trash /></button>
+              </div>
+            </div>
+          </div>
         </div>
       )}
-    </Link>
+    </>
   );
 };
 

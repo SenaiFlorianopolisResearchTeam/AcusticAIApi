@@ -1,6 +1,6 @@
 import http from "http"
 
-const deleteSession = (data: {userId: number, sessionId: string}) => {
+const deleteSession = (data: {userId: number, sessionId: number}) => {
     return new Promise<string>((resolve, reject) => {
       const postData = JSON.stringify(data);
   
