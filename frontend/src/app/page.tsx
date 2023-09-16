@@ -1,11 +1,11 @@
-import { NextComponentType } from "next"
+import { NextPage } from "next"
 import Styles from '../scss/home.module.scss'
 import MouseScroll from "../components/mouseScroll"
 import LandingBar from "../components/landingBar"
 import Code from "../svgs/code"
 import Article from "../svgs/article"
 
-const Home: NextComponentType = () => {
+const Home: NextPage = () => {
 
   return (
     <>

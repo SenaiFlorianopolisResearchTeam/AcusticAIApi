@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import editSessionName from '../fetchs/editSessionName';
 import Style from '../scss/components/cardSession.module.scss';
 import Link from 'next/link';
@@ -29,7 +29,7 @@ type Data<T> = [
   van: T
 ];
 
-const CardSession: React.FC<Props> = (props: Props) => {
+const CardSession: FC<Props> = (props: Props) => {
   const [isEditing, setIsEditing] = useState(false);
   const [name, setName] = useState(props.name);
 

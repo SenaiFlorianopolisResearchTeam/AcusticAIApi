@@ -1,7 +1,7 @@
 "use client"
 
 import City from "../../components/city"
-import { NextComponentType } from "next"
+import { NextPage } from "next"
 import Styles from "../../scss/signup.module.scss"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -11,7 +11,7 @@ import { z } from "zod"
 import createUser from "../../fetchs/createUser"
 import { useRouter } from "next/navigation"
 
-const Signup: NextComponentType = () => {
+const Signup: NextPage = () => {
 
   type UserType = z.infer<typeof SignUser>;
   const router = useRouter()

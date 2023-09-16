@@ -1,9 +1,8 @@
 "use client"
 
-import React from 'react';
 import Styles from '../scss/components/mouseScroll.module.scss'
 
-const MouseScroll: React.FC = () => {
+const MouseScroll: FC = () => {
     return (
         <svg className={Styles.svg} width="40px" height="80px" viewBox="0 0 247 390" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
             <path className={Styles.wheel}  id="wheel" d="M123.359,79.775l0,72.843" style={{ fill: 'none', stroke: '#fff', strokeWidth: '15px' }} />

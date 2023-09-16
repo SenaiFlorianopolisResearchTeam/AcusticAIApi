@@ -8,7 +8,7 @@ interface Props {
     onCreateSession: () => void;
 }
 
-const SessionC: React.FC<Props> = (props: Props) => {
+const SessionC: FC<Props> = (props: Props) => {
 
     const { page } = usePage()
     

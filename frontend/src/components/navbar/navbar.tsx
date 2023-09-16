@@ -8,7 +8,7 @@ interface Props {
     onCreateSession: () => void;
 }
 
-const Navbar: React.FC<Props> = (props: Props) => {
+const Navbar: FC<Props> = (props: Props) => {
     return (
         <div className={Styles.navbar}>
             <NavbarProvider>

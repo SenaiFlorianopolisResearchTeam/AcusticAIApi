@@ -1,6 +1,6 @@
 import Styles from "../scss/components/city.module.scss"
 
-const City = () => {
+const City: FC = () => {
     return (
         <div className={Styles.city}/>
     )
