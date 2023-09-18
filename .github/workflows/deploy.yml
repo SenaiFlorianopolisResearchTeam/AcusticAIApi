@@ -17,8 +17,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Install lftp
-        run: sudo apt-get install -y lftp
-      - name: Deploy files
-        run: |
-          lftp -c "open -u ${{ secrets.SFTP_USERNAME }},${{ secrets.SFTP_PASSWORD }} sftp://${{ secrets.SFTP_SERVER }}:2222 && mirror -R --exclude-glob .git/ --exclude .github/ --exclude .gitignore --exclude README.md ./ /app"
+      - name: FTP-Deploy-Action
+        uses: SamKirkland/FTP-Deploy-Action@3.1.1
+        with:
+          ftp-server: ${{ secrets.FTP_SERVER }}
+          ftp-username: ${{ secrets.FTP_USERNAME }}
+          ftp-password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: toupload
