@@ -63,7 +63,7 @@ def count(video_path: str ,line_startX: int, line_startY:int, line_endX: int, li
     tuktuk = object_line_counter(ids.get("moto"), line_6)
     van = object_line_counter(ids.get("carro"), line_7)
 
-    for result in model.track(source=video_path, stream=True, agnostic_nms=True):
+    for result in model.track(source=video_path, stream=True, agnostic_nms=True, show=True):
         frame = result.orig_img
         detections = sv.Detections.from_yolov8(result)
 
@@ -99,8 +99,23 @@ def count(video_path: str ,line_startX: int, line_startY:int, line_endX: int, li
     ]
 
 if __name__ == "__main__":
+    
+    ids = {
+        "caminhaog": 0,
+        "caminhaop": 1,
+        "carro": 2,
+        "moto": 3,
+        "onibus": 4,
+        "tuktuk": 5,
+        "van": 6
+    }
 
-    line_start = (0, 600)
-    line_end = (1240, 600)
+    line_start = (0, 350)
+    line_end = (1258, 600)
 
-    count("./video/video.mp4", 0, 350, 1258, 350)
+    count_results = count("./video/video.mp4", line_start[0], line_start[1], line_end[0], line_end[1])
+    
+    for idx, class_name in enumerate(ids.keys()):
+        print(f"{class_name}:")
+        for frame_idx, counts in enumerate(count_results):
+            print(f"Frame {frame_idx}: In: {counts[class_name]['in']}, Out: {counts[class_name]['out']}")

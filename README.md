@@ -16,9 +16,25 @@
 [![OWASP Zap SEC Analysis](https://github.com/fullzer4/AcustticAI/actions/workflows/OWASP-Zap.yml/badge.svg)](https://github.com/fullzer4/AcustticAI/actions/workflows/OWASP-Zap.yml)
 [![CodeQL](https://github.com/fullzer4/AcustticAI/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/fullzer4/AcustticAI/actions/workflows/github-code-scanning/codeql)
 
+This project was designed to simplify the counting and classification of cars for road analysis purposes, featuring a user-friendly interface and a precise system. Alongside this, it provides analyses that will assist users when evaluating a project.
+
 </div>
 
-This project was designed to simplify the counting and classification of cars for road analysis purposes, featuring a user-friendly interface and a precise system. Alongside this, it provides analyses that will assist users when evaluating a project.
+## Evaluation of the model
+
+Metrics that was used to evaluate that was written with python, pyTorch(YOLOv8), supervision and opencv:
+
+$$
+MSE = \frac{1}{n} \sum_{i=1}^{n} (Y_i - \hat{Y}_i)^2
+$$
+
+$$
+R^2 = 1 - \frac{SSR}{SST}
+$$
+
+$$
+mAP = \text{Mean Average Precision}
+$$
 
 ## AI ( artificial inteligence ) 
 

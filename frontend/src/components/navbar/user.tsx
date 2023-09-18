@@ -3,7 +3,7 @@
 import { usePage } from "../../context/navbar"
 import Styles from "../../scss/components/navbar.module.scss"
 
-const UserC: React.FC = () => {
+const UserC: FC = () => {
 
     const { page } = usePage()
 

@@ -1,16 +1,16 @@
-import { NextComponentType } from "next"
+import { NextPage } from "next"
 import Styles from '../scss/home.module.scss'
 import MouseScroll from "../components/mouseScroll"
 import LandingBar from "../components/landingBar"
 import Code from "../svgs/code"
 import Article from "../svgs/article"
 
-const Home: NextComponentType = () => {
+const Home: NextPage = () => {
 
   return (
     <>
       <LandingBar page="home"/>
-      <section className={Styles.container}>
+      <section className={Styles.container} id="Home">
         <section className={Styles.home}>
           <div className={Styles.space}/>
           <h1 className={Styles.title}>AcustticAI</h1>
@@ -56,6 +56,10 @@ const Home: NextComponentType = () => {
           </div>
         </section>
       </section>
+
+      <footer>
+        <a href="#Home">Back to top</a>
+      </footer>
     </>
   )
 }

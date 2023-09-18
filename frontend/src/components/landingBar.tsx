@@ -7,7 +7,7 @@ interface Props {
     page: string;
 }
 
-const LandingBar = (props: Props) => {
+const LandingBar: FC<Props> = (props: Props) => {
     const [scrolled, setScrolled] = useState(false);
 
     const handleScroll = () => {

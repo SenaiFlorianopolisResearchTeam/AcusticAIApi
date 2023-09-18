@@ -130,6 +130,15 @@
             }
         }
     }
+
+    footer {
+        a {
+            font-size: var(--home-desc);
+            font-weight: 500;
+            font-style: none;  
+            text-decoration: none;
+        }
+    }
 }
 
 .space {
