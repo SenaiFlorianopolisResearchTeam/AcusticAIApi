@@ -21,9 +21,9 @@ jobs:
        id: upload
        uses: Creepios/sftp-action@v1.0.3
        with:
-         host: ${{ secrets.SFTP_SERVER }}
-         port: 2222
-         username: ${{ secrets.SFTP_USERNAME }}
-         password: ${{ secrets.SFTP_PASSWORD }}
+         host: ${{ secrets.FTP_SERVER }}
+         port: 21
+         username: ${{ secrets.FTP_USERNAME }}
+         password: ${{ secrets.FTP_PASSWORD }}
          localPath: './frontend/'
          remotePath: './'
