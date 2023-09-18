@@ -1,5 +1,5 @@
 name: Deploy
-
+ 
 on:
   push:
     branches: [ "main" ]
@@ -9,21 +9,14 @@ on:
     workflows: ["python-ai.yml", "nextjs.yml", "backend.yml", "docker-images.yml", "integration.yml"]
     types:
       - completed
-
+ 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
+ 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Deploy file
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
-        with:
-            username: ${{ secrets.FTP_USERNAME }}
-            server: ${{ secrets.FTP_SERVER }}
-            port: ${{ secrets.FTP_PORT }}
-            local_path: './'
-            remote_path: '/'
-            sftp_only: true
-            password: ${{ secrets.FTP_PASSWORD }}
+      - name: Deploy files
+        run: |
+          lftp -c "open -u ${{ secrets.SFTP_USERNAME }},${{ secrets.SFTP_PASSWORD }} sftp://${{ secrets.SFTP_SERVER }}:2222 && mirror -R --exclude-glob .git/ --exclude .github/ --exclude .gitignore --exclude README.md ./ remote/path"  
