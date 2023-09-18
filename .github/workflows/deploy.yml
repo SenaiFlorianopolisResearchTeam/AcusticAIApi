@@ -15,15 +15,18 @@ jobs:
     runs-on: ubuntu-latest
  
     steps:
-     - name: Checkout
-       uses: actions/checkout@v2.3.4
-     - name: Upload Files
-       id: upload
-       uses: Creepios/sftp-action@v1.0.3
-       with:
-         host: ${{ secrets.FTP_SERVER }}
-         port: 21
-         username: ${{ secrets.FTP_USERNAME }}
-         password: ${{ secrets.FTP_PASSWORD }}
-         localPath: './frontend/'
-         remotePath: './'
+      - name: Checkout code
+        uses: actions/checkout@v2
+ 
+      - name: Install SSH
+        run: sudo apt-get install openssh-client -y
+ 
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /app/
+            git pull origin main
