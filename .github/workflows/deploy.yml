@@ -15,12 +15,15 @@ jobs:
     runs-on: ubuntu-latest
  
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: FTP-Deploy-Action
-        uses: SamKirkland/FTP-Deploy-Action@3.1.1
-        with:
-          ftp-server: ${{ secrets.SFTP_SERVER }}
-          ftp-username: ${{ secrets.SFTP_USERNAME }}
-          ftp-password: ${{ secrets.SFTP_PASSWORD }}
-          local-dir: /app
+     - name: Checkout
+       uses: actions/checkout@v2.3.4
+     - name: Upload Files
+       id: upload
+       uses: Creepios/sftp-action@v1.0.3
+       with:
+         host: ${{ secrets.SFTP_SERVER }}
+         port: 2222
+         username: ${{ secrets.SFTP_USERNAME }}
+         password: ${{ secrets.SFTP_PASSWORD }}
+         localPath: './frontend/'
+         remotePath: './'
