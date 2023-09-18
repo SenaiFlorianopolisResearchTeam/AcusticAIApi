@@ -23,4 +23,4 @@ jobs:
           ftp-server: ${{ secrets.SFTP_SERVER }}
           ftp-username: ${{ secrets.SFTP_USERNAME }}
           ftp-password: ${{ secrets.SFTP_PASSWORD }}
-          local-dir: toupload
+          local-dir: ./
