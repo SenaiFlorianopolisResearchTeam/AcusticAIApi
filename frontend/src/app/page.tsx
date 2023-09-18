@@ -10,7 +10,7 @@ const Home: NextPage = () => {
   return (
     <>
       <LandingBar page="home"/>
-      <section className={Styles.container}>
+      <section className={Styles.container} id="Home">
         <section className={Styles.home}>
           <div className={Styles.space}/>
           <h1 className={Styles.title}>AcustticAI</h1>
@@ -56,6 +56,10 @@ const Home: NextPage = () => {
           </div>
         </section>
       </section>
+
+      <footer>
+        <a href="#Home">Back to top</a>
+      </footer>
     </>
   )
 }

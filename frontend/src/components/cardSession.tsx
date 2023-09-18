@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import editSessionName from '../fetchs/editSessionName';
 import Style from '../scss/components/cardSession.module.scss';
 import Link from 'next/link';
@@ -54,7 +54,7 @@ const CardSession: FC<Props> = (props: Props) => {
     <>
       {isEditing ? (
         <div className={Style.cardSessionContainer}>
-          <div>
+          <div className={Style.cardTitleContainer}>
             <input
               type="text"
               value={name}
@@ -62,40 +62,43 @@ const CardSession: FC<Props> = (props: Props) => {
             />
             <button onClick={handleEdit}><Edit /></button>
           </div>
-          <div>
+          <div className={Style.cardDataContainer}>
             <p> Total: </p>
-            <div>
-              <div>
-                <div><Video /><p>12</p></div>
-                <div><Time /><p>12</p></div>
+            <div className={Style.dataContainer}>
+              <div className={Style.data}>
+                <div className={Style.datalabels}><Video /><p>12</p></div>
+                <div className={Style.datalabels}><Time /><p>12</p></div>
               </div>
-              <div>
-                <div><Car /><p>12</p></div>
+              <div className={Style.data}>
+                <div className={Style.datalabels}><Car /><p>12</p></div>
                 <button onClick={() => props.onDeleteSession(Number(props.id))}><p>deletar</p><Trash /></button>
               </div>
             </div>
           </div>
+          <hr></hr>
+          <Link className={Style.open} href={`/${props.jwt}/${props.id}`}>Open Session</Link>
         </div>
       ) : (
         <div className={Style.cardSessionContainer}>
-          {/*Link  href={`/${props.jwt}/${props.id}`} */}
           <div className={Style.cardTitleContainer}>
             <h2>{name}</h2>
             <button onClick={toggleEdit}><Edit /></button>
           </div>
-          <div>
+          <div className={Style.cardDataContainer}>
             <p> Total: </p>
-            <div>
-              <div>
-                <div><Video /><p>12</p></div>
-                <div><Time /><p>12</p></div>
+            <div className={Style.dataContainer}>
+              <div className={Style.data}>
+                <div className={Style.datalabels}><Video /><p>12</p></div>
+                <div className={Style.datalabels}><Time /><p>12</p></div>
               </div>
-              <div>
-                <div><Car /><p>12</p></div>
+              <div className={Style.data}>
+                <div className={Style.datalabels}><Car /><p>12</p></div>
                 <button onClick={() => props.onDeleteSession(Number(props.id))}><p>deletar</p><Trash /></button>
               </div>
             </div>
           </div>
+          <hr></hr>
+          <Link className={Style.open} href={`/${props.jwt}/${props.id}`}>Open Session</Link>
         </div>
       )}
     </>
