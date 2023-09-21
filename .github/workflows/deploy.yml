@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v2
  
       - name: Deploy to VPS
-        uses: appleboy/ssh-action@master
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
             username: ${{ secrets.SFTP_USERNAME }}
             server: ${{ secrets.SFTP_SERVER }}
