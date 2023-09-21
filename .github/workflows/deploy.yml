@@ -1,5 +1,5 @@
 name: Deploy
-
+ 
 on:
   push:
     branches: [ "main" ]
@@ -9,16 +9,20 @@ on:
     workflows: ["python-ai.yml", "nextjs.yml", "backend.yml", "docker-images.yml", "integration.yml"]
     types:
       - completed
-
+ 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
+ 
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v2
-      - name: Deploy file
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+ 
+      - name: Install SSH
+        run: sudo apt-get install openssh-client -y
+ 
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@master
         with:
             username: ${{ secrets.SFTP_USERNAME }}
             server: ${{ secrets.SFTP_SERVER }}
