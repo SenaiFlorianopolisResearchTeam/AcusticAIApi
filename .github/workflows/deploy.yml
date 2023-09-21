@@ -26,5 +26,6 @@ jobs:
             port: ${{ secrets.STFP_PORT }}
             ssh_private_key: ${{ secrets.STFP_SSH_KEY }}
             local_path: './*'
-            remote_path: '/var/www'
+            remote_path: '/'
             sftp_only: true
+            sftpArgs: '-o ConnectTimeout=20'
