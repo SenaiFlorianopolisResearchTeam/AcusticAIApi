@@ -24,9 +24,10 @@ jobs:
       - name: Deploy to VPS
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            cd /app/
-            git pull origin main
+            username: ${{ secrets.SFTP_USERNAME }}
+            server: ${{ secrets.SFTP_SERVER }}
+            port: ${{ secrets.STFP_PORT }}
+            ssh_private_key: ${{ secrets.STFP_SSH_KEY }}
+            local_path: './*'
+            remote_path: '/var/www'
+            sftp_only: true
