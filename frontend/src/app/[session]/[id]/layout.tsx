@@ -1,3 +1,5 @@
+import Navbar from "../../../components/navbar/navbar";
+import { NavbarProvider } from "../../../context/navbar";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -13,10 +15,10 @@ const Layout = ({
 }) => {
     return (
         <> 
-            <div>
-                {/* navbar session */}
-            </div>
-            {children}
+            <Navbar/>
+            <NavbarProvider>
+                {children}
+            </NavbarProvider>
         </>
     );
 };
