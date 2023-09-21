@@ -3,9 +3,10 @@ import { NavbarProvider } from "../../context/navbar";
 import HomeC from "./home";
 import SessionC from "./sessions";
 import UserC from "./user";
+import { FC } from "react";
 
 interface Props { 
-    onCreateSession: () => void;
+    onCreateSession?: () => void;
 }
 
 const Navbar: FC<Props> = (props: Props) => {

@@ -1,5 +1,6 @@
 "use client"
 
+import { FC } from 'react';
 import Styles from '../scss/components/mouseScroll.module.scss'
 
 const MouseScroll: FC = () => {

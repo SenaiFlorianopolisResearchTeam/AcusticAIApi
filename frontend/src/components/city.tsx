@@ -1,3 +1,4 @@
+import { FC } from "react";
 import Styles from "../scss/components/city.module.scss"
 
 const City: FC = () => {
