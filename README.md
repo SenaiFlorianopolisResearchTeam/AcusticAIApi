@@ -36,6 +36,8 @@ $$
 mAP = \text{Mean Average Precision}
 $$
 
+## MainFolder ( Setup files )
+
 ## AI ( artificial inteligence ) 
 
 In the AI folder, you'll find the computer vision model responsible for vehicle counting and classification, along with a Flask server that serves this model. The model was developed using a specialized dataset tailored for large-scale vehicle classification on highways. It was built using PyTorch and YOLOv8.
