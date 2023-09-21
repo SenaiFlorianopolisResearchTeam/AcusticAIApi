@@ -1,5 +1,6 @@
 "use client"
 
+import { FC } from "react"
 import { usePage } from "../../context/navbar"
 import Styles from "../../scss/components/navbar.module.scss"
 

@@ -32,7 +32,11 @@ type Data<T> = [
 const CardSession: FC<Props> = (props: Props) => {
   const [isEditing, setIsEditing] = useState(false);
   const [name, setName] = useState(props.name);
-
+  const calculateTotalVehicles = (data: typeof props.data) => {
+    return data.slice(1, 8).reduce((total, value) => total + value, 0);
+  };
+  const vehicles = calculateTotalVehicles(props.data)
+  
   const toggleEdit = () => {
     setIsEditing(!isEditing);
   };
@@ -65,12 +69,12 @@ const CardSession: FC<Props> = (props: Props) => {
           <div className={Style.cardDataContainer}>
             <p> Total: </p>
             <div className={Style.dataContainer}>
-              <div className={Style.data}>
-                <div className={Style.datalabels}><Video /><p>12</p></div>
-                <div className={Style.datalabels}><Time /><p>12</p></div>
+            <div className={Style.data}>
+                <div className={Style.datalabels}><Video /><p>{props.data[0]}</p></div>
+                <div className={Style.datalabels}><Time /><p>{props.tmin}</p></div>
               </div>
               <div className={Style.data}>
-                <div className={Style.datalabels}><Car /><p>12</p></div>
+                <div className={Style.datalabels}><Car /><p>{vehicles}</p></div>
                 <button onClick={() => props.onDeleteSession(Number(props.id))}><p>deletar</p><Trash /></button>
               </div>
             </div>
@@ -88,11 +92,11 @@ const CardSession: FC<Props> = (props: Props) => {
             <p> Total: </p>
             <div className={Style.dataContainer}>
               <div className={Style.data}>
-                <div className={Style.datalabels}><Video /><p>12</p></div>
-                <div className={Style.datalabels}><Time /><p>12</p></div>
+                <div className={Style.datalabels}><Video /><p>{props.data[0]}</p></div>
+                <div className={Style.datalabels}><Time /><p>{props.tmin}</p></div>
               </div>
               <div className={Style.data}>
-                <div className={Style.datalabels}><Car /><p>12</p></div>
+                <div className={Style.datalabels}><Car /><p>{vehicles}</p></div>
                 <button onClick={() => props.onDeleteSession(Number(props.id))}><p>deletar</p><Trash /></button>
               </div>
             </div>
