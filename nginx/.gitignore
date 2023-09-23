@@ -1,0 +1,10 @@
+logs/
+#certs/*
+#!certs/*.sh
+#!certs/*.md
+#!certs/example
+#certs/example/accounts
+#certs/example/csr
+#certs/example/keys
+#certs/example/renewal
+#certs/example/renewal-hooks

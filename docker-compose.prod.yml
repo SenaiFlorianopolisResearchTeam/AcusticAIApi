@@ -11,29 +11,17 @@ services:
             - POSTGRES_USER=${DB_USERNAME}
             - POSTGRES_DB=${DB_NAME}
         networks:
-            - dev-network
-    pgadmin:
-        container_name: pgadmin 
-        image: dpage/pgadmin4
-        environment:
-            PGADMIN_DEFAULT_EMAIL: "gabrielpelizzaro@gmail.com"
-            PGADMIN_DEFAULT_PASSWORD: "123456"
-        ports:
-            - "16543:80"
-        networks:
-            - dev-network
+            - prod-network
     nginx:
         container_name: nginx
         build:
             context: ./nginx
-            dockerfile: Dockerfile
+            dockerfile: prod.Dockerfile
     ai:
         container_name: ai
         build:
             context: ./ai
-            dockerfile: Dockerfile
-        volumes:
-          - ./ai/:/app/
+            dockerfile: prod.Dockerfile
         environment:
             JWT_key: ${JWT_key}
             DB_HOST: ${DB_HOST}
@@ -44,7 +32,7 @@ services:
         ports:
             - 5000:5000
         networks:
-            - dev-network
+            - prod-network
         links:
             - postgresqldb
         depends_on:
@@ -53,9 +41,7 @@ services:
         image: backend
         build:
             context: ./backend
-            dockerfile: dev.Dockerfile
-        volumes:
-          - ./backend/:/app/
+            dockerfile: prod.Dockerfile
         environment:
             JWT_key: ${JWT_key}
             DB_HOST: ${DB_HOST}
@@ -66,7 +52,7 @@ services:
         ports:
             - 4000:4000
         networks:
-            - dev-network
+            - prod-network
         links:
             - postgresqldb
         depends_on:
@@ -75,10 +61,7 @@ services:
         container_name: frontend
         build:
             context: ./frontend
-            dockerfile: dev.Dockerfile
-        volumes:
-          - ./frontend/src:/app/src
-          - ./frontend/public:/app/public
+            dockerfile: prod.Dockerfile
         environment:
             JWT_key: ${JWT_key}
             DB_HOST: ${DB_HOST}
@@ -89,7 +72,7 @@ services:
         ports:
             - 3000:3000
         networks:
-            - dev-network
+            - prod-network
         links:
             - backend
             - ai
@@ -98,6 +81,6 @@ services:
             - ai
 
 networks:
-    dev-network:
+    prod-network:
         external: true
         driver: bridge
