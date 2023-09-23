@@ -1,19 +1,26 @@
-FROM node:18-alpine
-
+FROM node:18-alpine AS base
 WORKDIR /app
-
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 RUN \
     if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
     elif [ -f package-lock.json ]; then npm ci; \
     elif [ -f pnpm-lock.yaml ]; then yarn gloval add pnpm && pnpm 1; \
-    else echo "Alert: Lockfile notfound"; \
-    fi;
+    else echo "Alert: Lockfile notfound" \
+    fi
 
-COPY src ./src
-COPY public ./public
-COPY next.config.js .
-COPY tsconfig.json .
+FROM base AS build
+COPY . .
+RUN \
+    if [ -f yarn.lock ]; then yarn build; \
+    elif [ -f package-lock.json ]; then npm run build; \
+    elif [ -f pnpm-lock.yaml ]; then pnpm build; \
+    fi
+
+FROM base AS final
+COPY --from=build /app/.next ./.next
+COPY --from=build /app/public ./public
+
+ENV NEXT_TELEMETRY_DISABLED 1
 
 ARG JWT_key
 ENV JWT_key=${JWT_key}
@@ -28,8 +35,4 @@ ENV DB_USERNAME=${DB_USERNAME}
 ARG DB_PASSWORD
 ENV DB_PASSWORD=${DB_PASSWORD}
 
-CMD \
-    if [ -f yarn.lock ]; then yarn dev; \
-    elif [ -f package-lock.json ]; then npm run dev; \
-    elif [ -f pnpm-lock.yaml ]; then pnpm dev; \
-    fi;
+CMD ["yarn", "start"]
