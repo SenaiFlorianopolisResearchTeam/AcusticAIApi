@@ -1,26 +1,75 @@
 version: '3'
 
 services:
-  postgresqldb:
-    image: postgres
-    ports:
-      - "5432:5432"
-    environment:
-      - POSTGRES_PASSWORD=123456
-      - POSTGRES_USER=fullzer4
-      - POSTGRES_DB=acustticai
-    networks:
-      - postgres-bridge-network
-  pgadmin:
-    image: dpage/pgadmin4
-    environment:
-      PGADMIN_DEFAULT_EMAIL: "gabrielpelizzaro@gmail.com"
-      PGADMIN_DEFAULT_PASSWORD: "123456"
-    ports:
-      - "16543:80"
-    networks:
-      - postgres-bridge-network
+    postgresqldb:
+        container_name: pg
+        image: postgres
+        ports:
+            - "5432:5432"
+        environment:
+            - POSTGRES_PASSWORD=123456
+            - POSTGRES_USER=fullzer4
+            - POSTGRES_DB=acustticai
+        networks:
+            - postgres-bridge-network
+    pgadmin:
+        container_name: pgadmin
+        image: dpage/pgadmin4
+        environment:
+            PGADMIN_DEFAULT_EMAIL: "gabrielpelizzaro@gmail.com"
+            PGADMIN_DEFAULT_PASSWORD: "123456"
+        ports:
+            - "16543:80"
+        networks:
+            - postgres-bridge-network
+    ai:
+        container_name: ai
+        build:
+            context: ./ai
+            dockerfile: Dockerfile
+        ports:
+            - 5000:5000
+        networks:
+            - postgres-bridge-network
+        links:
+            - postgresqldb
+        depends_on:
+            - postgresqldb
+    backend:
+        image: backend
+        build:
+            context: ./backend
+            dockerfile: Dockerfile
+        ports:
+            - 4000:4000
+        networks:
+            - postgres-bridge-network
+        links:
+            - postgresqldb
+        depends_on:
+            - postgresqldb
+    frontend:
+        container_name: frontend
+        build:
+            context: ./frontend
+            dockerfile: dev.Dockerfile
+        volumes:
+          - ./frontend/src:/app/src
+          - ./frontend/public:/app/public
+        environment:
+            DB_HOST: ${DB_HOST}
+        ports:
+            - 3000:3000
+        networks:
+            - dev-network
+        links:
+            - backend
+            - ai
+        depends_on:
+            - backend
+            - ai
 
-networks: 
-  postgres-bridge-network:
-    driver: bridge
+networks:
+    dev-network:
+        external: true
+        driver: bridge
