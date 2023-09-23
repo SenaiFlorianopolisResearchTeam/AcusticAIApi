@@ -5,7 +5,7 @@ const deleteSession = (data: {userId: number, sessionId: number}) => {
       const postData = JSON.stringify(data);
   
       const options = {
-        hostname: '0.0.0.0',
+        hostname: 'backend',
         port: 4000,
         path: `/deletesession/${data.userId}/${data.sessionId}`,
         method: 'DELETE',

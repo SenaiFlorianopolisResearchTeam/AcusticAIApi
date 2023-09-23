@@ -5,7 +5,7 @@ const createSession = (data: {userId: number, name: string}) => {
       const postData = JSON.stringify(data);
   
       const options = {
-        hostname: '0.0.0.0',
+        hostname: 'backend',
         port: 4000,
         path: '/createsession',
         method: 'POST',

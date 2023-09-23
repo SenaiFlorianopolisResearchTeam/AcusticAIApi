@@ -5,7 +5,7 @@ const logUser = (data: { email: string; password: string }) => {
     const postData = JSON.stringify(data);
 
     const options = {
-      hostname: "0.0.0.0",
+      hostname: "backend",
       port: 4000,
       path: "/login",
       method: "POST",

@@ -4,7 +4,7 @@ const getSessions = (data: { userId: number }) => {
   return new Promise<string>((resolve, reject) => {
 
     const options = {
-      hostname: 'localhost',
+      hostname: 'backend',
       port: 4000,
       path: `/getsessions/${data.userId}`,
       method: 'GET',
