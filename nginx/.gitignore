@@ -1,5 +1,5 @@
 logs/
-certs/*
+#certs/*
 #!certs/*.sh
 #!certs/*.md
 #!certs/example
