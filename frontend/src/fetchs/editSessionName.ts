@@ -4,7 +4,7 @@ const editSessionName = (data: { id: number, name: string, sessionId: number }) 
     return new Promise<string>((resolve, reject) => {
         const postData = JSON.stringify({ userId: data.id, name: data.name });
         const options = {
-            hostname: 'backend',
+            hostname: 'localhost',
             port: 4000,
             path: `/editsession/${data.sessionId}`,
             method: 'PUT',

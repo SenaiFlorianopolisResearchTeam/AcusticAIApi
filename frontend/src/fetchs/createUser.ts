@@ -5,7 +5,7 @@ const createUser = (data: {name: string, email: string, password: string}) => {
       const postData = JSON.stringify(data);
   
       const options = {
-        hostname: 'backend',
+        hostname: 'localhost',
         port: 4000,
         path: '/signup',
         method: 'POST',

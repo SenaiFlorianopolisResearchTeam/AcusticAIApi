@@ -24,8 +24,6 @@ services:
             - 5000:5000
         networks:
             - dev-network
-        links:
-            - postgresqldb
         depends_on:
             - postgresqldb
     backend:
@@ -46,8 +44,6 @@ services:
             - 4000:4000
         networks:
             - dev-network
-        links:
-            - postgresqldb
         depends_on:
             - postgresqldb
     frontend:
@@ -69,9 +65,6 @@ services:
             - 3000:3000
         networks:
             - dev-network
-        links:
-            - backend
-            - ai
         depends_on:
             - backend
             - ai
