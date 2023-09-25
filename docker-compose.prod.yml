@@ -1,27 +1,18 @@
 version: '3'
 
 services:
-    postgresqldb:
-        container_name: pg
-        image: postgres:15-alpine
-        ports:
-            - "5432:5432"
-        environment:
-            - POSTGRES_PASSWORD=${DB_PASSWORD}
-            - POSTGRES_USER=${DB_USERNAME}
-            - POSTGRES_DB=${DB_NAME}
-        networks:
-            - prod-network
     nginx:
         container_name: nginx
         build:
             context: ./nginx
-            dockerfile: prod.Dockerfile
+            dockerfile: Dockerfile
     ai:
         container_name: ai
         build:
             context: ./ai
-            dockerfile: prod.Dockerfile
+            dockerfile: Dockerfile
+        volumes:
+          - ./ai/:/app/
         environment:
             JWT_key: ${JWT_key}
             DB_HOST: ${DB_HOST}
@@ -32,16 +23,16 @@ services:
         ports:
             - 5000:5000
         networks:
-            - prod-network
-        links:
-            - postgresqldb
+            - dev-network
         depends_on:
             - postgresqldb
     backend:
-        image: backend
+        container_name: backend
         build:
             context: ./backend
-            dockerfile: prod.Dockerfile
+            dockerfile: dev.Dockerfile
+        volumes:
+          - ./backend/:/app/
         environment:
             JWT_key: ${JWT_key}
             DB_HOST: ${DB_HOST}
@@ -52,16 +43,17 @@ services:
         ports:
             - 4000:4000
         networks:
-            - prod-network
-        links:
-            - postgresqldb
+            - dev-network
         depends_on:
             - postgresqldb
     frontend:
         container_name: frontend
         build:
             context: ./frontend
-            dockerfile: prod.Dockerfile
+            dockerfile: dev.Dockerfile
+        volumes:
+          - ./frontend/src:/app/src
+          - ./frontend/public:/app/public
         environment:
             JWT_key: ${JWT_key}
             DB_HOST: ${DB_HOST}
@@ -72,15 +64,22 @@ services:
         ports:
             - 3000:3000
         networks:
-            - prod-network
-        links:
-            - backend
-            - ai
+            - dev-network
         depends_on:
             - backend
             - ai
+    postgresqldb:
+        container_name: pg
+        image: postgres:15-alpine
+        ports:
+            - "5432:5432"
+        environment:
+            - POSTGRES_PASSWORD=${DB_PASSWORD}
+            - POSTGRES_USER=${DB_USERNAME}
+            - POSTGRES_DB=${DB_NAME}
+        networks:
+            - dev-network
 
 networks:
-    prod-network:
+    dev-network:
         external: true
-        driver: bridge

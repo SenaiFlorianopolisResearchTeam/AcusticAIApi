@@ -1,27 +1,6 @@
 version: '3'
 
 services:
-    postgresqldb:
-        container_name: pg
-        image: postgres:15-alpine
-        ports:
-            - "5432:5432"
-        environment:
-            - POSTGRES_PASSWORD=${DB_PASSWORD}
-            - POSTGRES_USER=${DB_USERNAME}
-            - POSTGRES_DB=${DB_NAME}
-        networks:
-            - dev-network
-    pgadmin:
-        container_name: pgadmin 
-        image: dpage/pgadmin4
-        environment:
-            PGADMIN_DEFAULT_EMAIL: "gabrielpelizzaro@gmail.com"
-            PGADMIN_DEFAULT_PASSWORD: "123456"
-        ports:
-            - "16543:80"
-        networks:
-            - dev-network
     nginx:
         container_name: nginx
         build:
@@ -45,12 +24,10 @@ services:
             - 5000:5000
         networks:
             - dev-network
-        links:
-            - postgresqldb
         depends_on:
             - postgresqldb
     backend:
-        image: backend
+        container_name: backend
         build:
             context: ./backend
             dockerfile: dev.Dockerfile
@@ -67,8 +44,6 @@ services:
             - 4000:4000
         networks:
             - dev-network
-        links:
-            - postgresqldb
         depends_on:
             - postgresqldb
     frontend:
@@ -90,14 +65,31 @@ services:
             - 3000:3000
         networks:
             - dev-network
-        links:
-            - backend
-            - ai
         depends_on:
             - backend
             - ai
+    postgresqldb:
+        container_name: pg
+        image: postgres:15-alpine
+        ports:
+            - "5432:5432"
+        environment:
+            - POSTGRES_PASSWORD=${DB_PASSWORD}
+            - POSTGRES_USER=${DB_USERNAME}
+            - POSTGRES_DB=${DB_NAME}
+        networks:
+            - dev-network
+    pgadmin:
+        container_name: pgadmin 
+        image: dpage/pgadmin4
+        environment:
+            PGADMIN_DEFAULT_EMAIL: "gabrielpelizzaro@gmail.com"
+            PGADMIN_DEFAULT_PASSWORD: "123456"
+        ports:
+            - "16543:80"
+        networks:
+            - dev-network
 
 networks:
     dev-network:
         external: true
-        driver: bridge
