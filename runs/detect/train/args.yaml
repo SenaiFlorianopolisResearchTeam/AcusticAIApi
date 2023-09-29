@@ -1,8 +1,8 @@
 task: detect
 mode: train
 model: yolov8n.pt
-data: ./model/AcustticAI-3/data.yaml
-epochs: 100
+data: ./AcustticAI-5/data.yaml
+epochs: 1000
 patience: 50
 batch: 16
 imgsz:
@@ -11,7 +11,7 @@ imgsz:
 save: true
 save_period: -1
 cache: false
-device: null
+device: cpu
 workers: 8
 project: null
 name: null
