@@ -1,6 +1,7 @@
 //import { PingUseCase } from '@/@core/application/user/ping.use-case'
 //import { Registry, container } from '@/@core/infra/container-registry'
 import Head from 'next/head'
+import Image from 'next/image'
 
 export default function Home() {
 
@@ -15,7 +16,12 @@ export default function Home() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Head>
             <main>
-
+                <section>
+                    <Image src="/home.png" alt="fundo" width={3000} height={2050} />
+                    <div>
+                        <h1> AcustticAI </h1>
+                    </div>
+                </section>
             </main>
         </>
     )
