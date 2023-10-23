@@ -7,15 +7,6 @@
 <div align="center">
 
 [![Roboflow Universe Dataset](https://app.roboflow.com/images/download-dataset-badge.svg)](https://universe.roboflow.com/senai-qb205/trafficai)
-[![Docker tests](https://github.com/fullzer4/AcustticAI/actions/workflows/docker-images.yml/badge.svg)](https://github.com/fullzer4/AcustticAI/actions/workflows/docker-images.yml)
-[![Node.js tests](https://github.com/fullzer4/AcustticAI/actions/workflows/backend.yml/badge.svg)](https://github.com/fullzer4/AcustticAI/actions/workflows/backend.js.yml)
-[![Python tests](https://github.com/fullzer4/AcustticAI/actions/workflows/python-ai.yml/badge.svg)](https://github.com/fullzer4/AcustticAI/actions/workflows/python-ai.yml)
-[![Next.js tests](https://github.com/fullzer4/AcustticAI/actions/workflows/nextjs.yml/badge.svg)](https://github.com/fullzer4/AcustticAI/actions/workflows/nextjs.yml)
-[![Integration tests](https://github.com/fullzer4/AcustticAI/actions/workflows/integration.yml/badge.svg)](https://github.com/fullzer4/AcustticAI/actions/workflows/integration.yml)
-[![Load balance tests](https://github.com/fullzer4/AcustticAI/actions/workflows/load-balance.yml/badge.svg)](https://github.com/fullzer4/AcustticAI/actions/workflows/load-balance.yml)
-[![OWASP Zap SEC Analysis](https://github.com/fullzer4/AcustticAI/actions/workflows/OWASP-Zap.yml/badge.svg)](https://github.com/fullzer4/AcustticAI/actions/workflows/OWASP-Zap.yml)
-[![CodeQL](https://github.com/fullzer4/AcustticAI/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/fullzer4/AcustticAI/actions/workflows/github-code-scanning/codeql)
-[![Deploy](https://github.com/fullzer4/AcustticAI/actions/workflows/deploy.yml/badge.svg)](https://github.com/fullzer4/AcustticAI/actions/workflows/deploy.yml)
 
 This project was designed to simplify the counting and classification of cars for road analysis purposes, featuring a user-friendly interface and a precise system. Alongside this, it provides analyses that will assist users when evaluating a project.
 
