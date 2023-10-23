@@ -2,7 +2,6 @@ version: '3'
 
 services:
     postgresqldb:
-        container_name: pg
         image: postgres:15-alpine
         ports:
             - "5432:5432"
@@ -13,7 +12,6 @@ services:
         networks:
             - dev-network
     pgadmin:
-        container_name: pgadmin 
         image: dpage/pgadmin4
         environment:
             PGADMIN_DEFAULT_EMAIL: "gabrielpelizzaro@gmail.com"

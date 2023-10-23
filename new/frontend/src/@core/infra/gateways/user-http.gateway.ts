@@ -1,13 +1,16 @@
 import { User } from "@/@core/domain/entities/user";
 import { UserGateway } from "@/@core/domain/gateways/user.gateway";
+import { http } from "../http";
 
 export class UserHttpGateway implements UserGateway {
-    constructor(private http: typeof fetch) {}
+    constructor(private httpI: typeof http) { }
 
-    findById(id: number): Promise<User> {
-        return this.http(`/user/${id}`)
-          .then(res => {
-            return new User('')
-          });
+    async ping(): Promise<string> {
+        return this.httpI.get("/")
+            .then(res => {
+                console.log(res)
+                return "foi"
+            })
     }
+
 }
