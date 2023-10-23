@@ -1,7 +1,7 @@
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
 const baseHttp = (method: HttpMethod, headers: Record<string, string> = {}) => {
-    return async (url: string, options: RequestInit = {}) => {
+    return async (options: RequestInit = {}) => {
         const fetchOptions: RequestInit = {
             method,
             headers: {

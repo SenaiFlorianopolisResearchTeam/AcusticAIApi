@@ -1,12 +1,11 @@
-import { LoginUserUseCase } from '@/@core/application/user/login.use-case'
-import { PingUseCase } from '@/@core/application/user/ping.use-case'
-import { Registry, container } from '@/@core/infra/container-registry'
+//import { PingUseCase } from '@/@core/application/user/ping.use-case'
+//import { Registry, container } from '@/@core/infra/container-registry'
 import Head from 'next/head'
 
 export default function Home() {
 
-    const useCase = container.get<PingUseCase>(Registry.PingUseCase)
-    useCase.execute()
+    //const useCase = container.get<PingUseCase>(Registry.PingUseCase)
+    //useCase.execute()
 
     return (
         <>

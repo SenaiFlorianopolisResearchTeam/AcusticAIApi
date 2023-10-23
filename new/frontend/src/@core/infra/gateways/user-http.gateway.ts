@@ -1,4 +1,3 @@
-import { User } from "@/@core/domain/entities/user";
 import { UserGateway } from "@/@core/domain/gateways/user.gateway";
 import { http } from "../http";
 
@@ -7,10 +6,10 @@ export class UserHttpGateway implements UserGateway {
 
     async ping(): Promise<string> {
         return this.httpI.get("/")
-            .then(res => {
-                console.log(res)
-                return "foi"
-            })
+            .then(async res => {
+                const jsonData = await res.json();
+                return jsonData;
+            });
     }
 
 }
