@@ -15,6 +15,7 @@ export const Registry = {
 
 export const container = new Container()
 
+// Lembrar de tipar os containers
 container.bind(Registry.FetchAdapter).toConstantValue(http)
 container.bind(Registry.UserGateway).toDynamicValue((context) => {
     return new UserHttpGateway(context.container.get(Registry.FetchAdapter))
@@ -22,6 +23,6 @@ container.bind(Registry.UserGateway).toDynamicValue((context) => {
 container.bind(Registry.PingUseCase).toDynamicValue((context) => {
     return new PingUseCase(context.container.get(Registry.UserGateway))
 })
-container.bind(Registry.LoginUserUseCase).toDynamicValue((context) => {
+container.bind(Registry.LoginUserUseCase).toDynamicValue((context: any) => {
     return new LoginUserUseCase(context.container.get(Registry.UserGateway))
 })

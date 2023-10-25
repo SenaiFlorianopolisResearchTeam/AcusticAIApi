@@ -1,4 +1,6 @@
-const login = () => {
+import { NextPage } from "next"
+
+const Login: NextPage = () => {
     return (
         <>
 
@@ -6,4 +8,4 @@ const login = () => {
     )
 }
 
-export default login
+export default Login
