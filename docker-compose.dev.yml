@@ -1,75 +1,7 @@
 version: '3'
 
 services:
-    nginx:
-        container_name: nginx
-        build:
-            context: ./nginx
-            dockerfile: Dockerfile
-    ai:
-        container_name: ai
-        build:
-            context: ./ai
-            dockerfile: Dockerfile
-        volumes:
-          - ./ai/:/app/
-        environment:
-            JWT_key: ${JWT_key}
-            DB_HOST: ${DB_HOST}
-            DB_PORT: ${DB_PORT}
-            DB_NAME: ${DB_NAME}
-            DB_USERNAME: ${DB_USERNAME}
-            DB_PASSWORD: ${DB_PASSWORD}
-        ports:
-            - 5000:5000
-        networks:
-            - dev-network
-        depends_on:
-            - postgresqldb
-    backend:
-        container_name: backend
-        build:
-            context: ./backend
-            dockerfile: dev.Dockerfile
-        volumes:
-          - ./backend/:/app/
-        environment:
-            JWT_key: ${JWT_key}
-            DB_HOST: ${DB_HOST}
-            DB_PORT: ${DB_PORT}
-            DB_NAME: ${DB_NAME}
-            DB_USERNAME: ${DB_USERNAME}
-            DB_PASSWORD: ${DB_PASSWORD}
-        ports:
-            - 4000:4000
-        networks:
-            - dev-network
-        depends_on:
-            - postgresqldb
-    frontend:
-        container_name: frontend
-        build:
-            context: ./frontend
-            dockerfile: dev.Dockerfile
-        volumes:
-          - ./frontend/src:/app/src
-          - ./frontend/public:/app/public
-        environment:
-            JWT_key: ${JWT_key}
-            DB_HOST: ${DB_HOST}
-            DB_PORT: ${DB_PORT}
-            DB_NAME: ${DB_NAME}
-            DB_USERNAME: ${DB_USERNAME}
-            DB_PASSWORD: ${DB_PASSWORD}
-        ports:
-            - 3000:3000
-        networks:
-            - dev-network
-        depends_on:
-            - backend
-            - ai
     postgresqldb:
-        container_name: pg
         image: postgres:15-alpine
         ports:
             - "5432:5432"
@@ -80,7 +12,6 @@ services:
         networks:
             - dev-network
     pgadmin:
-        container_name: pgadmin 
         image: dpage/pgadmin4
         environment:
             PGADMIN_DEFAULT_EMAIL: "gabrielpelizzaro@gmail.com"
@@ -92,4 +23,4 @@ services:
 
 networks:
     dev-network:
-        external: true
+        driver: bridge

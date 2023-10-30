@@ -7,7 +7,7 @@ class object_line_counter():
         self.line_counter = line_counter
 
     def detections(self,result):
-        detections = sv.Detections.from_yolov8(result)
+        detections = sv.Detections.from_ultralytics(result)
         detections = detections[detections.class_id == self.class_id_number]
 
         if result.boxes.id is not None:
@@ -65,7 +65,7 @@ def count(video_path: str ,line_startX: int, line_startY:int, line_endX: int, li
 
     for result in model.track(source=video_path, stream=True, agnostic_nms=True, show=True):
         frame = result.orig_img
-        detections = sv.Detections.from_yolov8(result)
+        detections = sv.Detections.from_ultralytics(result)
 
         if result.boxes.id is not None:
             detections.tracker_id = result.boxes.id.cpu().numpy().astype(int)
