@@ -1,7 +1,5 @@
-docker kill $(docker ps -aq) && docker rm $(docker ps -aq)
+podman kill $(podman ps -aq) && podman rm $(podman ps -aq)
 
-docker network create dev-network
+podman-compose -f docker-compose.dev.yml build
 
-docker-compose -f docker-compose.dev.yml build
-
-docker-compose -f docker-compose.dev.yml up --renew-anon-volumes
+podman-compose -f docker-compose.dev.yml up --renew-anon-volumes

@@ -1,5 +1,3 @@
-docker network create prod-network
+podman-compose -f docker-compose.prod.yml build
 
-docker-compose -f docker-compose.prod.yml build
-
-docker-compose -f docker-compose.prod.yml up -d
+podman-compose -f docker-compose.prod.yml up -d
