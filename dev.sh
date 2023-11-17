@@ -1,5 +1,7 @@
-podman kill $(podman ps -aq) && podman rm $(podman ps -aq)
+#!/usr/bin/env sh
 
-podman-compose -f docker-compose.dev.yml build
+_() {
+  docker-compose up -d --build
+} && _
 
-podman-compose -f docker-compose.dev.yml up --renew-anon-volumes
+unset -f _
