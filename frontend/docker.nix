@@ -3,12 +3,12 @@
 }:
 
 pkgs.dockerTools.buildImage {
-  name = "hello-docker";
+  name = "frontend";
   
   config = {
     Cmd = [ "${pkgsLinux.hello}/bin/hello" ];
 
-    WorkingDir = "/app";
+    WorkingDir = "/frontend";
     Copy = [ "." ];
 
     Run = ''

@@ -2,13 +2,10 @@
 , pkgsLinux ? import <nixpkgs> { system = "x86_64-linux"; }
 }:
 
-
 pkgs.dockerTools.buildImage {
-
-  name = "hello-docker";
+  name = "ai";
 
   config = {
-
     Cmd = [ "${pkgsLinux.hello}/bin/hello" ];
 
   };
