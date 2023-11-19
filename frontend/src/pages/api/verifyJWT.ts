@@ -18,6 +18,8 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
 
     const secret: any = process.env.JWT_key;
 
+    console.log(secret)
+
     jwt.verify(token, secret, (err: any, decoded: any) => {
         if (err) {
             return res.status(401).json({ error: 'Token inválido' });

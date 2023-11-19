@@ -13,5 +13,7 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
 
     const token = cookies.get('authToken');
 
+    console.log(token)
+
     res.status(200).json({ token: token });
 };

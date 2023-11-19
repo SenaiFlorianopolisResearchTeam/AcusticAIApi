@@ -31,6 +31,7 @@ const plugin: FastifyPluginAsyncTypebox = async function (fastify, _opts) {
             const [user] = await sql`SELECT id, email FROM "User" WHERE email = ${email}`;
 
             if (user) {
+                console.log(user.id)
                 return {
                     message: 'User found.',
                     user: {
