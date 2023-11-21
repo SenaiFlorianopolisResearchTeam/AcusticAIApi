@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 _() {
-  sudo docker-compose up -d --build
+  sudo docker-compose down
 } && _
 
 unset -f _

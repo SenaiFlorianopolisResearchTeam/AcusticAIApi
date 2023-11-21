@@ -28,9 +28,10 @@ const Dashboard: NextPage = () => {
                 const Rcookie = await JSON.parse(response).token;
                 setCookie(Rcookie)
                 const idResponse = await getID({ token: String(Rcookie) });
-                const id = JSON.parse(idResponse).userId;
+                console.log(idResponse)
+                const id = await JSON.parse(idResponse).userId;
                 setUserId(id);
-
+                console.log(id)
                 const sessionsResponse = await getSessions({ userId: id });
                 const sessionsData = JSON.parse(sessionsResponse);
                 setSessions(sessionsData);
@@ -75,16 +76,9 @@ const Dashboard: NextPage = () => {
 
     return (
         <main className={Styles.dashboard}>
-            <Navbar onCreateSession={handleCreateSession}/>
+            <Navbar onCreateSession={handleCreateSession} />
             <div className={Styles.cards}>
-                {sessions.length === 0 ? (
-                    <div className={Styles.noneCard}>
-                        <p>Create your first AI traffic session</p>
-                        <button onClick={() => handleCreateSession()}>
-                            Create
-                        </button>
-                    </div>
-                ) : (
+                {Array.isArray(sessions) && sessions.length > 0 ? (
                     sessions.map((session) => (
                         <CardSession
                             jwt={String(cookie)}
@@ -106,6 +100,11 @@ const Dashboard: NextPage = () => {
                             onDeleteSession={handleDeleteSession}
                         />
                     ))
+                ) : (
+                    <div className={Styles.noneCard}>
+                        <p>Create your first AI traffic session</p>
+                        <button onClick={() => handleCreateSession()}>Create</button>
+                    </div>
                 )}
             </div>
         </main>
