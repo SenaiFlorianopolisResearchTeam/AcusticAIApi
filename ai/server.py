@@ -4,6 +4,12 @@ import pg8000
 
 app = Flask(__name__)
 
+db_config = {
+    "user": "seu_usuario",
+    "password": "sua_senha",
+    "database": "seu_banco_de_dados",
+}
+
 @app.route("/")
 def ping():
     return "<p>See the docs on: https://github.com/fullzer4/AcustticAI</p>"
@@ -44,6 +50,64 @@ def count():
 @app.route("/export", methods=['GET'])
 def export_data():
     pass
+
+@app.route("/fakeRoute/<session_name>/<int:user_id>/<int:tmin>", methods=['GET'])
+def fake_route(session_name, user_id, tmin):
+    fake_data = [
+        {
+            "vehicle_type": "caminhaog",
+            "in": 15,
+            "out": 8
+        },
+        {
+            "vehicle_type": "caminhaop",
+            "in": 25,
+            "out": 20
+        },
+        {
+            "vehicle_type": "carro",
+            "in": 35,
+            "out": 30
+        },
+        {
+            "vehicle_type": "moto",
+            "in": 45,
+            "out": 40
+        },
+        {
+            "vehicle_type": "onibus",
+            "in": 55,
+            "out": 50
+        },
+        {
+            "vehicle_type": "tuktuk",
+            "in": 65,
+            "out": 60
+        },
+        {
+            "vehicle_type": "van",
+            "in": 75,
+            "out": 70
+        },
+    ]
+
+    conn = pg8000.connect(**db_config)
+    cursor = conn.cursor()
+
+    for data_point in fake_data:
+        cursor.execute(
+            """
+            INSERT INTO "Session" (name, userId, tmin, data)
+            VALUES (%s, %s, %s, %s)
+            """,
+            (session_name, user_id, tmin, jsonify(data_point))
+        )
+
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+    return jsonify(fake_data)
 
 if __name__ == "__main__":
     app.run()

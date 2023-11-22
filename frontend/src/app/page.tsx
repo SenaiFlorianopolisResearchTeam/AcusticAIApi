@@ -27,15 +27,23 @@ const Home: NextPage = () => {
           <div className={Styles.photos}>
             <div className={Styles.photoContainer}>
               <img className={Styles.photo} src="/fullzer4.jpg" alt="fullzer4" />
-              <p className={Styles.name}>Nome</p>
+              <p className={Styles.name}>Gabriel Pelizzaro</p>
             </div>
             <div className={Styles.photoContainer}>
               <img className={Styles.photo} src="/fullzer4.jpg" alt="lucas" />
-              <p className={Styles.name}>Nome</p>            
+              <p className={Styles.name}>Lucas Garcez</p>            
+            </div>
+            <div className={Styles.photoContainer}>
+              <img className={Styles.photo} src="/fullzer4.jpg" alt="lucas" />
+              <p className={Styles.name}>Wagner Souza Santos</p>            
+            </div>
+            <div className={Styles.photoContainer}>
+              <img className={Styles.photo} src="/fullzer4.jpg" alt="lucas" />
+              <p className={Styles.name}>Pedro Zannete</p>            
             </div>
             <div className={Styles.photoContainer}>
               <img className={Styles.photo} src="/fullzer4.jpg" alt="wagner" />
-              <p className={Styles.name}>Nome</p>
+              <p className={Styles.name}>Vitor Kurt</p>
             </div>
           </div>
         </section>
