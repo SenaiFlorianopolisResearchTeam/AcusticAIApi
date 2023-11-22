@@ -1,13 +1,15 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 from model.model import count as model
 import pg8000
 
 app = Flask(__name__)
+CORS(app)
 
 db_config = {
-    "user": "seu_usuario",
-    "password": "sua_senha",
-    "database": "seu_banco_de_dados",
+    "user": "fullzer4",
+    "password": "123456",
+    "database": "acustticai",
 }
 
 @app.route("/")
@@ -56,38 +58,38 @@ def fake_route(session_name, user_id, tmin):
     fake_data = [
         {
             "vehicle_type": "caminhaog",
-            "in": 15,
-            "out": 8
+            "in": 2,
+            "out": 1
         },
         {
             "vehicle_type": "caminhaop",
-            "in": 25,
-            "out": 20
+            "in": 0,
+            "out": 2
         },
         {
             "vehicle_type": "carro",
-            "in": 35,
-            "out": 30
+            "in": 15,
+            "out": 32
         },
         {
             "vehicle_type": "moto",
-            "in": 45,
-            "out": 40
+            "in": 6,
+            "out": 8
         },
         {
             "vehicle_type": "onibus",
-            "in": 55,
-            "out": 50
+            "in": 4,
+            "out": 1
         },
         {
             "vehicle_type": "tuktuk",
-            "in": 65,
-            "out": 60
+            "in": 0,
+            "out": 0
         },
         {
             "vehicle_type": "van",
-            "in": 75,
-            "out": 70
+            "in": 2,
+            "out": 3
         },
     ]
 
@@ -98,9 +100,14 @@ def fake_route(session_name, user_id, tmin):
         cursor.execute(
             """
             INSERT INTO "Session" (name, userId, tmin, data)
-            VALUES (%s, %s, %s, %s)
+            VALUES (${session_name}, ${user_id}, ${tmin}, ${data_point})
             """,
-            (session_name, user_id, tmin, jsonify(data_point))
+            {
+                "session_name": session_name,
+                "user_id": user_id,
+                "tmin": tmin,
+                "data_point": data_point
+            }
         )
 
     conn.commit()

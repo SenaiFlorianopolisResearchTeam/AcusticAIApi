@@ -26,23 +26,23 @@ const Home: NextPage = () => {
           <h2 className={Styles.membersTitle}>Members</h2>
           <div className={Styles.photos}>
             <div className={Styles.photoContainer}>
-              <img className={Styles.photo} src="/fullzer4.jpg" alt="fullzer4" />
+              <img className={Styles.photo} src="/fullzer4.jpg" alt="Gabriel" />
               <p className={Styles.name}>Gabriel Pelizzaro</p>
             </div>
             <div className={Styles.photoContainer}>
-              <img className={Styles.photo} src="/fullzer4.jpg" alt="lucas" />
+              <img className={Styles.photo} src="/fullzer4.jpg" alt="Lucas" />
               <p className={Styles.name}>Lucas Garcez</p>            
             </div>
             <div className={Styles.photoContainer}>
-              <img className={Styles.photo} src="/fullzer4.jpg" alt="lucas" />
+              <img className={Styles.photo} src="/fullzer4.jpg" alt="Wagner" />
               <p className={Styles.name}>Wagner Souza Santos</p>            
             </div>
             <div className={Styles.photoContainer}>
-              <img className={Styles.photo} src="/fullzer4.jpg" alt="lucas" />
+              <img className={Styles.photo} src="/fullzer4.jpg" alt="Pedro" />
               <p className={Styles.name}>Pedro Zannete</p>            
             </div>
             <div className={Styles.photoContainer}>
-              <img className={Styles.photo} src="/fullzer4.jpg" alt="wagner" />
+              <img className={Styles.photo} src="/fullzer4.jpg" alt="Vitor" />
               <p className={Styles.name}>Vitor Kurt</p>
             </div>
           </div>
