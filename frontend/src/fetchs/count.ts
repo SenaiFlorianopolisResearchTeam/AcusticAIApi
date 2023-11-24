@@ -1,6 +1,6 @@
 import http from "http"
 
-const createSession = (data: { userId: number, sessionId: number, video: any, line_startX: number, line_startY: number, line_endX: number, line_endY: number }) => {
+const countFetch = (data: { userId: number, sessionId: number, video: any, line_startX: number, line_startY: number, line_endX: number, line_endY: number }) => {
     return new Promise<string>((resolve, reject) => {
         const postData = JSON.stringify(data);
 
@@ -35,4 +35,4 @@ const createSession = (data: { userId: number, sessionId: number, video: any, li
     });
 }
 
-export default createSession
+export default count

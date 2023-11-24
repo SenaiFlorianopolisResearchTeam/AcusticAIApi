@@ -46,7 +46,7 @@
         width: 100%;
         min-height: 60vh;
         gap: 20px;
-        margin-top: 80px;
+        margin-top: 20px;
         .logo{
             width: 30%;
         }
@@ -82,6 +82,7 @@
                     width: 80%;
                     height: 40%;
                     border-radius: 100%;
+                    max-height: 200px;
                 }
                 .name{
                     font-size: var(--home-desc);

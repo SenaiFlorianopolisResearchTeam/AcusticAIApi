@@ -30,19 +30,19 @@ const Home: NextPage = () => {
               <p className={Styles.name}>Gabriel Pelizzaro</p>
             </div>
             <div className={Styles.photoContainer}>
-              <img className={Styles.photo} src="/fullzer4.jpg" alt="Lucas" />
+              <img className={Styles.photo} src="/Lucas.jpg" alt="Lucas" />
               <p className={Styles.name}>Lucas Garcez</p>            
             </div>
             <div className={Styles.photoContainer}>
-              <img className={Styles.photo} src="/fullzer4.jpg" alt="Wagner" />
+              <img className={Styles.photo} src="/Wagner.jpg" alt="Wagner" />
               <p className={Styles.name}>Wagner Souza Santos</p>            
             </div>
             <div className={Styles.photoContainer}>
-              <img className={Styles.photo} src="/fullzer4.jpg" alt="Pedro" />
+              <img className={Styles.photo} src="/Zanet.jpg" alt="Pedro" />
               <p className={Styles.name}>Pedro Zannete</p>            
             </div>
             <div className={Styles.photoContainer}>
-              <img className={Styles.photo} src="/fullzer4.jpg" alt="Vitor" />
+              <img className={Styles.photo} src="/Pedro.jpg" alt="Vitor" />
               <p className={Styles.name}>Vitor Kurt</p>
             </div>
           </div>

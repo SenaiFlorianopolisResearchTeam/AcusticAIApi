@@ -6,12 +6,17 @@ import Styles from "../../../../scss/data.module.scss"
 
 const Page: NextPage = () => {
     const [loading, setLoading] = useState(true);
-    const [fakeData, setFakeData] = useState([]);
+    const [data, setData] = useState([]);
 
     useEffect(() => {
         const generateFakeData = () => {
             setTimeout(() => {
-                const fakeData: any = [
+
+                // prod
+                // const data: any = countFetch()
+
+                // test
+                const data: any = [
                     {
                         vehicle_type: "caminhaog",
                         in: 1,
@@ -49,8 +54,10 @@ const Page: NextPage = () => {
                     },
                 ];
 
-                setFakeData(fakeData);
+                setData(data);
                 setLoading(false);
+
+                // change timeout to Loading state
             }, 26000);
         };
 
@@ -65,7 +72,7 @@ const Page: NextPage = () => {
                 <div className={Styles.itemContainer}>
                     <h1>Dados coletados</h1>
                     <ul>
-                        {fakeData.map((item: any, index) => (
+                        {data.map((item: any, index) => (
                             <li key={index}>
                                 Vehicle Type: {item.vehicle_type}, In: {item.in}, Out: {item.out}
                             </li>
