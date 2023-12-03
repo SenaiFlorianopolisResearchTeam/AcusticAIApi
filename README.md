@@ -73,6 +73,8 @@ I built my frontend using Next.js 13, incorporating App Router and TypeScript. T
 
 ## Members
 
+- lucas garcez
+
 ```bash
 ai-key=key
 backend-key=key
