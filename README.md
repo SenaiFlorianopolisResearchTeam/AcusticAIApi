@@ -1,81 +1,81 @@
-<div align="center">
-  <img align="center" src="imgs/logo.png" alt="Team logo" width="300"> 
-</div>
+# Turborepo starter
 
-#
+This is an official starter Turborepo.
 
-<div align="center">
+## Using this example
 
-[![Roboflow Universe Dataset](https://app.roboflow.com/images/download-dataset-badge.svg)](https://universe.roboflow.com/senai-qb205/trafficai)
+Run the following command:
 
-This project was designed to simplify the counting and classification of cars for road analysis purposes, featuring a user-friendly interface and a precise system. Alongside this, it provides analyses that will assist users when evaluating a project.
-
-</div>
-
-## Evaluation of the model
-
-Metrics that was used to evaluate that was written with python, pyTorch(YOLOv8), supervision and opencv:
-
-$$
-MSE = \frac{1}{n} \sum_{i=1}^{n} (Y_i - \hat{Y}_i)^2
-$$
-
-$$
-R^2 = 1 - \frac{SSR}{SST}
-$$
-
-$$
-mAP = \text{Mean Average Precision}
-$$
-
-## MainFolder ( Setup files )
-
-## AI ( artificial inteligence ) 
-
-In the AI folder, you'll find the computer vision model responsible for vehicle counting and classification, along with a Flask server that serves this model. The model was developed using a specialized dataset tailored for large-scale vehicle classification on highways. It was built using PyTorch and YOLOv8.
-
-.env pattern:
-
-```bash
-ai-key=key
-backend-key=key
-
-DB_HOST=host
-DB_PORT=5432
-DB_NAME=databasename
-DB_USERNAME=username
-DB_PASSWORD=password
+```sh
+npx create-turbo@latest
 ```
 
-## Backend
+## What's inside?
 
-In this folder, you will find the API responsible for managing user sessions, as well as handling their registration and login processes. This API has been developed using Fastify, incorporating type-safety concepts along with the PostgresJS ORM. Additionally, the backend of my project will oversee all control and utilization of the AI API.
+This Turborepo includes the following packages/apps:
 
-.env pattern:
+### Apps and Packages
 
-```bash
-ai-key=key
-backend-key=key
-JWT-ket=key
+- `docs`: a [Next.js](https://nextjs.org/) app
+- `web`: another [Next.js](https://nextjs.org/) app
+- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
+- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
+- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
 
-DB_HOST=host
-DB_PORT=5432
-DB_NAME=databasename
-DB_USERNAME=username
-DB_PASSWORD=password
+Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+
+### Utilities
+
+This Turborepo has some additional tools already setup for you:
+
+- [TypeScript](https://www.typescriptlang.org/) for static type checking
+- [ESLint](https://eslint.org/) for code linting
+- [Prettier](https://prettier.io) for code formatting
+
+### Build
+
+To build all apps and packages, run the following command:
+
+```
+cd my-turborepo
+pnpm build
 ```
 
-## Frontend
+### Develop
 
-I built my frontend using Next.js 13, incorporating App Router and TypeScript. To ensure type safety during development, I utilized SCSS for styling. For data fetching, I integrated React Query. To validate the data flowing in and out of the application, I employed Zod. As for handling forms, I chose to work with React Hook Form.
+To develop all apps and packages, run the following command:
 
-.env pattern:
-
-## Members
-
-- lucas garcez
-
-```bash
-ai-key=key
-backend-key=key
 ```
+cd my-turborepo
+pnpm dev
+```
+
+### Remote Caching
+
+Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+
+By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
+
+```
+cd my-turborepo
+npx turbo login
+```
+
+This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+
+Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+
+```
+npx turbo link
+```
+
+## Useful Links
+
+Learn more about the power of Turborepo:
+
+- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
+- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
+- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
+- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
+- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
+- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
