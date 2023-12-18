@@ -1,23 +1,29 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
-    rust-overlay.url = "github:oxalica/rust-overlay";
+    systems.url = "github:nix-systems/default";
   };
-  outputs = { self, nixpkgs, flake-utils, rust-overlay }:
-    flake-utils.lib.eachDefaultSystem
-      (system:
-        let
-          overlays = [ (import rust-overlay) ];
-          pkgs = import nixpkgs {
-            inherit system overlays;
-          };
-        in
-        with pkgs;
-        {
-          devShells.default = mkShell {
-            buildInputs = [ rust-bin.stable.latest.default ];
-          };
-        }
+
+  outputs = {
+    systems,
+    nixpkgs,
+    ...
+  } @ inputs: let
+    eachSystem = f:
+      nixpkgs.lib.genAttrs (import systems) (
+        system:
+          f nixpkgs.legacyPackages.${system}
       );
+  in {
+    devShells = eachSystem (pkgs: {
+      default = pkgs.mkShell {
+        buildInputs = [
+          pkgs.rustup
+          pkgs.nodejs
+          pkgs.yarn
+          pkgs.nodePackages.typescript
+          pkgs.nodePackages.typescript-language-server
+        ];
+      };
+    });
+  };
 }
