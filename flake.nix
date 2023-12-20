@@ -22,8 +22,15 @@
           buildInputs = with pkgs; [
             rustup
             rust-analyzer
+
             nodejs
             yarn
+
+            cmake
+            ninja
+            libgcc
+            openssl
+            boost
           ];
           packages = with pkgs; [ python311 virtualenv ] ++
             (with pkgs.python311Packages; [ pip ]);
