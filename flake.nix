@@ -23,14 +23,9 @@
             rustup
             rust-analyzer
 
-            nodejs
+            nodejs_18
             yarn
 
-            cmake
-            ninja
-            libgcc
-            openssl
-            boost
           ];
           packages = with pkgs; [ python311 virtualenv ] ++
             (with pkgs.python311Packages; [ pip ]);

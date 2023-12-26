@@ -1,1 +1,0 @@
-/nix/store/sfgnb6rr428bssyrs54d6d0vv2avi95c-gcc-wrapper-12.3.0/bin/g++  -Wall -std=c++1y -pedantic -Wextra -O3 -DNDEBUG -rdynamic CMakeFiles/mustachetest.dir/mustachetest.cpp.o -o mustachetest 
