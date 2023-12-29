@@ -24,6 +24,7 @@
             rust-analyzer
 
             nodejs_18
+            nest-cli
             yarn
 
             # Article
