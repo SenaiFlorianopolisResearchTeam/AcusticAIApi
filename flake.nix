@@ -24,6 +24,7 @@
             rustup
             rust-analyzer
             nodejs_18
+            nest-cli
             yarn
 
             # External tools
