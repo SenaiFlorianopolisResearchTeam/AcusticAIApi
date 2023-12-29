@@ -20,11 +20,14 @@
       devShells = eachSystem (pkgs: {
         default = pkgs.mkShell {
           buildInputs = with pkgs; [
+            # Lang tools & deps
             rustup
             rust-analyzer
-
             nodejs_18
             yarn
+
+            # External tools
+            pgadmin4-desktopmode
 
             # Article
             texliveMedium
