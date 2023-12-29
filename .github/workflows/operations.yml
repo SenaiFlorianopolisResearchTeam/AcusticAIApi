@@ -21,6 +21,6 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-    - run: cd Backend/operations && npm ci
+    - run: cd Backend/operations && npm install
     - run: cd Backend/operations && npm run build --if-present
     - run: cd Backend/operations && npm test
