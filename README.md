@@ -1,3 +1,3 @@
 <div align="center">
-  <img src="./Imgs/logo.png" height=300></img>
+  <img src="./Imgs/logo.png" height=250></img>
 </div>
