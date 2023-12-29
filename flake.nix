@@ -26,6 +26,8 @@
             nodejs_18
             yarn
 
+            # Article
+            texliveMedium
           ];
           packages = with pkgs; [ python311 virtualenv ] ++
             (with pkgs.python311Packages; [ pip ]);
