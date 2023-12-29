@@ -22,6 +22,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+        working-directory: Backend/operations
     - run: cd Backend/operations && npm ci
     - run: cd Backend/operations && npm run build --if-present
     - run: cd Backend/operations && npm test
