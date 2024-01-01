@@ -2,6 +2,9 @@
 import Link from "next/link";
 import { FC, useState } from "react";
 
+// Style
+import Style from "../scss/home.module.scss"
+
 // Components
 import PopupHome from "@/components/popupHome";
 import ClientPortal from "@/components/clientPortal";
@@ -34,7 +37,7 @@ const Home: FC = () => {
   };
 
   return (
-    <main className="">
+    <main className={Style.home}>
       <nav>
         <div>
           <p onClick={() => showContent(EContents.Sponsors)}>Sponsors</p>
@@ -44,7 +47,7 @@ const Home: FC = () => {
         </div>
         <div>
           <p onClick={() => showContent(EContents.Contanct)}>Contact</p>
-          <Link href="/"> Singup </Link>
+          <Link href="/signup"> Singup </Link>
         </div>
       </nav>
       <section>

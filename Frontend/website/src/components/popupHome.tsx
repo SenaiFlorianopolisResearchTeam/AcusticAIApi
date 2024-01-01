@@ -1,5 +1,7 @@
+// Lib deps
 import { FC } from "react";
 
+// Types
 interface PopupHomeProps {
   content: number | null;
 }
@@ -8,24 +10,30 @@ const PopupHome: FC<PopupHomeProps> = ({ content }) => {
   const getContentText = () => {
     switch (content) {
       case 0:
-        return "Conteúdo para Sponsors";
+        return (
+          <>
+            <p>Sponsors</p>
+          </>
+        );
       case 1:
-        return "Conteúdo para Porpose";
+        return (
+          <>
+            <p>Porpose</p>
+          </>
+        );
       case 2:
-        return "Conteúdo para Contact";
-      default:
-        return "Conteúdo padrão";
+        return (
+          <>
+            <p>Contact</p>
+          </>
+        );
     }
   };
 
   return (
     <div className="popup-container">
       <div className="popup-content">
-        <button className="close-button">
-          Fechar
-        </button>
-        <h2>Popup Content</h2>
-        <p>{getContentText()}</p>
+        {getContentText()}
       </div>
     </div>
   );
