@@ -1,12 +1,12 @@
 // Lib deps
 import { FC } from "react";
 
-const s: FC = () => {
+const trynow: FC = () => {
   return (
     <main>
-      <p>Signup</p>
+      <p>trynow</p>
     </main>
   )
 }
 
-export defa
+export default trynow

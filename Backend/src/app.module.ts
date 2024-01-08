@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ListsModule } from './lists/lists.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    ListsModule,
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
@@ -21,4 +21,4 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}

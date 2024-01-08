@@ -9,6 +9,7 @@ import Style from "../scss/home.module.scss"
 import PopupHome from "@/components/popupHome";
 import ClientPortal from "@/components/clientPortal";
 import Wave from "@/svgs/wave";
+import Image from "next/image";
 
 // Types
 enum EContents {
@@ -39,19 +40,20 @@ const Home: FC = () => {
   return (
     <main className={Style.home}>
       <nav>
-        <div>
+        <div className={Style.link1}>
           <p onClick={() => showContent(EContents.Sponsors)}>Sponsors</p>
           <p onClick={() => showContent(EContents.Porpose)}>Porpose</p>
         </div>
-        <div>
+        <div className={Style.logo}>
+          <Image src="/logo.png" width={1000} height={500} alt="Picture of the author"/>
         </div>
-        <div>
+        <div className={Style.link2}>
           <p onClick={() => showContent(EContents.Contanct)}>Contact</p>
           <Link href="/signup"> Singup </Link>
         </div>
       </nav>
       <section>
-        <button> Try Now </button>
+        <Link href="/trynow"> Try Now </Link>
       </section>
       <footer>
         <Wave />
