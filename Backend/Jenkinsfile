@@ -1,0 +1,46 @@
+pipeline {
+    agent any
+    
+    environment {
+        NODEJS_VERSION = '18'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    def nodejsInstall = tool 'NodeJS'
+                    env.PATH = "${nodejsInstall}/bin:${env.PATH}"
+                    sh 'npm install'
+                }
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                script {
+                    sh 'npm test'
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            // Limpar artefato ou recurso temporário
+        }
+
+        success {
+            // Ações a serem realizadas com sucesso
+        }
+
+        failure {
+        }
+    }
+}
