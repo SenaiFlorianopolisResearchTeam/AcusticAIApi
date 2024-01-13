@@ -6,9 +6,9 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_PASSWORD=123456
-      - POSTGRES_USER=fullzer4
-      - POSTGRES_DB=acustticai
+      - POSTGRES_PASSWORD=test
+      - POSTGRES_USER=test
+      - POSTGRES_DB=test
     networks:
       - postgres-compose-network
 
