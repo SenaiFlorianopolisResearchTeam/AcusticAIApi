@@ -1,9 +1,9 @@
-import Fastify from 'fastify';
+import Fastify, { FastifyInstance } from 'fastify';
 import AutoLoad from '@fastify/autoload';
 import fastifyCors from '@fastify/cors';
 import fastifyMetrics from 'fastify-metrics';
 
-export function build(): any {
+export function build(): Promise<FastifyInstance> {
 
   const server = Fastify();
 
@@ -15,5 +15,5 @@ export function build(): any {
     dir: `${__dirname}/routes`,
   });
 
-  return server
+  return Promise.resolve(server);
 }

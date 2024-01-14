@@ -1,7 +1,8 @@
+import { FastifyInstance } from 'fastify';
 import { build } from './setup';
 
 build()
-  .then((server: any) => {
+  .then((server: FastifyInstance) => {
     server.listen({ port: 4000 }, () => {
       console.info('Server is running on port 4000');
     });

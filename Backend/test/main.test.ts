@@ -6,7 +6,7 @@ test('GET `/` route', async (t) => {
   const fastify = build();
 
   try {
-    const response = await fastify.inject({
+    const response = await (await fastify).inject({
       method: 'GET',
       url: '/',
     });
@@ -15,6 +15,6 @@ test('GET `/` route', async (t) => {
   } catch (err) {
     throw err;
   } finally {
-    await fastify.close();
+    await (await fastify).close();
   }
 });
