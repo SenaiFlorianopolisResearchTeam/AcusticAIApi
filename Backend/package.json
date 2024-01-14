@@ -7,7 +7,7 @@
     "build": "tsc",
     "start": "node dist/main.js",
     "dev": "ts-node main.ts",
-    "test": "ts-node test/*"
+    "test": "ts-node tests/*"
   },
   "dependencies": {
     "@fastify/autoload": "^5.8.0",

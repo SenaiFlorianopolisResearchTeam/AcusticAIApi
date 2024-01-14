@@ -1,3 +1,0 @@
-[submodule "Backend/crow"]
-	path = Backend/crow
-	url = https://github.com/ipkn/crow
