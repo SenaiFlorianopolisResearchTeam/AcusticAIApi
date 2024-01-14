@@ -1,0 +1,11 @@
+{
+  "name": "e2e",
+  "type": "module",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "playwright": "^1.40.1"
+  }
+}
