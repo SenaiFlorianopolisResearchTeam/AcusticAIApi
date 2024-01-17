@@ -2,15 +2,17 @@
     "extends": "fastify-tsconfig",
     "compilerOptions": {
       "target": "ES2022",                                 
-      "lib": ["ES2022"],                                  
+      "lib": ["ES2022"],   
+      "types": ["jest", "node"],                             
       "module": "NodeNext",   
       "outDir": "./dist",                                  
       "noEmit": false,           
       "esModuleInterop": true,
-      "resolveJsonModule": true,                       
-      "skipDefaultLibCheck": true,
-      "skipLibCheck": true,     
-      "strict": true
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "strict": true,
+      "resolveJsonModule": true,
+      "isolatedModules": true,   
     },
-    "exclude": ["node_modules", "dist", "tests"]
+    "exclude": ["node_modules", "dist"]
 }

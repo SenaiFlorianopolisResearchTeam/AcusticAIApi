@@ -1,48 +1,49 @@
-import { test } from 'node:test';
-import assert from 'assert';
-import { build } from '../setup';
+import { FastifyInstance } from 'fastify';
 import { PrismaClient } from '@prisma/client';
+import { build } from '../setup';
 
 const prisma = new PrismaClient();
 
-test('POST `/users` route', async (t) => {
-  const fastify = build();
+let fastify: FastifyInstance;
 
-  // Dados do usuário para o teste
-  const userData = {
-    email: 'test@example.com',
-    password: 'securepassword',
-    name: 'Test User',
-  };
+beforeAll(async () => {
+  fastify = await build();
+});
 
-  try {
-    // Fazer uma solicitação POST para criar um usuário
-    const response = await (await fastify).inject({
-      method: 'POST',
-      url: '/users',
-      payload: userData,
-    });
+afterAll(async () => {
+  await fastify.close();
+  await prisma.$disconnect();
+});
 
-    // Verificar se a resposta tem o código de status correto
-    assert.strictEqual(response.statusCode, 201);
+describe('create user', () => {
+  it('should create a user', async () => {
+    const userData = {
+      email: `test-${Date.now()}@example.com`,
+      password: 'securepassword',
+      name: 'Test User',
+    };
 
-    // Verificar se a resposta contém os dados do usuário
-    const responseBody = JSON.parse(response.payload);
-    assert.deepStrictEqual(responseBody.user.email, userData.email);
-    assert.deepStrictEqual(responseBody.user.name, userData.name);
+    try {
+      const response = await fastify.inject({
+        method: 'POST',
+        url: '/users',
+        payload: userData,
+      });
 
-    // Verificar se o usuário foi realmente criado no banco de dados
-    const createdUser = await prisma.user.findUnique({
-      where: { email: userData.email },
-    });
-    assert(createdUser !== null);
-    assert.deepStrictEqual(createdUser?.email, userData.email);
-    assert.deepStrictEqual(createdUser?.name, userData.name);
-  } catch (err) {
-    throw err;
-  } finally {
-    // Fechar a instância do Fastify e desconectar o Prisma
-    await (await fastify).close();
-    await prisma.$disconnect();
-  }
+      expect(response.statusCode).toBe(201);
+
+      const responseBody = JSON.parse(response.payload);
+      expect(responseBody.user.email).toBe(userData.email);
+      expect(responseBody.user.name).toBe(userData.name);
+
+      const createdUser = await prisma.user.findUnique({
+        where: { email: userData.email },
+      });
+      expect(createdUser).not.toBeNull();
+      expect(createdUser?.email).toBe(userData.email);
+      expect(createdUser?.name).toBe(userData.name);
+    } catch (err) {
+      throw err;
+    }
+  });
 });

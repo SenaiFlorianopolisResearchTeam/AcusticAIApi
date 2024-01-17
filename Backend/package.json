@@ -7,7 +7,8 @@
     "build": "tsc",
     "start": "node dist/main.js",
     "dev": "nodemon --exec ts-node main.ts",
-    "test": "ts-node tests/*"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@fastify/autoload": "^5.8.0",
@@ -22,11 +23,14 @@
     "prom-client": "^15.1.0"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.11",
     "@types/jsonwebtoken": "^9.0.5",
     "@types/node": "^20.11.0",
     "fastify-tsconfig": "^2.0.0",
+    "jest": "^29.7.0",
     "nodemon": "^3.0.3",
     "prisma": "5.8.1",
+    "ts-jest": "^29.1.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   }
