@@ -1,12 +1,12 @@
 {
-  "name": "Backend",
+  "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "build": "tsc",
     "start": "node dist/main.js",
-    "dev": "ts-node main.ts",
+    "dev": "nodemon --exec ts-node main.ts",
     "test": "ts-node tests/*"
   },
   "dependencies": {
@@ -14,14 +14,19 @@
     "@fastify/cors": "^8.5.0",
     "@fastify/sensible": "^5.5.0",
     "@fastify/type-provider-typebox": "^4.0.0",
+    "@prisma/client": "5.8.1",
     "@sinclair/typebox": "^0.32.9",
     "fastify": "^4.25.2",
     "fastify-metrics": "^10.5.0",
+    "jsonwebtoken": "^9.0.2",
     "prom-client": "^15.1.0"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.5",
     "@types/node": "^20.11.0",
     "fastify-tsconfig": "^2.0.0",
+    "nodemon": "^3.0.3",
+    "prisma": "5.8.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   }
