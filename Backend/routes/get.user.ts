@@ -42,7 +42,6 @@ const plugin: FastifyPluginAsyncTypebox = async function(fastify, _opts) {
 
       reply.status(200).send({ user });
     } catch (error) {
-      console.log(error);
       reply.status(500).send({
         statusCode: 500,
         error: 'Internal Server Error',

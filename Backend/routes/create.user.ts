@@ -46,7 +46,6 @@ const plugin: FastifyPluginAsyncTypebox = async function(fastify, _opts) {
           message: 'E-mail already in use',
         });
       } else {
-        console.log(error);
         reply.status(500).send({
           statusCode: 500,
           error: 'Internal Server Error',

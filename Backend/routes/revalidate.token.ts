@@ -45,11 +45,10 @@ const plugin: FastifyPluginAsync = async (fastify, _opts) => {
         return;
       }
 
-      const accessToken = generateAccessToken(id, 'seuSegredo');
+      const accessToken = generateAccessToken(id, 'segredo');
 
       reply.status(200).send({ accessToken });
     } catch (error) {
-      console.error(error);
       reply.status(401).send({ error: 'Invalid user information' });
     }
   });

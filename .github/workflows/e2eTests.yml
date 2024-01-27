@@ -1,0 +1,19 @@
+name: e2e tests
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build and run Docker Compose
+        run: |
+          docker-compose -f docker-coompose.test.yml build
+          docker-compose -f docker-coompose.test.yml up -d
