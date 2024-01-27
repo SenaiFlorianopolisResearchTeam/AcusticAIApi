@@ -1,77 +1,61 @@
-// Lib deps 
-import Link from "next/link";
-import Image from "next/image";
-import { FC, useState } from "react";
+import Image from "next/image"
+import { FC } from "react"
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
-
-// Style
+import { Comfortaa } from 'next/font/google'
+import { motion } from 'framer-motion'
+import Navbar from "@/components/Navbar"
+import Car from "@/svgs/car"
 import Style from "../scss/home.module.scss"
 
-// Components
-import PopupHome from "@/components/popupHome";
-import ClientPortal from "@/components/clientPortal";
-import Wave from "@/svgs/wave";
-
-// Types
-enum EContents {
-  Sponsors,
-  Porpose,
-  Contanct,
-}
-
-interface IContent {
-  (Content: number): void;
-}
+const comfortaa = Comfortaa({ subsets: ['latin'] })
 
 const Home: FC = () => {
 
   const {t} = useTranslation('home')
 
-  const [popupState, setPopupState] = useState<boolean>(false)
-  const [currentContent, setCurrentContent] = useState<EContents | null>(null)
-
-  const showContent: IContent = (Content: number) => {
-    if (Content === currentContent) {
-      setPopupState(false);
-      setCurrentContent(null);
-    } else {
-      setPopupState(true);
-      setCurrentContent(Content);
-    }
-  };
-
   return (
-    <>
-      <main className={Style.home}>
-        <nav>
-          <div className={Style.link1}>
-            <p onClick={() => showContent(EContents.Sponsors)}>{t('sponsors')}</p>
-            <p onClick={() => showContent(EContents.Porpose)}>{t('porpose')}</p>
-          </div>
-          <div className={Style.logo}>
-            <Image src="/logo.png" width={1000} height={500} alt="Picture of the author"/>
-          </div>
-          <div className={Style.link2}>
-            <p onClick={() => showContent(EContents.Contanct)}>{t('contact')}</p>
-            <Link href="/signup">{t('signup')}</Link>
-          </div>
-        </nav>
-        <section>
-          <p>{t('impact')}</p>
-          <Link href="/trynow">{t('trynow')}</Link>
-        </section>
-        <>
-          <Wave />
-        </>
-        <ClientPortal
-          selector="popupPortal"
-          show={popupState}
+    <main className={Style.home}>
+      <Navbar/>
+      <motion.section 
+        className={Style.cont1} 
+        initial={{ opacity: 0 }} 
+        animate={{ opacity: 1 }} 
+        transition={{ duration: 0.5 }}
+      >
+        <Image 
+          src="/img1home.png" 
+          width={1920} 
+          height={960} 
+          alt={t('altimg1')}
+          quality={100} 
+        />
+      </motion.section>
+      <div className={Style.content}>
+        <motion.section
+          className={Style.sec1}
+          initial={{ opacity: 0, x: -100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
         >
-          <PopupHome content={currentContent!} />
-        </ClientPortal>
-      </main>
-    </>
+          <h2 className={comfortaa.className}>{t('impact')}</h2>
+        </motion.section>
+        <motion.section 
+            className={Style.sec2}
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+          <div className={Style.titlecard}>
+            <p className={comfortaa.className}>{t('titlecard')}</p>
+          </div>
+          <div className={Style.contentcard}>
+            <Car/>
+            <p className={comfortaa.className}>{t('contcard')}</p>
+          </div>
+        </motion.section>
+      </div>
+    </main>
   )
 }
 

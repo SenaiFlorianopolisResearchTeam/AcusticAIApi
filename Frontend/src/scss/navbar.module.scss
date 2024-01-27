@@ -1,0 +1,53 @@
+.navbar {
+    width: 90%;
+    height: 12dvh;
+    display: flex;
+    justify-content: space-between;
+    .logodiv {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        .logobox {
+            img {
+                width: 6dvh;
+                height: 6dvh;
+            }
+        }
+        .logotext {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            align-items: center;
+            h1 {
+                font-size: 1.25rem;
+            }
+            hr {
+                width: 100%;
+            }
+            p {
+                font-size: 0.9rem;
+            }
+        }
+    }
+    .linksdiv {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 45px;
+        a {
+            color: #000;
+            font-weight: 700; 
+        }
+    }
+    .linksdiv > :nth-child(3) {
+        background-color: #000;
+        color: #fff;
+        border-radius: 15px;
+        padding: 40px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+}

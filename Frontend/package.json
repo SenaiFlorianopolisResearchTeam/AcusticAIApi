@@ -6,25 +6,36 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest"
   },
   "dependencies": {
-    "framer-motion": "^10.16.16",
+    "framer-motion": "^10.18.0",
     "i18next": "^23.7.16",
     "next": "14.0.4",
     "next-i18next": "^15.2.0",
     "react": "^18",
     "react-dom": "^18",
     "react-i18next": "^14.0.0",
-    "sass": "^1.69.6"
+    "sass": "^1.69.6",
+    "sharp": "^0.33.2"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.23.9",
+    "@testing-library/jest-dom": "^6.3.0",
+    "@testing-library/react": "^14.1.2",
+    "@types/jest": "^29.5.11",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
+    "enzyme": "^3.11.0",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }

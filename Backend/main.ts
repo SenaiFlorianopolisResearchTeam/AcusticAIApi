@@ -3,7 +3,7 @@ import { build } from './setup';
 
 build()
   .then((server: FastifyInstance) => {
-    server.listen({ port: 4000 }, () => {
+    server.listen({ host: "0.0.0.0",  port: 4000 }, () => {
       console.info('Server is running on port 4000');
     });
   })

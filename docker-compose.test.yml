@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  postgresqldb:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=test
+      - POSTGRES_USER=test
+      - POSTGRES_DB=test
+    networks:
+      - compose-network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "gabrielpelizzaro@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "123456"
+    ports:
+      - "16543:80"
+    networks:
+      - compose-network
+  
+  backend:
+    build:
+      context: ./Backend  
+      dockerfile: Dockerfile  
+    ports:
+      - "4000:4000"
+    networks:
+      - compose-network
+    
+  frontend:
+    build:
+      context: ./Frontend  
+      dockerfile: Dockerfile  
+    ports:
+      - "3000:3000"
+    networks:
+      - compose-network
+
+networks: 
+  compose-network:
+    driver: bridge
