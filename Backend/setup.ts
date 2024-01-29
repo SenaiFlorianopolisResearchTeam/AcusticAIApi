@@ -5,12 +5,16 @@ import fastifyMetrics from 'fastify-metrics';
 
 export function build(): Promise<FastifyInstance> {
 
-  const server = Fastify();
+  const server = Fastify({
+    logger: true
+  });
 
   server.register(fastifyCors, {
     origin: '*'
   });
+  
   server.register(fastifyMetrics, { endpoint: '/metrics' });
+
   server.register(AutoLoad, {
     dir: `${__dirname}/routes`,
   });

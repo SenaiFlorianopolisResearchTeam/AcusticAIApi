@@ -3,6 +3,7 @@
 _() {
   cd ..
   docker-compose up -d
+  cd e2e/
   node main.js
 } && _
 

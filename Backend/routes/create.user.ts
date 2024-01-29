@@ -38,7 +38,7 @@ const plugin: FastifyPluginAsyncTypebox = async function(fastify, _opts) {
       });
 
       reply.status(201).send({ user: newUser });
-    } catch (error) {
+    } catch (error: any) {
       if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') {
         reply.status(400).send({
           statusCode: 400,
