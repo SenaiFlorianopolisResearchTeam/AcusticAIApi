@@ -6,7 +6,9 @@ import fastifyMetrics from 'fastify-metrics';
 export function build(): Promise<FastifyInstance> {
 
   const server = Fastify({
-    logger: true
+    logger: {
+      file: './resume.log'
+    }
   });
 
   server.register(fastifyCors, {

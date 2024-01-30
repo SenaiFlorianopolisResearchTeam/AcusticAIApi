@@ -34,8 +34,8 @@ const Navbar: FC = () => {
                 transition={{ duration: 0.5 }} 
             >
                 <Link href="/articles" className={comfortaa.className}> ARTICLES </Link>
-                <Link href="" className={comfortaa.className}> LOGIN </Link>
-                <Link href="" className={comfortaa.className}> SIGN UP </Link>
+                <Link href="/register" className={comfortaa.className}> LOGIN </Link>
+                <Link href="/register" className={comfortaa.className}> SIGN UP </Link>
             </motion.div>
         </nav>
     )

@@ -1,4 +1,4 @@
-name: unit tests
+name: sec tests
 
 on:
   push:
@@ -15,5 +15,5 @@ jobs:
 
       - name: Build and run Docker Compose
         run: |
-          docker-compose -f docker-compose.dev.yml build
-          docker-compose -f docker-compose.dev.yml up -d
+          docker-compose -f docker-compose.prod.yml build
+          docker-compose -f docker-compose.prod.yml up -d

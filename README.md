@@ -4,7 +4,13 @@
 
 <div align="center">
 
-[![Node.js CI](https://github.com/SenaiFlorianopolisResearchTeam/AcustticAI/actions/workflows/operations.yml/badge.svg)](https://github.com/SenaiFlorianopolisResearchTeam/AcustticAI/actions/workflows/operations.yml)
-[![Rust](https://github.com/SenaiFlorianopolisResearchTeam/AcustticAI/actions/workflows/auth.yml/badge.svg)](https://github.com/SenaiFlorianopolisResearchTeam/AcustticAI/actions/workflows/auth.yml)
+[![e2e tests](https://github.com/SenaiFlorianopolisResearchTeam/AcustticAI/actions/workflows/e2eTests.yml/badge.svg)](https://github.com/SenaiFlorianopolisResearchTeam/AcustticAI/actions/workflows/e2eTests.yml)
+[![unit tests](https://github.com/SenaiFlorianopolisResearchTeam/AcustticAI/actions/workflows/unitTests.yml/badge.svg)](https://github.com/SenaiFlorianopolisResearchTeam/AcustticAI/actions/workflows/unitTests.yml)
+
+</div>
+
+<div>
+
+## Articles
 
 </div>
