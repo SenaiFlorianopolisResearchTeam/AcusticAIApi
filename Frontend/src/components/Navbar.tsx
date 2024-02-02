@@ -4,10 +4,13 @@ import { FC } from "react"
 import Style from "@/scss/navbar.module.scss"
 import { Comfortaa } from 'next/font/google'
 import { motion } from 'framer-motion';
+import { useRegisterContext } from "@/context/resgister"
 
 const comfortaa = Comfortaa({ subsets: ['latin'] })
 
 const Navbar: FC = () => {
+
+    const { updateState } = useRegisterContext()
 
     return (
         <nav className={Style.navbar}>
@@ -34,8 +37,8 @@ const Navbar: FC = () => {
                 transition={{ duration: 0.5 }} 
             >
                 <Link href="/articles" className={comfortaa.className}> ARTICLES </Link>
-                <Link href="/register" className={comfortaa.className}> LOGIN </Link>
-                <Link href="/register" className={comfortaa.className}> SIGN UP </Link>
+                <Link href="/register" onClick={() => updateState("login")} className={comfortaa.className}> LOGIN </Link>
+                <Link href="/register" onClick={() => updateState("signup")} className={comfortaa.className}> SIGN UP </Link>
             </motion.div>
         </nav>
     )

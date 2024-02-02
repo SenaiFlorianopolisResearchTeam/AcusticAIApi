@@ -4,7 +4,7 @@ type RegisterContextProvider = {
   children: React.ReactNode
 }
 
-type State = 'login' | 'signup' | 'forgotPassword'
+type State = 'login' | 'signup' | 'signupForm' | 'forgotPassword' 
 
 interface RegisterType {
   state: State;

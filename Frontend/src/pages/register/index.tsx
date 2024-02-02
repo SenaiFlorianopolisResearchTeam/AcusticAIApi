@@ -7,42 +7,27 @@ import { motion } from 'framer-motion'
 import Navbar from "@/components/Navbar"
 import Style from "@/scss/home.module.scss"
 import Team from "@/svgs/team";
+import Login from "./login";
+import Signup from "./singup";
+import Forgot from "./forgot";
+import SignupForm from "./signupForm";
 
 const comfortaa = Comfortaa({ subsets: ['latin'] })
 
 const Register: FC = () => {
     const { t } = useTranslation('home');
-    const { state, updateState } = useRegisterContext();
+    const { state } = useRegisterContext();
 
     const renderForm = () => {
         switch (state) {
             case 'login':
-                return (
-                    <form>
-                        <p>Login</p>
-                        <input />
-                        <input />
-                        <button>Continue</button>
-                    </form>
-                );
+                return <Login/>
             case 'signup':
-                return (
-                    <form>
-                        <p>Register</p>
-                        <input />
-                        <input />
-                        <input />
-                        <button>Register</button>
-                    </form>
-                );
+                return <Signup/>
+            case 'signupForm':
+                return <SignupForm/>
             case 'forgotPassword':
-                return (
-                    <form>
-                        <p>Forgot Password</p>
-                        <input />
-                        <button>Reset Password</button>
-                    </form>
-                );
+                return <Forgot/>
             default:
                 return null
         }
