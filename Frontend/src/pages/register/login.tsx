@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useRegisterContext } from '@/context/resgister'
+import useHttp from '@/hooks/useHttp';
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -13,6 +14,9 @@ type FormData = z.infer<typeof schema>;
 const Login = () => {
     const { register, handleSubmit } = useForm<FormData>();
     const { updateState } = useRegisterContext()
+    const { data, error } = useHttp("http://localhost:4000/", { method: "get" })
+
+    console.log(data)
 
     const onSubmit: SubmitHandler<FormData> = (data: FormData) => {
         const validationResult = schema.safeParse(data);

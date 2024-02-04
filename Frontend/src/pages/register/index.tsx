@@ -5,7 +5,7 @@ import { Comfortaa } from 'next/font/google'
 import { useRegisterContext } from "@/context/resgister"
 import { motion } from 'framer-motion'
 import Navbar from "@/components/Navbar"
-import Style from "@/scss/home.module.scss"
+import Style from "@/scss/register.module.scss"
 import Team from "@/svgs/team";
 import Login from "./login";
 import Signup from "./singup";
