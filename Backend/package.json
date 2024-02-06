@@ -15,12 +15,12 @@
     "@fastify/cors": "^8.5.0",
     "@fastify/sensible": "^5.5.0",
     "@fastify/type-provider-typebox": "^4.0.0",
-    "@prisma/client": "5.8.1",
+    "@prisma/client": "5.9.1",
     "@sinclair/typebox": "^0.32.9",
     "fastify": "^4.25.2",
     "fastify-metrics": "^10.5.0",
     "jsonwebtoken": "^9.0.2",
-    "prisma": "5.8.1",
+    "prisma": "5.9.1",
     "prom-client": "^15.1.0"
   },
   "devDependencies": {

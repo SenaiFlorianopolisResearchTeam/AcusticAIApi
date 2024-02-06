@@ -1,8 +1,6 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from 'react';
 import { useRegisterContext } from '@/context/resgister';
-import useHttp from '@/hooks/useHttp';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -15,23 +13,38 @@ type FormData = z.infer<typeof schema>;
 
 const Login = () => {
     const { register, handleSubmit } = useForm<FormData>();
+    const [postdata, setPostdata] = useState<any>({
+        email: '',
+        password: ''
+    })
     const { updateState } = useRegisterContext();
 
     const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
         const validationResult = schema.safeParse(data);
         if (validationResult.success) {
-            try {
-                const { data: responseData, error: requestError } = useHttp("http://localhost:4000/login", { method: "post", body: data });
-                console.log(requestError)
-            } catch (err: any) {
-                console.log(err)
+          setPostdata(data)
+          try {
+            const response = await fetch('http://localhost:4000/login', {
+              method: 'POST',
+              headers: {
+              'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(postdata),
+            });
+
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
             }
-        } else {
-            const errorMessage = validationResult.error.errors[0].message;
-            const field = validationResult.error.errors[0].path[0];
-            alert(`Error: ${errorMessage}\nField: ${field}`);
+
+            const responseData = await response.json();
+            console.log('Response from server:', responseData);
+          } catch (err){
+
+          } finally {
+
+          }
         }
-    };
+    }
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
