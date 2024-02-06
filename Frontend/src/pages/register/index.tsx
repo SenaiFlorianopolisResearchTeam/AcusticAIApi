@@ -8,7 +8,7 @@ import Navbar from "@/components/Navbar"
 import Style from "@/scss/register.module.scss"
 import Team from "@/svgs/team";
 import Login from "./login";
-import Signup from "./singup";
+import Signup from "./singup"; 
 import Forgot from "./forgot";
 import SignupForm from "./signupForm";
 

@@ -1,51 +1,75 @@
-import http, { ClientRequest, IncomingMessage } from "http"
-import { useEffect, useState } from "react"
+import http, { ClientRequest, IncomingMessage } from "http";
+import { useEffect, useState } from "react";
 
-type method = 'get' | 'post' | 'delete' | 'put'
+type HttpMethod = 'get' | 'post' | 'delete' | 'put';
 
-type options = {
-  method: method,
-  body?: JSON
+interface RequestOptions {
+  method: HttpMethod;
+  body?: Record<string, any>;
 }
 
-const useHttp = (url: string, options: options) => {
-  const [data, setData]  = useState<string | null>(null)
-  const [loading, setLoading] = useState<boolean>(false)
-  const [error, setError] = useState<Error | null>(null)
+const useHttp = (url: string, options: RequestOptions) => {
+  const [data, setData] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<Error | null>(null);
+  
+  const urlRegex: RegExp = /^(https?:\/\/)?([\w.-]+)(:\d+)?(\/.*)?$/;
+  const matches: RegExpMatchArray | null = url.match(urlRegex);
+
+  if (!matches) {
+    throw new Error('invalid URL');
+  }
+
+  const [, , hostname, port, path] = matches;
+  const extractedPort = port ? port.slice(1) : null;
   
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
 
-    const req: any = http.request(url, {method: options.method}, (res: IncomingMessage) => {
-      const chunks: Uint8Array[] = []
+    const postData = JSON.stringify(options.body);
+
+    const requestOptions = {
+      hostname: hostname,
+      port: extractedPort,
+      path: path,
+      method: options.method,
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    };
+
+    const req: ClientRequest = http.request(requestOptions, (res: IncomingMessage) => {
+      const chunks: Uint8Array[] = [];
 
       res.on('data', (chunk: Uint8Array) => {
-        chunks.push(chunk)
-      })
+        chunks.push(chunk);
+      });
 
       res.on('end', () => {
-        const responseData = Buffer.concat(chunks)
-        setData(responseData.toString())
-        setLoading(false)
-      })
-    })
+        const responseData = Buffer.concat(chunks);
+        setData(responseData.toString());
+        setLoading(false);
+      });
+    });
 
     req.on('error', (err: Error) => {
-      setError(err)
-      setLoading(false)
-    })
+      setError(err);
+      setLoading(false);
+    });
 
     if (options.body) {
-      req.write(JSON.stringify(options.body))
+      req.write(postData);
     }
+
+    req.end();
 
     return () => {
-      req.destroy()
+      req.destroy();
     }
     
-  }, [url, options.method, options.body])
+  }, [url, options.method, options.body, extractedPort, path, hostname]);
 
-  return {data, loading, error}
+  return { data, loading, error };
 }
 
-export default useHttp
+export default useHttp;
