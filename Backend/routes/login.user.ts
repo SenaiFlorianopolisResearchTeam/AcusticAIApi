@@ -38,7 +38,7 @@ const plugin: FastifyPluginAsyncTypebox = async function(fastify, _opts) {
         return;
       }
 
-      const token = jwt.sign({ userId: user.id, email: user.email }, 'secret', { expiresIn: '1m' });
+      const token = jwt.sign({ userId: user.id, email: user.email }, 'secret', { expiresIn: '30d' });
 
       reply.status(200).send({ accessToken: token });
     } catch (error) {

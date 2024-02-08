@@ -13,7 +13,7 @@ function verifyToken(token: string, secret: string): any {
 }
 
 function generateAccessToken(userId: number, email: string, secret: string): string {
-  return sign({ userId, email }, secret, { expiresIn: '1m' });
+  return sign({ userId, email }, secret, { expiresIn: '30d' });
 }
 
 const plugin: FastifyPluginAsync = async (fastify, _opts) => {
