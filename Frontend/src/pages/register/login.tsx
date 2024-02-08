@@ -14,7 +14,7 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>
 
 const Login = () => {
-    const { setCookieOnServer } = useCookies()
+    const { setCookie } = useCookies()
     const { register, handleSubmit } = useForm<FormData>();
     const [postdata, setPostdata] = useState<any>({
         email: '',
@@ -42,7 +42,7 @@ const Login = () => {
             }
 
             const responseData = await response.json();
-            await setCookieOnServer("auth", responseData?.accessToken)
+            await setCookie("auth", responseData?.accessToken)
             router.push('/dashboard')
           } catch (err){
             console.error('Error:', err);

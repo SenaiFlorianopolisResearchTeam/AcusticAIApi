@@ -1,9 +1,8 @@
-import { useState } from 'react';
+import { cookies } from 'next/headers'
 
 export const useCookies = () => {
-  const [cookie, setCookie] = useState(null);
 
-  const setCookieOnServer = async (cookieKey: string, cookieValue: string) => {
+  const setCookie = async (cookieKey: string, cookieValue: string) => {
     try {
       const response = await fetch('/api/cookies/setcookie', {
         method: 'POST',
@@ -11,26 +10,20 @@ export const useCookies = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ cookieKey, cookieValue}),
-      });
+      })
 
       if (!response.ok) {
-        throw new Error('Failed to set cookie on server');
+        throw new Error('Failed to set cookie on server')
       }
-
       
-      const { message } = await response.json();
-      console.log(message); 
-     
-      setCookie(message);
     } catch (error) {
       console.error('Error setting cookie:', error);
     }
   };
 
-  const getCookieOnServer = async (cookieKey: string) => {
-    const url: string = `/api/cookies/setcookie/${cookieKey}`
+  const getCookie = async (cookiename: string) => {
     try {
-      const response = await fetch(url, {
+      const response = await fetch(`/api/cookies/getcookie?name=${cookiename}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -38,16 +31,39 @@ export const useCookies = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to set cookie on server');
+        throw new Error('Network response was not ok');
       }
-      
-      const { message } = await response.json();
-     
-      return message
-    } catch (error) {
-      console.error('Error setting cookie:', error);
-    }
-  };
 
-  return { cookie, setCookieOnServer, getCookieOnServer };
+      const responseData = await response.json();
+
+      await setCookie("auth", responseData.value)
+
+      return responseData.value
+    } catch (err){
+      console.error('Error:', err);
+    }
+  }
+
+  const refreshAuthCookie = async () => {
+    try {
+
+      const oldtoken = await getCookie("auth")
+
+      const response: any = await fetch('http://localhost:4000/refreshtoken', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ "refreshToken": oldtoken}),
+      })
+      const responseData = await response.json();
+
+      await setCookie("auth", responseData?.accessToken)
+
+    } catch (err){
+      console.error('Error:', err);
+    }
+  }
+
+  return { setCookie, getCookie, refreshAuthCookie };
 };

@@ -1,5 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { CookieSerializeOptions, serialize } from 'cookie'
+import { CookieSerializeOptions, serialize,  } from 'cookie'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
@@ -14,7 +14,7 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
     const cookieOptions: CookieSerializeOptions = {
         httpOnly: true,
         secure: secure,
-        sameSite: "strict",
+        sameSite: "lax",
         maxAge: 2592000,
         path: '/',
     };
