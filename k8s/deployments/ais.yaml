@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ais-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ais
+  template:
+    metadata:
+      labels:
+        app: ais
+    spec:
+      containers:
+      - name: ais
+        image: fullzer4/ais:latest
+        ports:
+        - containerPort: 8000
