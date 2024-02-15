@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: acustticai-backend-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: acustticai-backend
+  template:
+    metadata:
+      labels:
+        app: acustticai-backend
+    spec:
+      containers:
+      - name: acustticai-backend
+        image: fullzer4/acustticai-backend:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 4000

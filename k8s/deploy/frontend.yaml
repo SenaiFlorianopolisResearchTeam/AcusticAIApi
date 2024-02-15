@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: acustticai-frontend-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: acustticai-frontend
+  template:
+    metadata:
+      labels:
+        app: acustticai-frontend
+    spec:
+      containers:
+      - name: acustticai-frontend
+        image: fullzer4/acustticai-frontend:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000
