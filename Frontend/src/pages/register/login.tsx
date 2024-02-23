@@ -5,6 +5,9 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
 import { useRouter } from 'next/router';
 import { useCookies } from '@/hooks/useCookies';
+import { Comfortaa } from 'next/font/google';
+
+const comfortaa = Comfortaa({ subsets: ['latin'] })
 
 const schema = z.object({
     email: z.string().email('Invalid email format').min(8, "Must contain 8 characters"),
@@ -52,18 +55,19 @@ const Login = () => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <p>Login</p>
+            <p className={comfortaa.className}>Login</p>
             <div>
                 <div>
-                    <input {...register("email")} placeholder="email" />
-                    <input type="password" {...register("password")} placeholder="password" />
+                    <input className={comfortaa.className} {...register("email")} placeholder="email" />
+                    <input className={comfortaa.className} type="password" {...register("password")} placeholder="password" />
+                    
                 </div>
-                <button type="submit">Continue</button>
+                <button className={comfortaa.className} type="submit">Continue</button>
             </div>
             <section>
                 <div>
                     <hr />
-                    <p>or continue with</p>
+                    <p className={comfortaa.className}>or continue with</p>
                     <hr />
                 </div>
                 <div>
@@ -72,7 +76,7 @@ const Login = () => {
                     <button />
                 </div>
             </section>
-            <p onClick={() => updateState("signup")}>Don't have an account? Register now here.</p>
+            <p className={comfortaa.className} onClick={() => updateState("signup")}>Don't have an account? Register now here.</p>
         </form>
     )
 }

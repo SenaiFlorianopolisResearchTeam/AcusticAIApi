@@ -36,9 +36,9 @@ const Register: FC = () => {
     return (
         <main className={Style.home}>
             <Navbar />
-            <div>
+            <div className={Style.content}>
                 <section>
-                    <p> ORGANIZE, PLAN & AMPLIFY </p>
+                    <p className={comfortaa.className}> ORGANIZE, PLAN & AMPLIFY </p>
                     <Team />
                 </section>
                 {renderForm()}
