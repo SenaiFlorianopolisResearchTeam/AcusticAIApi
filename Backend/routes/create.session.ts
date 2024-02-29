@@ -9,9 +9,7 @@ const plugin: FastifyPluginAsyncTypebox = async function(fastify, _opts) {
   fastify.post('/session', {
     schema: {
       body: Type.Object({
-        email: Type.String(),
-        password: Type.String(),
-        name: Type.String(),
+        userId: Type.Integer()
       }),
       response: {
         201: Type.Object({
